@@ -1,0 +1,9 @@
+{
+    "id": "IDontThinkThisIDIsUsed",
+    "name": "Arques's Test Mod",
+    "author": "Arqués",
+    "description": "This is a test to see if I can make a simple Mod.",
+    "prefix": "tstmod",
+    "main_file": "main.lua",
+    "version": "0.0.0"
+}
