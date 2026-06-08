@@ -1,7 +1,7 @@
 --Atlasses (Sprites)
 SMODS.Atlas {
-    key = 'placeholder',
-    path = 'placeholder.png',
+    key = 'placeholders',
+    path = 'placeholders.png',
     px = 71,
     py = 95
 }
