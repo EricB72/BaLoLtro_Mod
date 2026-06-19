@@ -8,11 +8,11 @@ SMODS.Joker {
     config = {
         extra = {
             maxPercentage = 40,
-            percentage = 120,
+            critDMG = 120,
             scalar = 0,
             lastNum = 0,
             originalBlind = 0,
-            highCard = 'High Card'
+            currentDMG = 120
         }
     },
     rarity = 3,
@@ -20,12 +20,12 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
+                card.ability.extra.critDMG,
                 card.ability.extra.maxPercentage,
-                card.ability.extra.percentage,
                 card.ability.extra.scalar,
                 card.ability.extra.lastNum,
                 card.ability.extra.originalBlind,
-                card.ability.extra.highCard
+                card.ability.extra.currentDMG
             }
         }
     end,
@@ -37,15 +37,44 @@ SMODS.Joker {
             card.ability.extra.scalar = G.GAME.chips
         end
 
-        if context.joker_main and context.scoring_name ~= card.ability.extra.highCard and not context.blueprint then
+        if context.cardarea == G.play and context.individual and not context.blueprint then
             card.ability.extra.lastNum = card.ability.extra.scalar / card.ability.extra.originalBlind * 100
 
             if tonumber(tostring(card.ability.extra.lastNum)) >= tonumber(tostring(100 - card.ability.extra.maxPercentage)) then
-                return {
-                    xchips = 1.2,
-                    xmult = 1.2
-                }
-            end   
+                local k = next(SMODS.get_enhancements(context.other_card))
+                local currDMG = (card.ability.extra.currentDMG / 100 - 1)
+
+                if k == 'm_stone' then 
+                    return { 
+                        chips = 50 * currDMG, 
+                        message = localize('b_crit'),
+                        colour = G.C.RED
+                    } end
+                if k == 'm_lucky' and context.other_card.lucky_trigger then 
+                    return { dollars =  20 * currDMG,
+                        mult =  20 * currDMG,
+                        message = localize('b_crit'),
+                        colour = G.C.RED
+                    } end
+                if k == 'm_glass' then 
+                    return { 
+                        xmult = 1 + currDMG,
+                        message = localize('b_crit'),
+                        colour = G.C.RED
+                    } end
+                if k == 'm_mult' then 
+                    return { 
+                        mult = 4 * currDMG,
+                        message = localize('b_crit'),
+                        colour = G.C.RED
+                    } end
+                if k == 'm_bonus' then 
+                    return { 
+                        chips = 30 * currDMG,
+                        message = localize('b_crit'),
+                        colour = G.C.RED
+                    } end
+            end
         end
     end
 }

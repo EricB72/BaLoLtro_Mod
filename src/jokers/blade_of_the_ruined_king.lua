@@ -7,12 +7,13 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            percentage = 3,
+            percentage = 10,
             timesTo = 3,
             lastNum = 0,
             highCard = 'High Card',
             reset = 0,
-            scalar = 1
+            scalar = 1,
+            percentageUpg = 30
         }
     },
     rarity = 3,
@@ -22,33 +23,30 @@ SMODS.Joker {
             vars = {
                 card.ability.extra.percentage,
                 card.ability.extra.timesTo,
-                card.ability.extra.lastNum,                
+                card.ability.extra.lastNum,
                 card.ability.extra.highCard,
-                card.ability.extra.reset
+                card.ability.extra.reset,
+                card.ability.extra.percentageUpg
             }
         }
     end,
     calculate = function(self, card, context)
         if context.joker_main and context.scoring_name == card.ability.extra.highCard then
-            SMODS.scale_card(card, {
-                    ref_table = card.ability.extra,
-                    ref_value = 'lastNum',
-                    scalar_value = 'scalar',
-                })
+            local addedAmount = (G.GAME.blind.chips - G.GAME.chips) * card.ability.extra.percentage / 100
+            card.ability.extra.lastNum = card.ability.extra.lastNum + card.ability.extra.scalar
             
-            if card.ability.extra.lastNum < (card.ability.extra.timesTo) then
-                return {
-                chips = G.GAME.blind.chips * card.ability.extra.percentage / 100
-            }
-            else
+            if card.ability.extra.lastNum >= (card.ability.extra.timesTo) then
+                addedAmount = (G.GAME.blind.chips - G.GAME.chips) * card.ability.extra.percentageUpg / 100
+
+                card.ability.extra.timesTo = card.ability.extra.reset
                 card.ability.extra.lastNum = card.ability.extra.reset
-                return {
-                    chips = G.GAME.blind.chips * card.ability.extra.percentage / 100,
-                    mult = G.GAME.blind.chips * card.ability.extra.percentage / 100
-                }
             end
-        elseif context.joker_main and context.scoring_name ~= card.ability.extra.highCard then
-            card.ability.extra.lastNum = card.ability.extra.reset
+
+            G.GAME.chips = G.GAME.chips + addedAmount
+
+            return {
+                message = tostring(addedAmount)
+            }
         end
     end
 }

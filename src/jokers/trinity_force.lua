@@ -12,7 +12,8 @@ SMODS.Joker {
             multMult = 2,
             highCard = 'High Card',
             prevHand = 'None',
-            spellblade = true
+            spellblade = true,
+            repetitions = 0
         }
     },
     rarity = 3,
@@ -25,16 +26,15 @@ SMODS.Joker {
                 card.ability.extra.multMult,
                 card.ability.extra.highCard,
                 card.ability.extra.prevHand,
-                card.ability.extra.spellblade
+                card.ability.extra.spellblade,
+                card.ability.extra.repetitions
             }
         }
     end,
     calculate = function(self, card, context)
         --Spellblade
         if context.joker_main then
-            local text = context.scoring_name
-
-            if card.ability.extra.prevHand ~= card.ability.extra.highCard and text == card.ability.extra.highCard then
+            if card.ability.extra.prevHand ~= card.ability.extra.highCard and context.scoring_name == card.ability.extra.highCard then
                 card.ability.extra.prevHand = context.scoring_name
                 
                 return {

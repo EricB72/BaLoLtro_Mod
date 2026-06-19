@@ -38,7 +38,7 @@ SMODS.Joker {
             amount = 1
         end
 
-        if context.before and G.GAME.current_round.hands_played == 0 then
+        if context.setting_blind then
             card.ability.extra.originalBlind = G.GAME.blind.chips
         end
 
@@ -58,9 +58,9 @@ SMODS.Joker {
                     message_colour = G.C.PURPLE
                 })
 
-                card.ability.extra.lastNum = card.ability.extra.originalBlind - G.GAME.blind.chips * (100 - card.ability.extra.percentage) / 100
+                card.ability.extra.lastNum = card.ability.extra.originalBlind - (card.ability.extra.originalBlind * (100 - card.ability.extra.percentage) / 100)
 
-                G.GAME.blind.chips = G.GAME.blind.chips * (100 - card.ability.extra.percentage) / 100
+                G.GAME.blind.chips = card.ability.extra.originalBlind - card.ability.extra.lastNum
                 G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
                 
                 prevCards[amount] = context.other_card:get_id()
@@ -74,5 +74,8 @@ SMODS.Joker {
             card.ability.extra.percentage = 0
             card.ability.extra.lastNum = 0
         end
+    end,
+    add_to_deck = function(self, card, context)
+        card.ability.extra.originalBlind = G.GAME.blind.chips
     end
 }

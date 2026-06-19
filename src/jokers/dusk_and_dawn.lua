@@ -9,7 +9,8 @@ SMODS.Joker {
         extra = {
             highCard = 'High Card',
             prevHand = 'None',
-            triggered = false
+            triggered = false,
+            other_joker = 0
         }
     },
     rarity = 3,
@@ -19,34 +20,25 @@ SMODS.Joker {
             vars = {
                 card.ability.extra.highCard,
                 card.ability.extra.prevHand,
-                card.ability.extra.triggered
-}
+                card.ability.extra.triggered,
+                card.ability.extra.other_joker
+            }
         }
     end,
     calculate = function(self, card, context)
-        if context.before and card.ability.extra.prevHand == card.ability.extra.highCard and context.scoring_name == card.ability.extra.highCard and card.ability.extra.triggered then
+        if card.area and card.area == G.jokers then
             for i = 1, #G.jokers.cards do
-                if G.jokers.cards[i].ability.extra.spellblade then
-                    G.jokers.cards[i].ability.extra.prevHand = 'None'
-                    card.ability.extra.prevHand = card.ability.extra.highCard
-                    card.ability.extra.triggered = false
-                end
+                if G.jokers.cards[i] ~= card and G.jokers.cards[i].ability.extra.spellblade then card.ability.extra.other_joker = G.jokers.cards[i] end
             end
         end
-        
-        if context.joker_main then
-            local text = context.scoring_name
 
-            if card.ability.extra.prevHand ~= card.ability.extra.highCard and text == card.ability.extra.highCard then
-                card.ability.extra.triggered = true
-            end
-
-            card.ability.extra.prevHand = context.scoring_name
-        end
-
-        if context.hand_drawn or context.end_of_round and card.ability.extra.triggered then
+        if context.joker_main and card.ability.extra.prevHand ~= card.ability.extra.highCard and card.ability.extra.highCard == context.scoring_name then
             return {
-                message = localize('k_active')
+                chips = (card.ability.extra.other_joker).ability.extra.chips,
+                mult = (card.ability.extra.other_joker).ability.extra.mult,
+                xchips = (card.ability.extra.other_joker).ability.extra.chipsMult,
+                xmult = (card.ability.extra.other_joker).ability.extra.multMult,
+                dollars = (card.ability.extra.other_joker).ability.extra.dollars
             }
         end
     end

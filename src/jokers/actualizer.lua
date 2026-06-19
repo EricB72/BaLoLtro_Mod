@@ -24,11 +24,17 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        if context.setting_blind then
+            ease_hands_played(card.ability.extra.hands)
+        end
         if context.selling_self and not context.blueprint then
             if G.GAME.blind then
                 for i = 1, #G.hand.cards do
-                    G.hand.cards[i]:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))])                
+                    if not next(SMODS.get_enhancements(G.hand.cards[i])) and not G.hand.cards[i].debuff then
+                        G.hand.cards[i]:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))])                
+                    end
                 end
+
                 for i = 1, #G.hand.highlighted do
                     G.hand.highlighted[i]:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))])
                     G.hand.highlighted[i]:set_seal(card.ability.extra.mod_seals[math.floor(math.random(1, #card.ability.extra.mod_seals))], nil, true)
@@ -36,7 +42,7 @@ SMODS.Joker {
             end
         end
     end,
-    added_to_deck = function ()
+    add_to_deck = function (self, card, from_debuff)
         ease_hands_played(card.ability.extra.hands)
     end,
     remove_from_deck = function(self, card, from_debuff)

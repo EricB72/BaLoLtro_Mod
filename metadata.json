@@ -1,9 +1,9 @@
 {
     "id": "ArquesModID",
-    "name": "Arques's Test Mod",
+    "name": "BaLoLtro",
     "author": ["Arqués"],
-    "description": "This is a test to see if I can make a simple Mod.",
+    "description": "This is a mod that  implements items (jokers) from League of Legends. This is my version of how I would do them in Balatro.",
     "prefix": "tstmod",
     "main_file": "main.lua",
-    "version": "0.0.1"
+    "version": "0.0.2"
 }
