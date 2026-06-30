@@ -33,8 +33,10 @@ return {
             j_tstmod_blc = {
                 name = 'Bloodletter\'s Curse',
                 text = {
-                    'For each scored card with a different number on an entire round,',
-                    'decrease total score required by #3#% up to #1#%',
+                    'For each scored card with a',
+                    'different rank on an entire round,',
+                    'decrease total score',
+                    'required by #3#% up to #1#%.',
                     '{C:inactive}(Current: #2#% -> #4#){}'
                 }
             },
@@ -49,8 +51,9 @@ return {
                 name = 'Blade of the Ruined King',
                 text = {
                     'Gives {C:attention}#1#%{} of the missing score',
-                    'when playing a #4#.',
-                    'Every #2# tiggers grants a #6#% instead.',
+                    'for every King scored.',
+                    'Every #2# tiggers grants',
+                    'a #6#% instead.',
                     '{C:inactive}(Triggers: #3#)'
                 }
             },
@@ -85,7 +88,8 @@ return {
             j_tstmod_am = {
                 name = 'Abyssal Mask',
                 text = {
-                    {'Every hand after the first one gives {X:chips,C:white}X#1#{}.'
+                    {'Every hand after the',
+                    'first one gives {X:chips,C:white}X#1#{}.'
                 }
                 }
             },
@@ -96,8 +100,10 @@ return {
                         '-1 Hand'
                     },
                     {
-                        'Sell this card to enhance every card in you hand,',
-                        'selected cards will aslo be granted a seal.'
+                        'Sell this card to enhance',
+                        'every card in you hand,',
+                        'selected cards will also',
+                        'be granted a seal.'
                     }
                 }
             },
@@ -110,7 +116,7 @@ return {
                     },
                     {
                         'Every #2# cards scored, enhances',
-                        'left-most card in hand.',
+                        'the #10# left-most cards in hand.',
                         '{C:inactive}(Cards scored: #5#)'
                     },
                     {
@@ -126,7 +132,8 @@ return {
                     {
                         'Gives {C:chips}#3#{} Chips, equal to #1# times',
                         'the total number of enhanced cards in deck.',
-                        'If hand played is last hand, gives #2# times instead.'                    }
+                        'If hand played is last hand, gives #2# times instead.'
+                    }
                 }
             },
             j_tstmod_ardent_censer = {
@@ -134,7 +141,8 @@ return {
                 text = {
                     {
                         'Gain a random tag. Additionally gaining a',
-                        'hand or a discard grants a random tag.'
+                        'hand or a discard grants a random tag.',
+                        '{C:inactive}(Activations: #5#){}'
                     }
                 }
             },
@@ -371,18 +379,15 @@ return {
                 name = 'Death\'s Dance',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        'Reroll price increase',
+                        'now happens every #1#',
+                        'rerolls instead of one.'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Each saved $ during a',
+                        'reroll grants +1 Mult.',
+                        '{C:inactive}Resets upon entering a shop{}',
+                        '{C:inactive}(Mult: #3#){}',
                     }
                 }
             },
@@ -390,18 +395,11 @@ return {
                 name = 'Echoes of Helia',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Every hand store #3#%',
+                        'of score done.',
+                        'Next hand gives',
+                        'it as Chips.',
+                        '{C:inactive}(Chips: #1#){}'
                     }
                 }
             },
@@ -409,18 +407,15 @@ return {
                 name = 'Eclipse',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        'Playing your 2nd most',
+                        'played hand and then your',
+                        'most played hand gives a Hand.',
+                        '{C:inactive}(1º: #4#, 2º: #5#){}'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        '+Mult equal to most scored',
+                        'hand and 2nd most times.',
+                        '{C:inactive}(Mult: #2#){}'
                     }
                 }
             },
@@ -447,18 +442,15 @@ return {
                 name = 'Endless Hunger',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        'Gain luck equal to BaseMult / #4#,',
+                        'of the played hand.',
+                        '{C:inactive}(Current: #3# / #4#){}'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'After each Boss Blind gain #1#$',
+                        'and reduce denominator by',
+                        '#2#, up to 1.'
+
                     }
                 }
             },
@@ -466,18 +458,11 @@ return {
                 name = 'Experimental Hexplate',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Every #3# highest level hand',
+                        'played grants: #2# free reroll',
+                        'and a planet card which has',
+                        'a #5#/#6# chance of being the played hand card. ',
+                        '{C:inactive}(Highest: #1#){}'
                     }
                 }
             },
@@ -485,18 +470,20 @@ return {
                 name = 'Fiendhunter Bolts',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        '#2#% Crit Chance',
+                        '{C:inactive}(Crit Chance: #5#/#6# (#3#%), Crit DMG: #4#%)'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
+                        'Playing you highest level',
+                        'hand grants a stack.',
+                        'Each stack grants #9# xmult.',
+                        '{C:inactive}Resets if not playing your',
+                        '{C:inactive}highest level hand.',
+                        '{C:inactive}(XMult: #10#){}'
                     },
                     {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'XMult given by this joker',
+                        'is afected by crits.'
                     }
                 }
             },
@@ -504,18 +491,15 @@ return {
                 name = 'Force of Nature',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        'Rerolling grants a stack,',
+                        'buying a booster pack grants',
+                        'a stack for each card.',
+                        '{C:inactive}(Stacks: #2#){}'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'For every #6# stacks grants',
+                        '#5# Hand Size and #3# chips.',
+                        '{C:inactive}Hand size resets upon ending round.'
                     }
                 }
             },
@@ -523,18 +507,18 @@ return {
                 name = 'Frozen Heart',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        '#1# Chips.'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
+                        'Gain a #2#/#3# chance',
+                        'of disabling a boss blind.',
+                        'If this triggers, increase',
+                        'denominator by #4# and chips by 15.',
+                        '{C:inactive}Each voucher bought increases',
+                        '{C:inactive}numerator by 1.'
                     },
                     {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Reduces voucher prices by #5#%'
                     }
                 }
             },
@@ -542,18 +526,10 @@ return {
                 name = 'Guardian Angel',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Upon death, REVIVE and,',
+                        'enhance half of your deck',
+                        'with glass cards.',
+                        '{C:inactive}CAN AFFECT ENHANCED CARDS{}'
                     }
                 }
             },
@@ -846,18 +822,12 @@ return {
                 name = 'Lich Bane',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        'Each enhanced card held in hand',
+                        'gives #1#% of missing score.'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'If the card has an edition',
+                        'or a seal, gives #2#% instead.'
                     }
                 }
             },
@@ -1340,18 +1310,19 @@ return {
                 name = 'Rod of Ages',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        'Gives #1# Chips.',
+                        'At the end of a round give #3#$.'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
+                        'Every round increase Chips by #2#',
+                        'and Dollars by #4#.',
+                        'Up to #5# stacks.'
                     },
                     {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'At max stacks enhancements',
+                        'become suits, you are able',
+                        'to play flushes with enhancements.',
+                        '#6#'
                     }
                 }
             },

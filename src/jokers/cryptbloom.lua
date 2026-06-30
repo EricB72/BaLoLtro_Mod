@@ -13,7 +13,7 @@ SMODS.Joker {
             discards = 0
         }
     },
-    rarity = 3,
+    rarity = 1,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
@@ -34,11 +34,23 @@ SMODS.Joker {
             card.ability.extra.currentPercent = tonumber(tostring((1 - (G.GAME.blind.chips / card.ability.extra.originalBlind)) * 100))
         end
 
-        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then            
-            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chipGain
+        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
+            SMODS.scale_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = 'chips',
+                    scalar_value = 'chipGain',
+                    message_colour = G.C.BLUE
+                    }
+                )
 
             if G.GAME.blind.boss then
-                card.ability.extra.discards = card.ability.extra.discards + card.ability.extra.dicardGain
+                SMODS.scale_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = 'discards',
+                    scalar_value = 'dicardGain',
+                    message_colour = G.C.RED
+                    }
+                )
             end
         end
 

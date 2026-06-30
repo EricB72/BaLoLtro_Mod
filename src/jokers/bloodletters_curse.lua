@@ -11,7 +11,9 @@ SMODS.Joker {
             percentage = 0,
             scalar = 3.75,
             lastNum = 0,
-            originalBlind = 0
+            originalBlind = 0,
+            prevCards = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            amount = 1
         }
     },
     rarity = 3,
@@ -23,54 +25,56 @@ SMODS.Joker {
                 card.ability.extra.percentage,
                 card.ability.extra.scalar,
                 card.ability.extra.lastNum,
-                card.ability.extra.originalBlind
+                card.ability.extra.originalBlind,
+                card.ability.extra.prevCards,
+                card.ability.extra.amount
             }
         }
     end,
     calculate = function(self, card, context)
         local new = true
 
-        if prevCards == nil then
-            prevCards = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-        end
-
-        if amount == nil then
-            amount = 1
-        end
-
         if context.setting_blind then
             card.ability.extra.originalBlind = G.GAME.blind.chips
         end
 
         if context.individual and context.cardarea == G.play and not context.blueprint then
-            for i = 1, #prevCards do
-                if context.other_card:get_id() == prevCards[i] then
+            if context.other_card.debuff then
+                return {
+                    message_card = card,
+                    message = localize('k_debuffed'),
+                    colour = G.C.RED
+                }
+            elseif not G.GAME.blind.chips <= card.ability.extra.originalBlind / 2 then
+                for i = 1, #card.ability.extra.prevCards do
+                if context.other_card:get_id() == card.ability.extra.prevCards[i] then
                     new = false
-                    i = #prevCards
+                    i = #card.ability.extra.prevCards
                 end
-            end
+                end
 
-            if card.ability.extra.percentage < card.ability.extra.maxPercentage and new then
-                SMODS.scale_card(card, {
-                    ref_table = card.ability.extra,
-                    ref_value = 'percentage',
-                    scalar_value = 'scalar',
-                    message_colour = G.C.PURPLE
-                })
+                if card.ability.extra.percentage < card.ability.extra.maxPercentage and new then
+                    SMODS.scale_card(card, {
+                        ref_table = card.ability.extra,
+                        ref_value = 'percentage',
+                        scalar_value = 'scalar',
+                        message_colour = G.C.PURPLE
+                    })
 
-                card.ability.extra.lastNum = card.ability.extra.originalBlind - (card.ability.extra.originalBlind * (100 - card.ability.extra.percentage) / 100)
+                    card.ability.extra.lastNum = card.ability.extra.originalBlind - (card.ability.extra.originalBlind * (100 - card.ability.extra.percentage) / 100)
 
-                G.GAME.blind.chips = card.ability.extra.originalBlind - card.ability.extra.lastNum
-                G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
-                
-                prevCards[amount] = context.other_card:get_id()
-                amount = amount + 1
+                    G.GAME.blind.chips = G.GAME.blind.chips - (card.ability.extra.originalBlind * card.ability.extra.scalar / 100)
+                    G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                    
+                    card.ability.extra.prevCards[card.ability.extra.amount] = context.other_card:get_id()
+                    card.ability.extra.amount = card.ability.extra.amount + 1
+                end
             end
         end
         
         if context.end_of_round then
-            prevCards = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            amount = 1  
+            card.ability.extra.prevCards = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+            card.ability.extra.amount = 1  
             card.ability.extra.percentage = 0
             card.ability.extra.lastNum = 0
         end

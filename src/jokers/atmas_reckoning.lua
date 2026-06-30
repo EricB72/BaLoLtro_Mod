@@ -18,7 +18,7 @@ SMODS.Joker {
             critLeader = true
  }
     },
-    rarity = 3,
+    rarity = 1,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.totalCrit, 100, 'j_tstmod_atmas_reckoning')
@@ -31,7 +31,7 @@ SMODS.Joker {
                 card.ability.extra.currentCrit,
                 card.ability.extra.moneyThreshold,
                 card.ability.extra.currentDMG,
-                numerator, 
+                numerator,
                 denominator,
                 card.ability.extra.totalCrit,
                 card.ability.extra.critLeader

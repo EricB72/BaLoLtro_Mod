@@ -9,29 +9,41 @@ SMODS.Joker {
         extra = {
             xchips = 1,
             chipGain = 0.05,
-            enhNum = 0,
-            totalDeck = 0,
             retrigger = 0
         }
     },
-    rarity = 3,
+    rarity = 2,
     cost = 6,
     loc_vars = function(self, info_queue, card)
+        local enh_Cards = 0
+        for _, playing_card in pairs(G.playing_cards or {}) do
+            if next(SMODS.get_enhancements(playing_card)) then enh_Cards = enh_Cards + 1 end
+        end
+        local x_Chips = 1
+        for _, playing_card in pairs(G.playing_cards or {}) do
+            if next(SMODS.get_enhancements(playing_card)) then x_Chips = x_Chips + card.ability.extra.chipGain end
+        end
+        local total_Deck = #G.playing_cards
         return {
             vars = {
-                card.ability.extra.xchips,
+                x_Chips,
                 card.ability.extra.chipGain,
-                card.ability.extra.enhNum,
-                card.ability.extra.totalDeck,
+                enh_Cards,
+                total_Deck,
                 card.ability.extra.retrigger
             }
         }
     end,
     calculate = function(self, card, context)
         if context.before then
-            card.ability.extra.totalDeck = #G.playing_cards
+            local enh_Cards = 0
+            for _, playing_card in pairs(G.playing_cards or {}) do
+                if next(SMODS.get_enhancements(playing_card)) then enh_Cards = enh_Cards + 1 end
+            end
 
-            if card.ability.extra.enhNum >= card.ability.extra.totalDeck then
+            local total_Deck = #G.playing_cards
+
+            if enh_Cards >= total_Deck then
                 card.ability.extra.retrigger = 2
             else
                 card.ability.extra.retrigger = 0
@@ -47,18 +59,13 @@ SMODS.Joker {
         end
         
         if context.joker_main then
-            card.ability.extra.enhNum = 0
-
-            for i = 1, card.ability.extra.totalDeck do
-                if next(SMODS.get_enhancements(G.playing_cards[i])) then
-                    card.ability.extra.enhNum = card.ability.extra.enhNum + 1
-                end
+            local x_Chips = 1
+            for _, playing_card in pairs(G.playing_cards or {}) do
+                if next(SMODS.get_enhancements(playing_card)) then x_Chips = x_Chips + card.ability.extra.chipGain end
             end
 
-            card.ability.extra.xchips = 1 + card.ability.extra.enhNum * card.ability.extra.chipGain
-
             return {
-                xchips = card.ability.extra.xchips
+                xchips = x_Chips
             }
         end
     end

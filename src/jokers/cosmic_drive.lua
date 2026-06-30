@@ -17,7 +17,7 @@ SMODS.Joker {
             tags = {'tag_uncommon', 'tag_rare', 'tag_double', 'tag_negative', 'tag_foil', 'tag_holo', 'tag_polychrome', 'tag_investment', 'tag_voucher', 'tag_boss', 'tag_standard', 'tag_charm', 'tag_meteor', 'tag_buffoon', 'tag_handy', 'tag_garbage', 'tag_ethereal', 'tag_coupon', 'tag_juggle', 'tag_d_six', 'tag_top_up', 'tag_skip', 'tag_orbital', 'tag_economy'},
         }
     },
-    rarity = 3,
+    rarity = 1,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
@@ -37,6 +37,7 @@ SMODS.Joker {
             card.ability.extra.originalBlind = G.GAME.blind.chips
         end
 
+    
         if context.after then
             card.ability.extra.currentPercent = tonumber(tostring((1 - (G.GAME.blind.chips / card.ability.extra.originalBlind)) * 100))
         end

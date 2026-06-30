@@ -7,9 +7,12 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            chips = 3,
+            chipGain = 3,
+            dollars = 1,
+            dollarGain = 1,
+            maxStacks = 10,
+            flush = false
         }
     },
     rarity = 3,
@@ -18,12 +21,54 @@ SMODS.Joker {
         return {
             vars = {
                 card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.chipGain,
+                card.ability.extra.dollars,
+                card.ability.extra.dollarGain,
+                card.ability.extra.maxStacks,
+                card.ability.extra.flush
             }
         }
     end,
     calculate = function(self, card, context)
+        if context.joker_main then
+            return {
+                chips = card.ability.extra.chips
+            }
+        end        
+
+        if context.modify_scoring_hand and #context.full_hand >= 5 and not context.blueprint then
+            local enhancement = next(SMODS.get_enhancements(context.full_hand[1]))
+            card.ability.extra.flush = false
+
+            if enhancement then
+                card.ability.extra.flush = true
+
+                for i = 2, #context.full_hand do
+                    if enhancement ~= next(SMODS.get_enhancements(context.full_hand[i])) then
+                        card.ability.extra.flush = false
+                    end
+                end
+            end
+
+            if card.ability.extra.flush then
+                return {
+                    add_to_hand = true
+                }
+            end
+        end
         
+
+        if G.GAME.blind and context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint and card.ability.extra.dollars < card.ability.extra.maxStacks then
+            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chipGain
+        end
+    end,
+    calc_dollar_bonus = function(self, card)
+        local prevDollars = card.ability.extra.dollar
+        card.ability.extra.dollars = card.ability.extra.dollars + card.ability.extra.dollarGain
+
+        return true and prevDollars or nil        
+    end,
+    modify_display_text = function(self, cards, scoring_hand) 
+        return 'Flush'
     end
 }

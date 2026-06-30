@@ -15,12 +15,16 @@ SMODS.Joker {
             enhCards = 0,
             mod_conv = {'m_lucky', 'm_mult', 'm_glass', 'm_bonus', 'm_wild', 'm_steel', 'm_gold', 'm_stone'},
             seraphs = 'j_tstmod_sebr',
-            totalEnhCards = 0
+            cardsToEnh = 2
         }
     },
-    rarity = 3,
+    rarity = 1,
     cost = 6,
     loc_vars = function(self, info_queue, card)
+        local enh_Cards = 0
+        for _, playing_card in pairs(G.playing_cards or {}) do
+            if next(SMODS.get_enhancements(playing_card)) then enh_Cards = enh_Cards + card.ability.extra.chips end
+        end
         return {
             vars = {
                 card.ability.extra.chips,
@@ -31,40 +35,45 @@ SMODS.Joker {
                 card.ability.extra.enhCards,
                 card.ability.extra.mod_conv,
                 card.ability.extra.seraphs,
-                card.ability.extra.totalEnhCards
+                enh_Cards,
+                card.ability.extra.cardsToEnh
         }
         }
     end,
     calculate = function(self, card, context)
         if context.before then
-            card.ability.extra.totalEnhCards = 0
-
-            for i = 1, #context.scoring_hand do
+            for i = 1, #context.scoring_hand do -- Checks for every scored card
                 if not context.scoring_hand[i].debuff then
                     card.ability.extra.triggers = card.ability.extra.triggers + 1
                 end
             end
 
-            if card.ability.extra.triggers >= card.ability.extra.numOfEnh then                
+            if card.ability.extra.triggers >= card.ability.extra.numOfEnh then
+                local cards_To_Enh = card.ability.extra.cardsToEnh
+                
                 for i = 1, #G.hand.cards do
-                    if not next(SMODS.get_enhancements(G.hand.cards[i])) and not G.hand.cards[i].debuff then
+                    if not next(SMODS.get_enhancements(G.hand.cards[i])) and not G.hand.cards[i].debuff and cards_To_Enh > 0 then
                         G.hand.cards[i]:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))])
-                        card.ability.extra.enhCards = card.ability.extra.enhCards + 1
-                        card.ability.extra.triggers = card.ability.extra.triggers - card.ability.extra.numOfEnh
 
-                        break
+                        cards_To_Enh = cards_To_Enh - 1
                     end
                 end
-            end
 
-            for _, playing_card in pairs(G.playing_cards) do
-                if next(SMODS.get_enhancements(playing_card)) then card.ability.extra.totalEnhCards = card.ability.extra.totalEnhCards + card.ability.extra.chips end
-            end        
+                if cards_To_Enh ~= card.ability.extra.cardsToEnh then
+                    card.ability.extra.enhCards = card.ability.extra.enhCards + 1
+                    card.ability.extra.triggers = card.ability.extra.triggers - card.ability.extra.numOfEnh
+                end
+            end
         end
 
         if context.joker_main then
+            local enh_Cards = 0
+            for _, playing_card in pairs(G.playing_cards or {}) do
+                if next(SMODS.get_enhancements(playing_card)) then enh_Cards = enh_Cards + card.ability.extra.chips end
+            end
+
             return {
-                chips = card.ability.extra.totalEnhCards
+                chips = enh_Cards
             }
         end
 

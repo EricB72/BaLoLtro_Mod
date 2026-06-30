@@ -2,4 +2,4 @@ This is v0.0.2 of the mod, you should expect crashes bugs, and jokers not workin
 
 Meanwhile you can play with the finished ítemsare the first page and some of the second one. Then there are some finished ítems in between all of them. Basically the ones with the Heartsteel description are unfinished and the other ones aren't.
 
-Enjoy the mod!!
+Enjoy the mod!!!

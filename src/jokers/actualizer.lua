@@ -12,7 +12,7 @@ SMODS.Joker {
             mod_seals = {'Purple', 'Blue', 'Red', 'Gold'}
         }
     },
-    rarity = 3,
+    rarity = 2,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
@@ -24,9 +24,6 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.setting_blind then
-            ease_hands_played(card.ability.extra.hands)
-        end
         if context.selling_self and not context.blueprint then
             if G.GAME.blind then
                 for i = 1, #G.hand.cards do
@@ -42,10 +39,12 @@ SMODS.Joker {
             end
         end
     end,
-    add_to_deck = function (self, card, from_debuff)
+    add_to_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands
         ease_hands_played(card.ability.extra.hands)
     end,
     remove_from_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hands
         ease_hands_played(-card.ability.extra.hands)
-    end,
+    end
 }

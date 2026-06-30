@@ -40,20 +40,26 @@ SMODS.Joker {
             card.ability.extra.prevMult = mult
         end
 
-        if ((context.individual and context.cardarea == G.play) or (card.area and card.area == G.jokers))and not context.blueprint then
-            if mult ~= card.ability.extra.prevMult and card.ability.extra.currentPercent < card.ability.extra.maxPercent and mult ~= nil then
-                card.ability.extra.currentPercent = card.ability.extra.currentPercent + card.ability.extra.percent
+        if ((context.individual and context.cardarea == G.play) or (card.area and card.area == G.jokers)) and not context.blueprint and not context.end_of_round and not context.setting_blind then
+            if G.GAME.blind.chips ~= nil and card.ability.extra.originalBlind ~= nil and not (tonumber(tostring(G.GAME.blind.chips)) <= tonumber(tostring(card.ability.extra.originalBlind / 2))) and mult ~= card.ability.extra.prevMult and card.ability.extra.currentPercent < card.ability.extra.maxPercent and mult ~= nil and mult ~= 0 then
+                SMODS.scale_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = 'currentPercent',
+                    scalar_value = 'percent'
+                    }
+                )
+
+                card.ability.extra.currDecrease = card.ability.extra.originalBlind - card.ability.extra.originalBlind * (100 - card.ability.extra.currentPercent) / 100
+
+                G.GAME.blind.chips = G.GAME.blind.chips - (card.ability.extra.originalBlind * card.ability.extra.percent / 100)
+                G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                
                 card.ability.extra.prevMult = mult
             end
         end
 
         if context.joker_main then
-            card.ability.extra.currDecrease = card.ability.extra.originalBlind - card.ability.extra.originalBlind * (100 - card.ability.extra.currentPercent) / 100
-
-            G.GAME.blind.chips = card.ability.extra.originalBlind - card.ability.extra.currDecrease
-            G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
-
-            if card.ability.extra.currentPercent >= card.ability.extra.maxPercent then
+            if card.ability.extra.currentPercent >= card.ability.extra.maxPercent or (G.GAME.blind.chips ~= nil and card.ability.extra.originalBlind ~= nil and not (tonumber(tostring(G.GAME.blind.chips)) <= tonumber(tostring(card.ability.extra.originalBlind / 2)))) then
                 return {
                     mult = card.ability.extra.mult
                 }

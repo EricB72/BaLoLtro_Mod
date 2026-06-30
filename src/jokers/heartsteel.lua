@@ -40,7 +40,7 @@ SMODS.Joker {
             G.E_MANAGER:add_event(Event({
                     func = function()
                         card:juice_up(card.ability.extra.dollars, card.ability.extra.dollars)
-                        play_sound(heartsteelName)
+                        --play_sound(heartsteelName)
                         return {
                             true
                         }
@@ -48,7 +48,8 @@ SMODS.Joker {
                 }))
             return {
                 xmult = card.ability.extra.xmult,
-                dollars = card.ability.extra.dollars
+                dollars = card.ability.extra.dollars,
+                message_card = card
             }
         end
 
