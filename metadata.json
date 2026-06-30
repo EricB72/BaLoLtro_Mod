@@ -5,6 +5,8 @@
     "description": "This is a mod that implements items (jokers) from League of Legends. This is my version of how I would do them in Balatro.",
     "prefix": "tstmod",
     "main_file": "main.lua",
+    "badge_colour": "014966",
+	"badge_text_colour": "C79B3B",
     "icon_path": "modicon.png",
     "version": "0.1.0"
 }

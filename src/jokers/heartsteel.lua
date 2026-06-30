@@ -28,19 +28,26 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        if context.before and not context.blueprint and G.GAME.current_round.hands_played == card.ability.extra.numHands then
+            card.ability.extra.xmult = tonumber(tostring(1 + G.GAME.dollars / card.ability.extra.percent / 10))
+            card.ability.extra.dollars = 0
+        end
         if context.individual and context.cardarea == G.play and context.other_card == context.scoring_hand[1] and G.GAME.current_round.hands_played == card.ability.extra.numHands then
-            card.ability.extra.stacks = card.ability.extra.stacks + tonumber(tostring(G.GAME.dollars)) / card.ability.extra.percent
-            card.ability.extra.dollars = card.ability.extra.stacks / card.ability.extra.percent
-            card.ability.extra.xmult = 1 + card.ability.extra.stacks / card.ability.extra.percent
+            card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.dollars
+            card.ability.extra.dollars = math.fmod((card.ability.extra.stacks + card.ability.extra.xmult) / card.ability.extra.percent, 1)
+            card.ability.extra.stacks = card.ability.extra.stacks + (card.ability.extra.xmult - 1) * 100
 
-            card.ability.extra_value = card.ability.extra.stacks
+            card.ability.extra_value = math.fmod(card.ability.extra.stacks, 1)
             card:set_cost()
 
-            local heartsteelName = 'heartsteel' .. tostring(math.floor(math.random(1, 3)))
+            local heartsteelName = 'tstmod_heartsteel_' .. tostring(math.floor(math.random(1, 3)))
+            local pitch = 1
+            local volume = 1
+
             G.E_MANAGER:add_event(Event({
                     func = function()
-                        card:juice_up(card.ability.extra.dollars, card.ability.extra.dollars)
-                        --play_sound(heartsteelName)
+                        card:juice_up(card.ability.extra.stacks / 100, card.ability.extra.stacks / 100)
+                        play_sound(heartsteelName, pitch, volume)
                         return {
                             true
                         }
@@ -58,5 +65,8 @@ SMODS.Joker {
                 xmult = card.ability.extra.xmult
             }
         end
-    end
+    end,
+    SMODS.Sound{ key = 'heartsteel_1', path = 'Heartsteel_trigger_SFX_1.ogg'},
+    SMODS.Sound{ key = 'heartsteel_2', path = 'Heartsteel_trigger_SFX_2.ogg'},
+    SMODS.Sound{ key = 'heartsteel_3', path = 'Heartsteel_trigger_SFX_3.ogg'}
 }

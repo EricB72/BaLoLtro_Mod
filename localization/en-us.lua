@@ -1954,5 +1954,19 @@ return {
                 }
             }
         }
-    }
+    },
+    misc = {
+        achievement_names = {
+            hidden_achievement = "???",
+        },
+        achievement_descriptions = {
+            hidden_achievement = "Play more to find out!",
+        },
+        dictionary = {
+            lol_crit = 'CRIT!!',
+		},
+		v_dictionary = {
+			c_types = '#1# Types',
+		}
+	}
 }
