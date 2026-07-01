@@ -6,7 +6,7 @@
     "prefix": "tstmod",
     "main_file": "main.lua",
     "badge_colour": "014966",
-	"badge_text_colour": "C79B3B",
+	"badge_text_colour": "D7A738",
     "icon_path": "modicon.png",
-    "version": "0.1.0"
+    "version": "0.2.0"
 }

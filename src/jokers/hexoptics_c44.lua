@@ -5,6 +5,10 @@ SMODS.Joker {
         x = 1,
         y = 8
     },
+    display_size = {
+        w = 69,
+        h = 68
+    },
     config = {
         extra = {
             chips = 0,

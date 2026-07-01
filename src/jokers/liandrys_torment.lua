@@ -5,6 +5,10 @@ SMODS.Joker {
         x = 4,
         y = 10
     },
+    display_size = {
+        w = 69,
+        h = 68
+    },
     config = {
         extra = {
             percentage = 1,

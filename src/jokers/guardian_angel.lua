@@ -5,6 +5,10 @@ SMODS.Joker {
         x = 3,
         y = 7
     },
+    display_size = {
+        w = 69,
+        h = 68
+    },
     config = {
         extra = {
             mod_conv = 'm_glass',

@@ -5,6 +5,10 @@ SMODS.Joker {
         x = 4,
         y = 6
     },
+    display_size = {
+        w = 69,
+        h = 68
+    },
     config = {
         extra = {
             highestHand = '',

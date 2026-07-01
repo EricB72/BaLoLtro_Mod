@@ -5,6 +5,10 @@ SMODS.Joker {
         x = 1,
         y = 2
     },
+    display_size = {
+        w = 69,
+        h = 68
+    },
     config = {
         extra = {
             chips = 2,
@@ -77,13 +81,13 @@ SMODS.Joker {
             }
         end
 
-        if context.after then
-            if card.ability.extra.enhCards >= card.ability.extra.triggersToEv then
+        if context.end_of_round or context.hand_drawn then
+               if card.ability.extra.enhCards >= card.ability.extra.triggersToEv then
                 SMODS.add_card {
                     key = card.ability.extra.seraphs,
                 }
                 SMODS.destroy_cards(card, nil, nil, true)
-            end   
+            end
         end
     end
 }

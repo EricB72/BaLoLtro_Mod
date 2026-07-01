@@ -5,6 +5,10 @@ SMODS.Joker {
         x = 3,
         y = 0
     },
+    display_size = {
+        w = 69,
+        h = 68
+    },
     config = {
         extra = {
             maxPercentage = 30,
@@ -45,12 +49,12 @@ SMODS.Joker {
                     message = localize('k_debuffed'),
                     colour = G.C.RED
                 }
-            elseif not G.GAME.blind.chips <= card.ability.extra.originalBlind / 2 then
+            elseif not (G.GAME.blind.chips <= card.ability.extra.originalBlind / 2) then
                 for i = 1, #card.ability.extra.prevCards do
-                if context.other_card:get_id() == card.ability.extra.prevCards[i] then
-                    new = false
-                    i = #card.ability.extra.prevCards
-                end
+                    if context.other_card:get_id() == card.ability.extra.prevCards[i] then
+                        new = false
+                        i = #card.ability.extra.prevCards
+                    end
                 end
 
                 if card.ability.extra.percentage < card.ability.extra.maxPercentage and new then

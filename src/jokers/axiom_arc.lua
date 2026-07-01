@@ -5,6 +5,10 @@ SMODS.Joker {
         x = 2,
         y = 3
     },
+    display_size = {
+        w = 69,
+        h = 68
+    },
     config = {
         extra = {
             mult = 20,
@@ -14,7 +18,7 @@ SMODS.Joker {
             luckDecrease = 0,
             currentDenominator = 10,
             eachDicard = 2,
-            minDenominator = 0.125
+            minDenominator = 1
         }
     },
     rarity = 3,

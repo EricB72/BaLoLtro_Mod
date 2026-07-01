@@ -360,18 +360,22 @@ return {
                 name = 'Heartsteel',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        '{X:mult,C:white}X#1#{} Mult, gained',
+                        'upon playing the third hand.'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
+                        'On the third hand,',
+                        'the first card gives',
+                        '{X:mult,C:white}X#6#{} equal 1% of money',
+                        'and {C:money}$#4#{} equal to #3#% XMult.',
+                        'Gain stacks equal',
+                        'to gained XMult.',
+                        '{C:inactive}XMult won\'t decrease.{}'
+                    },
+                    {
+                        'Gain {C:attention}sell price{} equal',
+                        'to 1% the stacks.',
                         '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
                     }
                 }
             },
@@ -423,18 +427,14 @@ return {
                 name = 'Edge of Night',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        '+#1# Mult, +#2# every time a glass',
+                        'card is played and not broken.',
+                        '{C:inactive}Resets upon breaking one.{}'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Multiplies probabilities by #3#,',
+                        'every time a glass card breaks by chance',
+                        'this is reduced by a #4#%.'
                     }
                 }
             },
@@ -802,6 +802,19 @@ return {
             j_tstmod_liandrys_torment = {
                 name = 'Liandry\'s Torment',
                 text = {
+                     {
+                        'Each enhanced card held in hand',
+                        'gives #1#% of missing score.'
+                    },
+                    {
+                        'If the card has an edition',
+                        'or a seal, gives #2#% instead.'
+                    }
+                }
+            },
+            j_tstmod_lich_bane = {
+                name = 'Lich Bane',
+                text = {
                     {
                         'xMult equal to Stacks/10',
                         '{C:inactive}(XMult: #1#){}'
@@ -815,19 +828,6 @@ return {
                     {
                         'This joker gains sellprice',
                         'equal to its stacks.'
-                    }
-                }
-            },
-            j_tstmod_lich_bane = {
-                name = 'Lich Bane',
-                text = {
-                    {
-                        'Each enhanced card held in hand',
-                        'gives #1#% of missing score.'
-                    },
-                    {
-                        'If the card has an edition',
-                        'or a seal, gives #2#% instead.'
                     }
                 }
             },

@@ -2,8 +2,8 @@
 SMODS.Atlas {
     key = 'league_items',
     path = 'league_items.png',
-    px = 71,
-    py = 95
+    px = 69,
+    py = 68,
 }
 
 --File Loading

@@ -5,6 +5,10 @@ SMODS.Joker {
         x = 0,
         y = 7
     },
+    display_size = {
+        w = 69,
+        h = 68
+    },
     config = {
         extra = {
             critChance = 25,
@@ -114,9 +118,10 @@ SMODS.Joker {
     end,
     add_to_deck = function (self, card, context)
         local jokers = {}
+        --local f = function() return G.jokers.cards[i].ability.extra.currentCrit ~= nil end
 
         for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability.extra.currentCrit ~= nil and G.jokers.cards[i].ability.extra.critChance >= 0 then
+            if not pcall(f) and G.jokers.cards[i].ability.extra.critChance >= 0 then
                 jokers[#jokers + 1] = G.jokers.cards[i]
 
                 if G.jokers.cards[i].ability.extra.critLeader and G.jokers.cards[i] ~= card then

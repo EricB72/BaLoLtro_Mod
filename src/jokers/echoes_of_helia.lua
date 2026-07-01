@@ -5,6 +5,10 @@ SMODS.Joker {
         x = 0,
         y = 6
     },
+    display_size = {
+        w = 69,
+        h = 68
+    },
     config = {
         extra = {
             chips = 0,
@@ -26,6 +30,10 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        if context.end_of_round then
+            card.ability.extra.lastScore = 0
+        end
+        
         if context.before then
             card.ability.extra.lastScore = G.GAME.chips
         end
