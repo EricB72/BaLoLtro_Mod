@@ -21,7 +21,7 @@ SMODS.Joker {
             minDenominator = 1
         }
     },
-    rarity = 3,
+    rarity = 1,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
@@ -75,5 +75,23 @@ SMODS.Joker {
                 numerator = context.numerator * (1 + (card.ability.extra.luckNumerator / card.ability.extra.currentDenominator))
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = ""
+            },
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult" },
+                { scale = 0.4 }
+            },
+            text_config = { colour = G.C.MULT },
+            calc_function = function(card)
+                
+            end
+        }
     end
 }

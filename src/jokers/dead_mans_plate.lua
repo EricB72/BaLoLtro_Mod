@@ -72,5 +72,23 @@ SMODS.Joker {
     end,
     remove_from_deck = function(self, card, from_debuff)
         SMODS.change_free_rerolls(-card.ability.extra.freeRerolls)
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = ""
+            },
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult" },
+                { scale = 0.4 }
+            },
+            text_config = { colour = G.C.MULT },
+            calc_function = function(card)
+                
+            end
+        }
     end
 }

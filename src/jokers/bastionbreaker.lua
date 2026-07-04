@@ -17,7 +17,7 @@ SMODS.Joker {
             skips = 0
         }
     },
-    rarity = 3,
+    rarity = 1,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
@@ -52,5 +52,29 @@ SMODS.Joker {
                 card.ability.extra.skips = 0
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = "xmult"
+            },
+            text = {
+            {
+                border_nodes = {
+                    { text = "X" },
+                    { ref_table = "card.joker_display_values", ref_value = "xmult", retrigger_type = "exp" }
+                },
+            }
+            },
+            calc_function = function(card)
+                if card.ability.extra.active then
+                    card.joker_display_values.xmult = card.ability.extra.xmulUpg * #G.jokers.cards
+                else
+                    card.joker_display_values.xmult = card.ability.extra.xmult * #G.jokers.cards
+                end
+            end
+        }
     end
 }

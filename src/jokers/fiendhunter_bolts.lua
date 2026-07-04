@@ -25,6 +25,7 @@ SMODS.Joker {
     rarity = 1,
     cost = 6,
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
         local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.totalCrit, 100, 'j_tstmod_fiendhunter_bolts')
         return {
             vars = {
@@ -73,7 +74,7 @@ SMODS.Joker {
                 local totalCrit = 0
 
                 for i = 1, #G.jokers.cards do
-                    if G.jokers.cards[i].ability.extra.currentCrit ~= nil and G.jokers.cards[i].ability.extra.currentCrit >= 0 then
+                    if G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.currentCrit >= 0 then
                         jokers[#jokers + 1] = G.jokers.cards[i]
                     end
                 end
@@ -118,10 +119,9 @@ SMODS.Joker {
     end,
     add_to_deck = function (self, card, context)
         local jokers = {}
-        --local f = function() return G.jokers.cards[i].ability.extra.currentCrit ~= nil end
 
         for i = 1, #G.jokers.cards do
-            if not pcall(f) and G.jokers.cards[i].ability.extra.critChance >= 0 then
+            if G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
                 jokers[#jokers + 1] = G.jokers.cards[i]
 
                 if G.jokers.cards[i].ability.extra.critLeader and G.jokers.cards[i] ~= card then
@@ -135,7 +135,7 @@ SMODS.Joker {
         local jokers = {}
 
         for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability.extra.currentCrit ~= nil and G.jokers.cards[i].ability.extra.critChance >= 0 then
+            if G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
                 jokers[#jokers + 1] = G.jokers.cards[i]
             end
         end

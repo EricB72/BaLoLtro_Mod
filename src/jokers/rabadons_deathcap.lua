@@ -15,8 +15,8 @@ SMODS.Joker {
             percentage = 1.3
         }
     },
-    rarity = 3,
-    cost = 7,
+    rarity = 1,
+    cost = 3,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

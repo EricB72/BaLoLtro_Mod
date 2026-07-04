@@ -20,7 +20,7 @@ SMODS.Joker {
             realReroll = 0
         }
     },
-    rarity = 3,
+    rarity = 2,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
@@ -67,5 +67,16 @@ SMODS.Joker {
             card.ability.extra.currentRerolls = 0
             card.ability.extra.realReroll = 0
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "moneySaved", retrigger_type = "mult" },
+                { scale = 0.4 }
+            },
+            text_config = { colour = G.C.MULT },
+        }
     end
 }

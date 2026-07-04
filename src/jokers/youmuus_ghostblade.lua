@@ -16,8 +16,8 @@ SMODS.Joker {
             triggered = false
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 2,
+    cost = 4,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

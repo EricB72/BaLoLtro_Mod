@@ -15,7 +15,7 @@ SMODS.Joker {
             highCard = 'King'
         }
     },
-    rarity = 1,
+    rarity = 2,
     cost = 7,
     loc_vars = function(self, info_queue, card)
         return {
@@ -26,7 +26,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.play and not context.blueprint then
+        if context.individual and context.cardarea == G.play then
             if context.other_card.debuff then
                 return {
                     message = localize('k_debuffed'),

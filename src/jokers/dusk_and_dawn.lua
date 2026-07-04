@@ -17,9 +17,10 @@ SMODS.Joker {
             other_joker = 0
         }
     },
-    rarity = 3,
+    rarity = 2,
     cost = 8,
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = 'Other', key = 'm_spellblade' }
         return {
             vars = {
                 card.ability.extra.highCard,
@@ -37,13 +38,45 @@ SMODS.Joker {
         end
 
         if context.joker_main and card.ability.extra.prevHand ~= card.ability.extra.highCard and card.ability.extra.highCard == context.scoring_name then
-            return {
-                chips = (card.ability.extra.other_joker).ability.extra.chips,
-                mult = (card.ability.extra.other_joker).ability.extra.mult,
-                xchips = (card.ability.extra.other_joker).ability.extra.chipsMult,
-                xmult = (card.ability.extra.other_joker).ability.extra.multMult,
-                dollars = (card.ability.extra.other_joker).ability.extra.dollars
-            }
+            if card.ability.extra.other_joker ~= nil then
+                return {
+                    chips = (card.ability.extra.other_joker).ability.extra.chips,
+                    mult = (card.ability.extra.other_joker).ability.extra.mult,
+                    xchips = (card.ability.extra.other_joker).ability.extra.chipsMult,
+                    xmult = (card.ability.extra.other_joker).ability.extra.multMult,
+                    dollars = (card.ability.extra.other_joker).ability.extra.dollars
+                }
+            end
         end
+    end,
+    set_badges = function(self, card, badges)
+        badges[#badges+1] = create_badge(localize('b_spellblade'), G.C.ORANGE, G.C.WHITE, 1.2 )
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = "jokerName"
+            },
+            text = {
+                { ref_table = "card.joker_display_values", ref_value = "jokerName" },
+            },
+            calc_function = function(card)
+                local copiedJoker = 'None'
+
+                for i = 1, #G.jokers.cards do
+                    if G.jokers.cards[i] ~= card and G.jokers.cards[i].ability.extra.spellblade then copiedJoker = G.jokers.cards[i] end
+                end
+
+
+                if copiedJoker ~= 'None' then
+                    local jokerName = localize{type = 'name_text', set = 'Joker', key = copiedJoker.config.center.key}
+                    card.joker_display_values.jokerName = tostring(jokerName)
+                else
+                    card.joker_display_values.jokerName = copiedJoker
+                end
+            end
+        }
     end
 }

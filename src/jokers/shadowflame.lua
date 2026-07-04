@@ -19,9 +19,10 @@ SMODS.Joker {
             currentDMG = 120
         }
     },
-    rarity = 3,
+    rarity = 2,
     cost = 7,
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
         return {
             vars = {
                 card.ability.extra.critDMG,

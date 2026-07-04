@@ -19,7 +19,7 @@ SMODS.Joker {
             flush = false
         }
     },
-    rarity = 3,
+    rarity = 1,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
@@ -67,12 +67,9 @@ SMODS.Joker {
         end
     end,
     calc_dollar_bonus = function(self, card)
-        local prevDollars = card.ability.extra.dollar
+        local prevDollars = card.ability.extra.dollars
         card.ability.extra.dollars = card.ability.extra.dollars + card.ability.extra.dollarGain
 
-        return true and prevDollars or nil        
-    end,
-    modify_display_text = function(self, cards, scoring_hand) 
-        return 'Flush'
+        return true and prevDollars or nil
     end
 }

@@ -11,23 +11,27 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            xchips = 1.1,
+            bonus = 'm_bonus'
         }
     },
     rarity = 3,
-    cost = 6,
+    cost = 8,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.xchips,
+                card.ability.extra.bonus
             }
         }
     end,
     calculate = function(self, card, context)
-        
+        if context.individual and context.cardarea == G.hand and not context.end_of_round then
+            if next(SMODS.get_enhancements(context.other_card)) and next(SMODS.get_enhancements(context.other_card)) == card.ability.extra.bonus then
+                return {
+                    xchips = card.ability.extra.xchips
+                }
+            end
+        end
     end
 }

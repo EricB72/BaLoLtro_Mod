@@ -11,23 +11,29 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            percent = 25,
+            hand = 1,
+            discard = 1
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 2,
+    cost = 4,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.percent,
+                card.ability.extra.hand,
+                card.ability.extra.discard
             }
         }
     end,
     calculate = function(self, card, context)
-        
+        if context.selling_self and not context.blueprint then
+            if G.GAME.blind then
+                G.GAME.chips = G.GAME.chips + G.GAME.blind.chips * card.ability.extra.percent / 100
+                ease_hands_played(card.ability.extra.hand)
+                ease_discard(card.ability.extra.discard)
+            end
+        end
     end
 }

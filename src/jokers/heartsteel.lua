@@ -19,7 +19,7 @@ SMODS.Joker {
             xmultJoker = 1
         }
     },
-    rarity = 3,
+    rarity = 2,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
@@ -136,7 +136,7 @@ SMODS.Joker {
                 end
             end
             if text ~= 'Unknown' and G.GAME.current_round.hands_played == card.ability.extra.numHands then
-                card.joker_display_values.x_mult = card.ability.extra.xmultJoker ^ rettr
+                card.joker_display_values.x_mult = card.ability.extra.xmultJoker ^ (rettr + 1)
                 card.joker_display_values.dollars = card.ability.extra.dollars * rettr
                 card.joker_display_values.left_Hands = 'Active'
             else

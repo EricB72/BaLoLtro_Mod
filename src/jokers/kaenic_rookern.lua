@@ -11,23 +11,24 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            dollars = 2
         }
     },
-    rarity = 3,
+    rarity = 1,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.dollars
             }
         }
     end,
     calculate = function(self, card, context)
         
+    end,
+    calc_dollar_bonus = function(self, card)
+        local prevDollars = card.ability.extra.dollars * G.GAME.current_round.hands_left
+
+        return true and prevDollars or nil
     end
 }

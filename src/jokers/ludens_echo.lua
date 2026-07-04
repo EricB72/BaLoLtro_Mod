@@ -11,23 +11,58 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            bonus = 'm_bonus',
+            chipPer = 5
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 1,
+    cost = 3,
     loc_vars = function(self, info_queue, card)
+        local bonus_Cards = 0
+        for _, playing_card in pairs(G.playing_cards or {}) do
+            if next(SMODS.get_enhancements(playing_card)) and next(SMODS.get_enhancements(playing_card)) == card.ability.extra.bonus then bonus_Cards = bonus_Cards + card.ability.extra.chipPer end
+        end
+        local bonusCards = bonus_Cards / card.ability.extra.chipPer
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.bonus,
+                bonus_Cards,
+                card.ability.extra.chipPer,
+                bonusCards
             }
         }
     end,
     calculate = function(self, card, context)
+        if context.before and not context.blueprint then
+            local enh_Cards = {}
+
+            for i = 1, #context.scoring_hand do
+                if next(SMODS.get_enhancements(context.scoring_hand[i])) and not context.scoring_hand[i].debuff and next(SMODS.get_enhancements(context.scoring_hand[i])) == card.ability.extra.bonus then
+                    if context.scoring_hand[i - 1] and not next(SMODS.get_enhancements(context.scoring_hand[i - 1])) then
+                        enh_Cards[#enh_Cards + 1] = context.scoring_hand[i - 1]
+                    end
+
+                    if context.scoring_hand[i + 1] and not next(SMODS.get_enhancements(context.scoring_hand[i + 1])) then
+                        enh_Cards[#enh_Cards + 1] = context.scoring_hand[i + 1]
+                    end
+                end
+            end
+
+            for i = 1, #enh_Cards do
+                enh_Cards[i]:set_ability(card.ability.extra.bonus)
+            end
+        end
         
+        if context.joker_main then
+            local bonus_Cards = 0
+            
+            for _, playing_card in pairs(G.playing_cards or {}) do
+                if next(SMODS.get_enhancements(playing_card)) and next(SMODS.get_enhancements(playing_card)) == card.ability.extra.bonus then bonus_Cards = bonus_Cards + card.ability.extra.chipPer end
+            end
+
+            return {
+                chips = bonus_Cards
+            }
+        end
     end
 }

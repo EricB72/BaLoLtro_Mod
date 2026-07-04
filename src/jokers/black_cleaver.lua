@@ -20,7 +20,7 @@ SMODS.Joker {
             currDecrease = 0
         }
     },
-    rarity = 3,
+    rarity = 2,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         return {
@@ -36,11 +36,11 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.setting_blind then
+        if context.setting_blind and not context.blueprint then
             card.ability.extra.originalBlind = G.GAME.blind.chips
         end
 
-        if context.before then
+        if context.before and not context.blueprint then
             card.ability.extra.prevMult = mult
         end
 
@@ -77,5 +77,33 @@ SMODS.Joker {
     end,
     add_to_deck = function(self, card, context)
         card.ability.extra.originalBlind = G.GAME.blind.chips
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = "totalPercent"
+            },
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = "score"
+            },
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = "newScore"
+            },
+        text = {
+            { ref_table = "card.joker_display_values", ref_value = "score" },
+            { scale = 0.4 }
+        },
+        reminder_text = {
+            { text = "(" },
+            { ref_table = "card.joker_display_values", ref_value = "totalPercent" },
+            { text = "% -> " },
+            { ref_table = "card.joker_display_values", ref_value = "newScore" },
+            { text = ")" }
+        }
+    }
     end
 }

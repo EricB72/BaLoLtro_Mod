@@ -23,6 +23,7 @@ SMODS.Joker {
     rarity = 3,
     cost = 9.99,
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = 'Other', key = 'm_spellblade' }
         return {
             vars = {
                 card.ability.extra.dollars,
@@ -50,5 +51,8 @@ SMODS.Joker {
                 card.ability.extra.prevHand = context.scoring_name
             end
         end
-    end
+    end,
+        set_badges = function(self, card, badges)
+        badges[#badges+1] = create_badge(localize('b_spellblade'), G.C.ORANGE, G.C.WHITE, 1.2 )
+    end,
 }

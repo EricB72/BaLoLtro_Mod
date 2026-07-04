@@ -89,5 +89,28 @@ SMODS.Joker {
                 SMODS.destroy_cards(card, nil, nil, true)
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = "chips"
+            },
+            text = {
+                { text = "+" },
+                { ref_table = "card.joker_display_values", ref_value = "chips", retrigger_type = "mult" },
+                { scale = 0.4 }
+            },
+            text_config = { colour = G.C.CHIPS },
+            calc_function = function(card)
+                local enh_Cards = 0
+                for _, playing_card in pairs(G.playing_cards or {}) do
+                    if next(SMODS.get_enhancements(playing_card)) then enh_Cards = enh_Cards + card.ability.extra.chips end
+                end
+
+                card.joker_display_values.chips = enh_Cards
+            end
+        }
     end
 }

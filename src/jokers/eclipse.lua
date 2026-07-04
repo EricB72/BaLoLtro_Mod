@@ -18,8 +18,8 @@ SMODS.Joker {
             secondPlayed = ''
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 1,
+    cost = 4,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
@@ -48,10 +48,6 @@ SMODS.Joker {
             end
 
             if highest then
-                if card.ability.extra.prevHand then
-                    card.ability.extra.handsAmount = card.ability.extra.handsAmount + G.GAME.hands[context.scoring_name].played
-                end
-                
                 card.ability.extra.mostPlayed = context.scoring_name
             else
                 highest = true
@@ -65,7 +61,7 @@ SMODS.Joker {
                 if highest then
                     card.ability.extra.secondPlayed = context.scoring_name
                     card.ability.extra.prevHand = true
-                    card.ability.extra.handsAmount = card.ability.extra.handsAmount + G.GAME.hands[context.scoring_name].played
+                    card.ability.extra.handsAmount = G.GAME.hands[card.ability.extra.mostPlayed].played + G.GAME.hands[card.ability.extra.secondPlayed].played
                 end
             end
         end

@@ -62,5 +62,29 @@ SMODS.Joker {
                 chips = card.ability.extra.chips
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = ""
+            },
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "mult" },
+                { scale = 0.4 }
+            },
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.ability.extra", ref_value = "currentPercent"},
+                { text = "%)" },
+                { scale = 0.3 }
+            },
+            text_config = { colour = G.C.CHIPS },
+            calc_function = function(card)
+                
+            end
+        }
     end
 }

@@ -11,23 +11,42 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            owned = false
         }
     },
     rarity = 3,
-    cost = 6,
+    cost = 10,
+    blueprint_compat = false,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.owned
             }
         }
     end,
-    calculate = function(self, card, context)
-        
+    update = function(self, card, context)
+        if card.ability.extra.owned then
+            local position = 1
+
+            for i = 1, #G.jokers.cards do
+                if G.jokers.cards[i] == card then
+                    position = i
+                end
+            end
+
+            for i = 1, position - 1 do
+                G.jokers.cards[i]:remove_sticker('eternal')
+            end
+
+            for i = position, #G.jokers.cards do
+                G.jokers.cards[i]:add_sticker('eternal', true)
+            end
+        end
+    end,
+    add_to_deck = function (self, card)
+        card.ability.extra.owned = true
+    end,
+    remove_from_deck = function (self, card)
+        card.ability.extra.owned = false
     end
 }
