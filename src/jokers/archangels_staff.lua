@@ -55,18 +55,45 @@ SMODS.Joker {
             if card.ability.extra.triggers >= card.ability.extra.numOfEnh then
                 local cards_To_Enh = card.ability.extra.cardsToEnh
                 
-                for i = 1, #G.hand.cards do
-                    if not next(SMODS.get_enhancements(G.hand.cards[i])) and not G.hand.cards[i].debuff and cards_To_Enh > 0 then
-                        G.hand.cards[i]:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))])
-
-                        cards_To_Enh = cards_To_Enh - 1
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.4,
+                    func = function()
+                        play_sound('tarot1')
+                        card:juice_up(0.3, 0.5)
+                        return true
                     end
-                end
+                }))
+                for i = 1, #G.hand.cards do
+                G.E_MANAGER:add_event(Event({
+                        func = function()
+                            local _card = G.hand.cards[i]
+                            if not next(SMODS.get_enhancements(_card)) and cards_To_Enh > 0 and not _card.debuff then
+                                _card:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))])
+                                _card:juice_up(0.3, 0.3)
+                                cards_To_Enh = cards_To_Enh - 1
+                            end
+                            return true
+                        end
+                    }))
+                end                
+            end
+        end
 
-                if cards_To_Enh ~= card.ability.extra.cardsToEnh then
-                    card.ability.extra.enhCards = card.ability.extra.enhCards + 1
-                    card.ability.extra.triggers = card.ability.extra.triggers - card.ability.extra.numOfEnh
+        if (context.after or (G.GAME.blind and context.end_of_round and context.game_over == false and context.main_eval)) and not context.blueprint then
+            local cards_To_Enh = card.ability.extra.cardsToEnh
+
+            for i = 1, #G.hand.cards do
+                local _card = G.hand.cards[i]
+                if not next(SMODS.get_enhancements(_card)) and cards_To_Enh > 0 then
+                    cards_To_Enh = cards_To_Enh - 1
                 end
+            end
+
+            if cards_To_Enh ~= card.ability.extra.cardsToEnh then
+                card.ability.extra.enhCards = card.ability.extra.enhCards + 1
+                card.ability.extra.triggers = card.ability.extra.triggers - card.ability.extra.numOfEnh
+                if card.ability.extra.triggers < 0 then card.ability.extra.triggers = 0 end
             end
         end
 

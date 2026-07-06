@@ -51,7 +51,7 @@ SMODS.Joker {
                 }
             elseif not (G.GAME.blind.chips <= card.ability.extra.originalBlind / 2) then
                 for i = 1, #card.ability.extra.prevCards do
-                    if context.other_card:get_id() == card.ability.extra.prevCards[i] then
+                    if context.other_card.base.id == card.ability.extra.prevCards[i] then
                         new = false
                         i = #card.ability.extra.prevCards
                     end
@@ -70,7 +70,7 @@ SMODS.Joker {
                     G.GAME.blind.chips = G.GAME.blind.chips - (card.ability.extra.originalBlind * card.ability.extra.scalar / 100)
                     G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
                     
-                    card.ability.extra.prevCards[card.ability.extra.amount] = context.other_card:get_id()
+                    card.ability.extra.prevCards[card.ability.extra.amount] = context.other_card.base.id
                     card.ability.extra.amount = card.ability.extra.amount + 1
                 end
             end
@@ -141,7 +141,7 @@ SMODS.Joker {
                     local newRank = true
 
                     for i = 1, #ranks do
-                        if scoring_card:get_id() == ranks[i] then
+                        if scoring_card.base.id == ranks[i] then
                             newRank = false
                             break
                         end
@@ -149,7 +149,7 @@ SMODS.Joker {
 
                     if newRank then
                         count = count + 1
-                        ranks[#ranks - rankCount + count] = scoring_card:get_id()
+                        ranks[#ranks - rankCount + count] = scoring_card.base.id
                     end
                 end
             end

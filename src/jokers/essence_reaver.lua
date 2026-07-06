@@ -56,7 +56,7 @@ SMODS.Joker {
             local totalCrit = 0
 
             for i = 1, #G.jokers.cards do
-                if G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.currentCrit >= 0 then
+                if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.currentCrit >= 0 then
                     jokers[#jokers + 1] = G.jokers.cards[i]
                 end
             end
@@ -83,15 +83,32 @@ SMODS.Joker {
             end
         end
 
+        if context.before and card.ability.extra.prevHand ~= card.ability.extra.highCard and context.scoring_name == card.ability.extra.highCard and not context.blueprint then
+            for i = 1, #context.scoring_hand do
+                if not context.scoring_hand[i].debuff and not next(SMODS.get_enhancements(context.scoring_hand[i])) then
+                    context.scoring_hand[i]:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))], nil, false)
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            context.scoring_hand[i]:juice_up()
+                            return {
+                                true
+                            }
+                        end
+                    }))
+                end
+            end
+
+            return {
+                message = localize('k_enhanced')
+            }
+
+        end
+
         -- Spellblade
         if context.joker_main then
             if card.ability.extra.prevHand ~= card.ability.extra.highCard and context.scoring_name == card.ability.extra.highCard then
                 card.ability.extra.prevHand = context.scoring_name
                 card.ability.extra.mult = card.ability.extra.totalCrit
-
-                if not next(SMODS.get_enhancements(context.scoring_hand[1])) and not context.scoring_hand[1].debuff then
-                    context.scoring_hand[1]:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))])
-                end
 
                 return {
                     mult = card.ability.extra.mult
@@ -105,7 +122,7 @@ SMODS.Joker {
         local jokers = {}
 
         for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
+            if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
                 jokers[#jokers + 1] = G.jokers.cards[i]
 
                 if G.jokers.cards[i].ability.extra.critLeader and G.jokers.cards[i] ~= card then
@@ -119,7 +136,7 @@ SMODS.Joker {
         local jokers = {}
 
         for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
+            if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
                 jokers[#jokers + 1] = G.jokers.cards[i]
             end
         end

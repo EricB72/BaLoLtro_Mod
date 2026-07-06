@@ -38,23 +38,31 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.before or context.modify_hand then
-            card.ability.extra.chips = math.max(hand_chips * card.ability.extra.percentage / 100)
-            card.ability.extra.mult = math.max(mult * card.ability.extra.percentage / 100)
+        if context.modify_hand then
+            local chips, mult = SMODS.get_scoring_parameter('chips', flames) * card.ability.extra.percentage / 100,
+                                SMODS.get_scoring_parameter('mult', flames) * card.ability.extra.percentage / 100
+
+            SMODS.Scoring_Parameters['chips']:modify(chips)
+            SMODS.Scoring_Parameters['mult']:modify(mult)
+            G.E_MANAGER:add_event(Event({
+                    trigger = 'before',
+                    delay = 0.4,
+                    func = function()
+                        play_sound('tarot1')
+                        card:juice_up(0.3, 0.5)
+                        return true
+                    end
+                }))
+                return {
+                    message = tostring('+' .. card.ability.extra.percentage .. '%')
+                }
         end
 
-        if context.joker_main then
-            return {
-                chips = card.ability.extra.chips,
-                mult = card.ability.extra.mult,
-            }
-        end
-
-        if context.hand_drawn and G.GAME.current_round.hands_left < card.ability.extra.minHands and card.ability.extra.cooldown >= card.ability.extra.rounds then
+        if context.hand_drawn and G.GAME.current_round.hands_left < card.ability.extra.minHands and card.ability.extra.cooldown >= card.ability.extra.rounds and card.ability.extra.cooldown ~= card.ability.extra.reset then
             card.ability.extra.cooldown = card.ability.extra.reset
             ease_hands_played(card.ability.extra.hands)
             return {
-                message = localize('a_hands')
+                message = tostring('+' .. card.ability.extra.hands .. ' ' .. localize('a_hand'))
             }
         end
 
@@ -67,7 +75,7 @@ SMODS.Joker {
 
             if card.ability.extra.cooldown >= card.ability.extra.rounds then
                 return {
-                message = localize('k_active')
+                message = localize('a_active')
             }
             end
         end

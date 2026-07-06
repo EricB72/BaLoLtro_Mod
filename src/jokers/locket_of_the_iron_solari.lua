@@ -11,12 +11,13 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            spellShield = 'e_tstmod_spell_shield'
+            spellShield = "e_tstmod_spell_shield"
         }
     },
     rarity = 1,
     cost = 2,
     loc_vars = function(self, info_queue, card)
+        --info_queue[#info_queue + 1] = G.P_CENTERS.e_tstmod_spell_shield
         return {
             vars = {
                 card.ability.extra.spellShield
@@ -26,7 +27,9 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.selling_self then
             for i = 1, #G.jokers.cards do
-                G.jokers.cards[i]:set_edition(card.ability.extra.spellShield, true, false, true)
+                if not G.jokers.cards[i].edition and not G.jokers.cards[i].temp_edition then
+                    G.jokers.cards[i]:set_edition({ e_tstmod_spell_shield = true }, true)
+                end
             end
         end
     end

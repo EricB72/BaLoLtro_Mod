@@ -5,15 +5,15 @@ return {
                 name = 'Sterak\'s Gage',
                 text = {
                     {
-                    'Gives and additional {C:attention}#3#%{}',
-                    'of base {C:chips}Chips{} and {C:mult}Mult{}.'
+                    '{C:attention}#3#%{} of base',
+                    '{C:chips}Chips{} and {C:mult}Mult{}.'
                 },
-                    {
-                        'If remaining {C:chips}Hands{} are equal to {C:attention}#4#{}',
-                        'Gives {C:chips}#5#{} Hand/s.',
-                        '{C:inactive}(Has a #7# round cooldown){}',
-                        '{C:inactive}(Rounds unused: #6#)'
-                    }
+                {
+                    'If remaining {C:chips}Hands{} are equal to {C:attention}#4#{}',
+                    'Gives {C:chips}#5#{} Hand/s.',
+                    '{C:inactive}(Has a #7# round cooldown){}',
+                    '{C:inactive}(Rounds unused: #6#)'
+                }
                 }
             },
             j_tstmod_tf = {
@@ -36,25 +36,24 @@ return {
                     'For each scored card with a',
                     'different rank on an entire round,',
                     'decrease total score',
-                    'required by #3#% up to #1#%.',
+                    'required by {X:purple,C:white}#3#%{} up to {X:purple,C:white}#1#%{}.',
                     '{C:inactive}(Current: #2#% -> #4#){}'
                 }
             },
             j_tstmod_ymgb = {
                 name = 'Youmuu\'s Ghostblade',
                 text = {
-                    'At the first hand of a round gives +#1# Hand Size',
-                    'Selling this during a blind, gives #2# temporal Hand Size instead.'
+                    'At the first hand of a',
+                    'round gives {C:attention}+#1#{} hand size',
+                    'Selling this during a blind,',
+                    'gives {C:attention}#2#{} temporal hand size instead.'
                 }
             },
             j_tstmod_bork = {
                 name = 'Blade of the Ruined King',
                 text = {
-                    'Gives {C:attention}#1#%{} of the missing score',
-                    'for every King scored.',
-                    'Every #2# tiggers grants',
-                    'a #6#% instead.',
-                    '{C:inactive}(Triggers: #3#)'
+                    'Gives {X:purple,C:white}#1#%{} of the missing score',
+                    'for every {C:attention}King{} scored.'
                 }
             },
             j_tstmod_rdc = {
@@ -67,21 +66,25 @@ return {
             j_tstmod_sf = {
                 name = 'Shadowflame',
                 text = {
-                    {'Critical Strikes caused by',
-                    'this Joker affects Enhancements.' },
-
-                    {'If score left is lower than {C:attention}#2#%{}.',
-                    'Guarantees a Critical Strike',
+                {
+                    '{C:mult}Critical Strikes{} caused by',
+                    'this Joker affects Enhancements.' 
+                },
+                    {'If score left is lower than {C:green}#2#%{}.',
+                    'Guarantees a {C:mult}Critical Strike',
                     '{C:inactive}(Crit DMG: #6#%)'}
                 }
             },
             j_tstmod_hr = {
                 name = 'Hollow Radiance',
                 text = {
-                    {'Gives #1# {C:chips}Chips{}.'},
                     {
-                        'If the first hand played scores #3#% or more of required score,',
-                        'gives #2#% of required score as {C:chips}Chips{} instead.'
+                        'Gives {C:chips}+#1#{} Chips.'
+                    },
+                    {
+                        'If the first hand played scores',
+                        '{C:green}#3#%{} or more of required score,',
+                        'gives {X:purple,C:white}#2#%{} of required score as {C:chips}Chips{} instead.'
                     }
                 }
             },
@@ -97,7 +100,7 @@ return {
                 name = 'Actualizer',
                 text = {
                     {
-                        '-1 Hand'
+                        '{C:chips}#1#{} Hand'
                     },
                     {
                         'Sell this card to enhance',
@@ -111,17 +114,17 @@ return {
                 name = 'Archangel\'s Staff',
                 text = {
                     {
-                        'Gives {C:chips}#9#{} Chips, equal to #1# times the total',
+                        'Gives {C:chips}+#9#{} Chips, equal to {C:attention}#1#{} times the total',
                         'number of enhanced cards in deck.'
                     },
                     {
-                        'Every #2# cards scored, enhances',
-                        'the #10# left-most cards in hand.',
+                        'Every {C:attention}#2#{} cards scored, enhances',
+                        'the {C:attention}#10#{} left-most cards in hand.',
                         '{C:inactive}(Cards scored: #5#)'
                     },
                     {
                         'Transforms into {C:chips}Seraph\'s Embrace{}',
-                        'after #3# triggers.',
+                        'after {C:attention}#3#{} triggers.',
                         '{C:inactive}(Triggers: #6#)'
                     }
                 }
@@ -130,9 +133,9 @@ return {
                 name = 'Seraph\'s Embrace',
                 text = {
                     {
-                        'Gives {C:chips}#3#{} Chips, equal to #1# times',
+                        'Gives {C:chips}+#3#{} Chips, equal to {C:attention}#1#{} times',
                         'the total number of enhanced cards in deck.',
-                        'If hand played is last hand, gives #2# times instead.'
+                        'If hand played is last hand, gives {C:attention}#2#{} times instead.'
                     }
                 }
             },
@@ -141,7 +144,7 @@ return {
                 text = {
                     {
                         'Gain a random tag. Additionally gaining a',
-                        'hand or a discard grants a random tag.',
+                        '{C:chips}Hand{} or a {C:mult}Discard{} grants a random tag.',
                         '{C:inactive}(Activations: #5#){}'
                     }
                 }
@@ -150,8 +153,9 @@ return {
                 name = 'Atma\'s Reckoning',
                 text = {
                     {
-                        'Grants #2#% Critical Chance, every #4#$ above #6#$ grants another 1%',
-                        'up to #3#%, for a 50% total.',
+                        'Grants {C:green}#2#%{} {C:mult}Critical Chance{}, every {C:money}$#4#{}',
+                        'above {C:money}$#6#{} grants another {C:green}1%{}',
+                        'up to {C:green}#3#%{}, for a {C:green}50%{} total.',
                         '{C:inactive}(Crit Chance: #8#/#9# (#5#%), Crit DMG: #7#%)'
                     }
                 }
@@ -160,7 +164,7 @@ return {
                 name = 'Infinity Edge',
                 text = {
                     {
-                        'Grants #2#% Critical Chance, and #4#% Critical Damage',
+                        'Grants {C:green}#2#%{} {C:mult}Critical Chance{}, and {C:green}#4#% {X:mult,C:white}Critical Damage{}',
                         '{C:inactive}(Crit Chance: #7#/#8# (#3#%), Crit DMG: #6#%)'
                     }
                 }
@@ -169,12 +173,12 @@ return {
                 name = 'Essence Reaver',
                 text = {
                     {
-                        'Grants #6#% Critical Chance.',
+                        'Grants {C:green}#6#%{} {C:mult}Critical Chance{}.',
                         '{C:inactive}(Crit Chance: #9#/#10# (#7#%), Crit DMG: #8#%)'
                     },
                     {
-                        'Spellblade: Grants {C:mult}#1#{} Mult equal',
-                        'to Critical Chance.',
+                        'Spellblade: Grants {C:mult}+#1#{} Mult equal',
+                        'to {C:mult}Critical Chance.',
                         'Enhances card played.',
                         '{C:inactive}(Last Hand: #3#)'
                     }
@@ -184,16 +188,16 @@ return {
                 name = 'Axiom Arc',
                 text = {
                     {
-                        '{C:mult}#1#{} Mult.',
+                        '{C:mult}+#1#{} Mult.',
                     },
                     {
-                        'Beating a blind with just #2#',
-                        'hands, grants 1/#4# luck until',
-                        'next beaten boss blind.',
-                        'Additionally, every discard',
+                        'Beating a blind with just {C:attention}#2#{}',
+                        'hands, grants {C:green}1/#4#{} luck until',
+                        'next beaten {C:attention}Boss Blind{}.',
+                        'Additionally, every {C:mult}discard{}',
                         'left at the end of a round',
-                        'will increase luck: 1/#4#-#7#X.',
-                        'Up to 1/#8#.',
+                        'will increase luck: {C:green}1/#4#-#7#X{}.',
+                        'Up to {C:green}1/#8#{}.',
                         '{C:inactive}(Luck: #3#/#6#)'
                     }
                 }
@@ -202,9 +206,9 @@ return {
                 name = 'Bandlepipes',
                 text = {
                     {
-                        'Debuffing a boss blind',
-                        'grants #1# random tags and',
-                        'gives #2# permanent Hand Size',
+                        'Debuffing a {C:attention}Boss Blind{}',
+                        'grants {C:attention}#1#{} random tags and',
+                        'gives {C:attention}#2#{} permanent hand size',
                         'at the end of the round.',
                         '{C:inactive}(Hand Size: #3#)'
                     }
@@ -214,12 +218,12 @@ return {
                 name = 'Banshee\'s Veil',
                 text = {
                     {
-                        '#1# Chips.'
+                        '{C:chips}+#1#{} Chips.'
                     },
                     {
-                        'Disables next boss blind.',
-                        'Has a #2# round cooldown.',
-                        'Ending a round with #3# hand',
+                        'Disables next {C:attention}Boss Blind{}.',
+                        'Has a {C:attention}#2#{} round cooldown.',
+                        'Ending a round with {C:attention}#3#{} hand',
                         'or less restarts the cooldown.',
                         '{C:inactive}(Cooldown: #4#)'
                     }
@@ -229,12 +233,12 @@ return {
                 name = 'Bastionbreaker',
                 text = {
                     {
-                        'On boss blind, gives #1#X mult',
+                        'On boss blind, gives {X:mult,C:white}X#1#{} mult',
                         'equal to the number of jokers.'
                     },
                     {
-                        'Skipping directly to a Boss Blind',
-                        'grants #2#X mult instead.'
+                        'Skipping directly to a {C:attention}Boss Blind{}',
+                        'grants {X:mult,C:white}X#2#{} Mult instead.'
                     }
                 }
             },
@@ -242,15 +246,15 @@ return {
                 name = 'Black Cleaver',
                 text = {
                     {
-                        'Each instance of +Mult',
+                        'Each instance of {X:mult}Mult{}',
                         'during scoring grants a stack.',
                         'Each stack decreases total score',
-                        'required by #1#% up to #2#%.',
+                        'required by {X:purple,C:white}#1#%{} up to {X:purple,C:white}#2#%.',
                         '{C:inactive}(Current: #4#% -> #7#){}'
                     },
                     {
                         'After reaching max stacks',
-                        'this also grants #3# mult.'
+                        'this also grants {C:mult}+#3#{} Mult.'
                     }
                 }
             },
@@ -258,10 +262,10 @@ return {
                 name = 'Blackfire Torch',
                 text = {
                     {
-                        'Each card held in hand',
-                        'gives #1# chips.',
+                        'Each card {C:attention}held in hand',
+                        'gives {C:chips}+#1#{} Chips.',
                         'Every activation increases',
-                        'chips amount by #2#.',
+                        'chips amount by {C:attention}#2#{}.',
                         '{C:inactive}Resets at the end of the round.{}'
                     }
                 }
@@ -270,17 +274,17 @@ return {
                 name = 'Bloodthirster',
                 text = {
                     {
-                        '#1# mult.'
+                        '{C:mult}+#1#{} Mult.'
                     },
                     {
                         'Getting discards above',
                         'the number of discards',
                         'at the start of a round,',
-                        'also grants #2# Hand.',
+                        'also grants {C:chips}+#2#{} hand.',
                     },
                     {
-                        'Every #3# hands played',
-                        'grants #4# discard.',
+                        'Every {C:attention}#3#{} hands played',
+                        'grants {C:mult}+#4#{} discard.',
                         '{C:inactive}(Hands played: #6#){}'
                     }
                 }
@@ -289,13 +293,13 @@ return {
                 name = 'Chempunk Chainsword',
                 text = {
                     {
-                        '#1# mult.'
+                        '{C:mult}+#1#{} mult.'
                     },
                     {
-                        'If a Mult is scored,',
-                        '#2#% price reduction per',
+                        'If {C:mult}Mult{} is scored,',
+                        '{X:purple,C:white}#2#%{} price reduction per',
                         'activation on next shop.',
-                        'Up to #5#%.',
+                        'Up to {X:purple,C:white}#5#%{}.',
                         '{C:inactive}(Price reduction: #6#%){}'
                     }
                 }
@@ -304,11 +308,11 @@ return {
                 name = 'Cosmic Drive',
                 text = {
                     {
-                        '#2# Chips.'
+                        '{C:chips}+#2#{} Chips.'
                     },
                     {
-                        'At the end of the round,',
-                        'grants a tag per #1#% blind',
+                        'At the {C:attention}end of the round{},',
+                        'grants a tag per {X:purple,C:white}#1#%{} blind',
                         'max score reduced.',
                         '{C:inactive}(Reduction: #3#%){}',
                     }
@@ -318,11 +322,11 @@ return {
                 name = 'Cryptbloom',
                 text = {
                     {
-                        '#1# Chips and #4# discard/s.'
+                        '{C:chips}+#1#{} Chips and {C:mult}+#4#{} discard/s.'
                     },
                     {
-                        'Every round gains #2# chips,',
-                        'every boss blind gains #3# discard.',
+                        'Every round gains {C:chips}+#2#{} Chips,',
+                        'every boss blind gains {C:mult}+#3#{} discard.',
                     }
                 }
             },
@@ -330,15 +334,14 @@ return {
                 name = 'Dawncore',
                 text = {
                     {
-                        'Gives #2# XChips',
-                        'per enhanced',
-                        'card in deck.',
-                        '{C:inactive}(XChips: #1#){}'
+                        'Gives {X:chips,C:white}X#1#{} Chips',
+                        'per enhanced card in deck.',
+                        '{C:inactive}(Currently {X:chips,C:white}X#1#{}{C:inactive} Chips){}'
                     },
                     {
-                        'If the entire deck is enhanced,',
-                        'grants 2 rettrigers to scored hand.',
-                        '{C:inactive}(Enh. cards: #3#/#4#){}'
+                        'If the {C:attention}entire deck{} is enhanced,',
+                        'grants {C:attention}2{} rettrigers to {C:attention}scored hand{}.',
+                        '{C:inactive}(Currently #3#/#4#){}'
                     }
                 }
             },
@@ -346,13 +349,14 @@ return {
                 name = 'Dead Man\'s Plate',
                 text = {
                     {
-                        'Gives #1# free reroll.'
+                        '{C:attention}#1#{} free {C:green}Reroll{}.',
+                        'per shop.'
                     },
                     {
-                        'Every reroll grants #3# Mult,',
-                        'every skip grants #4# Mult.',
-                        'Resets at the end of the ante.',
-                        '{C:inactive}(Mult: #2#){}'
+                        'Every reroll grants {C:mult}+#3#{} Mult,',
+                        'every skip grants {C:mult}+#4#{} Mult.',
+                        'Resets at the {C:attention}end of the ante{}.',
+                        '{C:inactive}(Currently {C:mult}+#2#{}{C:inactive} Mult){}'
                     }
                 }
             },
@@ -361,21 +365,21 @@ return {
                 text = {
                     {
                         '{X:mult,C:white}X#1#{} Mult, gained',
-                        'upon playing the third hand.'
+                        'upon playing the {C:attention}third hand{}.'
                     },
                     {
-                        'On the third hand,',
-                        'the first card gives',
-                        '{X:mult,C:white}X#6#{} equal 1% of money',
-                        'and {C:money}$#4#{} equal to #3#% XMult.',
+                        'On the {C:attention}third hand{},',
+                        'the {C:attention}first card scored{} gives',
+                        '{X:mult,C:white}X#6#{} equal {X:purple,C:white}1%{} of {C:money}Money{}',
+                        'and {C:money}$#4#{} equal to {X:purple,C:white}#3#%{} of {X:mult,C:white}XMult{}.',
                         'Gain stacks equal',
-                        'to gained XMult.',
+                        'to gained {X:mult,C:white}XMult{}.',
                         '{C:inactive}XMult won\'t decrease.{}'
                     },
                     {
                         'Gain {C:attention}sell price{} equal',
-                        'to 1% the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
+                        'to {X:purple,C:white}1%{} the stacks.',
+                        '{C:inactive}(Currently #5# stacks){}'
                     }
                 }
             },
@@ -383,15 +387,15 @@ return {
                 name = 'Death\'s Dance',
                 text = {
                     {
-                        'Reroll price increase',
-                        'now happens every #1#',
+                        '{C:green}Reroll price increase{}',
+                        'now happens every {C:attention}#1#{}',
                         'rerolls instead of one.'
                     },
                     {
-                        'Each saved $ during a',
-                        'reroll grants +1 Mult.',
+                        'Each saved {C:moeny}${} on a',
+                        '{C:green}Reroll{} grants {C:mult}+1{} Mult.',
                         '{C:inactive}Resets upon entering a shop{}',
-                        '{C:inactive}(Mult: #3#){}',
+                        '{C:inactive}(Currently {C:mult}+#3#{} {C:inactive}Mult){}',
                     }
                 }
             },
@@ -399,11 +403,12 @@ return {
                 name = 'Echoes of Helia',
                 text = {
                     {
-                        'Every hand store #3#%',
+                        'Every hand store {X:purple,C:white}#3#%',
                         'of score done.',
                         'Next hand gives',
-                        'it as Chips.',
-                        '{C:inactive}(Chips: #1#){}'
+                        'it as {C:chips}Chips{}.',
+                        '{C:inactive}(Currently {C:chips}+#1#{} {C:inactive}Chips){}',
+                        '{C:inactive}Only stores Chips X Mult score.{}'
                     }
                 }
             },
@@ -411,15 +416,15 @@ return {
                 name = 'Eclipse',
                 text = {
                     {
-                        'Playing your 2nd most',
+                        'Playing your {C:attention}2nd{} most',
                         'played hand and then your',
-                        'most played hand gives a Hand.',
+                        '{C:attention}most{} played hand gives {C:chips}+1{} hand.',
                         '{C:inactive}(1º: #4#, 2º: #5#){}'
                     },
                     {
-                        '+Mult equal to most scored',
-                        'hand and 2nd most times.',
-                        '{C:inactive}(Mult: #2#){}'
+                        '{C:mult}+Mult{} equal to {C:attention}most{} scored',
+                        'hand and {C:attention}2nd{} most times.',
+                        '{C:inactive}(Currently {C:mult}+#2#{} {C:inactive}Mult){}'
                     }
                 }
             },
@@ -427,14 +432,14 @@ return {
                 name = 'Edge of Night',
                 text = {
                     {
-                        '+#1# Mult, +#2# every time a glass',
-                        'card is played and not broken.',
+                        '{C:mult}+#1#{} Mult, {C:mult}+#2#{} every time a {C:attention}glass',
+                        '{C:attention}card{} is played and not broken.',
                         '{C:inactive}Resets upon breaking one.{}'
                     },
                     {
-                        'Multiplies probabilities by #3#,',
-                        'every time a glass card breaks by chance',
-                        'this is reduced by a #4#%.'
+                        'Multiplies probabilities by {C:green}#3#{},',
+                        'every time a {C:attention}glass card{} breaks by chance',
+                        'this is reduced by a {C:green}#4#%{}.'
                     }
                 }
             },
@@ -830,18 +835,9 @@ return {
                 name = 'Maw of Malmortius',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        '{C:chips}+#1#{} Chips and {C:mult}+#3#{} Mult,',
+                        '{C:attention}Boss Blind{} effects increase this',
+                        'by {C:chips}+#2#{} and {C:mult}+#4#{}.'
                     }
                 }
             },
@@ -849,18 +845,9 @@ return {
                 name = 'Mejai\'s Soulstealer',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        '{C:attention}#1#{} hand and {C:money}$#3#{} after',
+                        'a {C:attention}Boss Blind{}.',
+                        '{C:green}Skipping{} a Blind reduces both by {C:attention}2{}.'
                     }
                 }
             },
@@ -868,18 +855,9 @@ return {
                 name = 'Mercurial Scimitar',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Eats played {C:purple}Debuffed cards{}',
+                        'and gains {C:attention}+#1#{} temporal hand size',
+                        'for each debuff eaten.'
                     }
                 }
             },
@@ -887,18 +865,9 @@ return {
                 name = 'Mikael\'s Blessing',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Sell this joker to {C:purple}Debuff{}',
+                        'every card held in hand and',
+                        'gain {C:money}$1{} for each.'
                     }
                 }
             },
@@ -906,18 +875,11 @@ return {
                 name = 'Moonstone Renewer',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Eats enhancements played',
+                        'gains {X:mult,C:white}X#2#{} Mult per each.',
+                        'Each enhancement in a',
+                        'row increases gain by {X:mult,C:white}X#3#{}.',
+                        '{C:inactive}(Currently{} {X:mult,C:white}X#1#{} {C:inactive}Mult){}'
                     }
                 }
             },
@@ -925,18 +887,8 @@ return {
                 name = 'Morellonomicon',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Triggers held in hand {C:chips}s{C:purple}e{C:money}a{C:purple}l{C:chips}s{}',
+                        'every hand played.'
                     }
                 }
             },
@@ -963,18 +915,8 @@ return {
                 name = 'Nashor\'s Tooth',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Each {C:chips}Common{} joker',
+                        'gives {C:chips}+#1#{} Chips.'
                     }
                 }
             },
@@ -1001,18 +943,14 @@ return {
                 name = 'Overlord\'s Bloodmail',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        'Gives {X:mult,C:white}X#2#{} Mult per',
+                        '{C:money}$1{} of sell value of all jokers.',
+                        '{C:inactive}(Currently{} {X:mult,C:white}X#1#{} {C:inactive}Mult){}'
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'Gives up to {X:purple,C:white}100%{} more',
+                        'per scored % amount.',
+                        '{C:inactive}(Currently{} {X:purple,C:white}+#3#%{}{C:inactive}){}'
                     }
                 }
             },
@@ -1039,18 +977,10 @@ return {
                 name = 'Profane Hydra',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        '{C:attention}#2#{} Wild Card/s will give',
+                        '{X:mult,C:white}X#1#{} Mult when scored.',
+                        'Each {X:attention,C:mult}Hydra{} owned',
+                        'increases amount by {C:attention}1{}.'
                     }
                 }
             },
@@ -1115,18 +1045,15 @@ return {
                 name = 'Ravenous Hydra',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
+                        '{C:attention}#2#{} Wild Card/s will give',
+                        '{C:chips}+#1#{} Chips when scored.',
+                        'Each {X:attention,C:mult}Hydra{} owned',
+                        'increases amount by {C:attention}1{}.',
                     },
                     {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'At the end of a round,',
+                        'Wild Cards will infect adjacent',
+                        'cards and turn them into {C:green}Wild{}.'
                     }
                 }
             },
@@ -1854,10 +1781,18 @@ return {
             m_energized = {
                 name = "Energized",
                 text = {
-                    'IDK yet',
+                    'IDK yet.',
+                }
+            }
+        },
+        Edition = {
+            e_tstmod_spell_shield = {
+                name = "Spell Shield",
+                text = {
+                    "Prevents 1 debuff."
                 }
             },
-    }
+        },
     },
     misc = {
         achievement_names = {
@@ -1870,10 +1805,15 @@ return {
             lol_crit = 'CRIT!!',
             b_spellblade = 'Spellblade',
             b_crit = 'Critical',
-            b_energize = 'Energize'
+            b_energize = 'Energize',
+            k_bonus = 'Bonus',
+            k_enhanced = 'Enhanced',
+            k_infected = 'Infected',
+            a_hand = 'Hand',
+            a_active = 'Active'
 		},
         labels = {
-            spell_shield = 'Spell Shield'
+            tstmod_spell_shield = 'Spell Shield'
         }
 	},
 }

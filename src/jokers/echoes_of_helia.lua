@@ -13,8 +13,7 @@ SMODS.Joker {
         extra = {
             chips = 0,
             scoreDone = 0,
-            percentage = 1,
-            lastScore = 0
+            percentage = 1
         }
     },
     rarity = 3,
@@ -24,30 +23,27 @@ SMODS.Joker {
             vars = {
                 card.ability.extra.chips,
                 card.ability.extra.scoreDone,
-                card.ability.extra.percentage,
-                card.ability.extra.lastScore,
-                card.ability.extra.chips
+                card.ability.extra.percentage
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.end_of_round then
-            card.ability.extra.lastScore = 0
+        if context.end_of_round or context.setting_blind then
             card.ability.extra.scoreDone = 0
+            card.ability.extra.chips = 0
         end
         
         if context.before then
-            card.ability.extra.lastScore = G.GAME.chips
+            card.ability.extra.chips = card.ability.extra.scoreDone
         end
 
-        if context.hand_drawn then
-            card.ability.extra.scoreDone = (G.GAME.chips - card.ability.extra.lastScore) * (card.ability.extra.percentage / 100)
-            card.ability.extra.chips = card.ability.extra.scoreDone
+        if context.after then
+            card.ability.extra.scoreDone = SMODS.calculate_round_score(flames) * card.ability.extra.percentage / 100
         end
 
         if context.joker_main then
             return {
-                    chips = card.ability.extra.chips
+                chips = card.ability.extra.chips
             }
         end
     end

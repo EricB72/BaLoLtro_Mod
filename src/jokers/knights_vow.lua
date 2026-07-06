@@ -41,6 +41,8 @@ SMODS.Joker {
             for i = position, #G.jokers.cards do
                 G.jokers.cards[i]:add_sticker('eternal', true)
             end
+
+            if G.jokers.cards[#G.jokers.cards] == card then G.jokers.cards[#G.jokers.cards]:remove_sticker('eternal') end
         end
     end,
     add_to_deck = function (self, card)

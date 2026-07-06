@@ -68,7 +68,8 @@ SMODS.Joker {
     end,
     calc_dollar_bonus = function(self, card)
         local prevDollars = card.ability.extra.dollars
-        card.ability.extra.dollars = card.ability.extra.dollars + card.ability.extra.dollarGain
+
+        if card.ability.extra.dollars < card.ability.extra.maxStacks then card.ability.extra.dollars = card.ability.extra.dollars + card.ability.extra.dollarGain end
 
         return true and prevDollars or nil
     end

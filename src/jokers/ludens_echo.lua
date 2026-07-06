@@ -38,18 +38,31 @@ SMODS.Joker {
 
             for i = 1, #context.scoring_hand do
                 if next(SMODS.get_enhancements(context.scoring_hand[i])) and not context.scoring_hand[i].debuff and next(SMODS.get_enhancements(context.scoring_hand[i])) == card.ability.extra.bonus then
-                    if context.scoring_hand[i - 1] and not next(SMODS.get_enhancements(context.scoring_hand[i - 1])) then
+                    if context.scoring_hand[i - 1] and not next(SMODS.get_enhancements(context.scoring_hand[i - 1])) == card.ability.extra.bonus then
                         enh_Cards[#enh_Cards + 1] = context.scoring_hand[i - 1]
                     end
 
-                    if context.scoring_hand[i + 1] and not next(SMODS.get_enhancements(context.scoring_hand[i + 1])) then
+                    if context.scoring_hand[i + 1] and not next(SMODS.get_enhancements(context.scoring_hand[i + 1])) == card.ability.extra.bonus then
                         enh_Cards[#enh_Cards + 1] = context.scoring_hand[i + 1]
                     end
                 end
             end
 
             for i = 1, #enh_Cards do
-                enh_Cards[i]:set_ability(card.ability.extra.bonus)
+                enh_Cards[i]:set_ability(card.ability.extra.bonus, nil, true)
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        enh_Cards[i]:juice_up()
+                        return true
+                    end
+                }))
+            end
+
+            if #enh_Cards > 0 then
+                return {
+                    message = localize('k_bonus'),
+                    colour = G.C.BLUE
+                }
             end
         end
         

@@ -12,9 +12,7 @@ SMODS.Joker {
     config = {
         extra = {
             xchips = 1,
-            forEach = 0.25,
-            stored = false,
-            extraAmount = 2
+            forEach = 0.25
         }
     },
     rarity = 1,
@@ -23,14 +21,12 @@ SMODS.Joker {
         return {
             vars = {
                 card.ability.extra.xchips,
-                card.ability.extra.forEach,
-                card.ability.extra.stored,
-                card.ability.extra.extraAmount
+                card.ability.extra.forEach
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.play and not context.end_of_round and not context.blueprint then
+        if context.before and not context.end_of_round and not context.blueprint then
             local left = context.scoring_hand[1].base.id
             local right = context.scoring_hand[#context.scoring_hand].base.id
 
@@ -40,27 +36,12 @@ SMODS.Joker {
         end
 
         if context.joker_main then
-            if card.ability.extra.stored then
-                return {
-                    xchips = card.ability.extra.xchips * card.ability.extra.extraAmount
-                }
-            else
-                return {
-                    xchips = card.ability.extra.xchips
-                }
-            end
-        end
-
-        if context.hand_drawn and not context.blueprint then
-            if card.ability.extra.xchips >= 2 and not card.ability.extra.stored then
-                card.ability.extra.stored = true
-            elseif card.ability.extra.xchips < 2 then
-                card.ability.extra.stored = false
-            end
+            return {
+                xchips = card.ability.extra.xchips
+            }
         end
 
         if context.end_of_round and not context.blueprint then
-           card.ability.extra.stored = false
            card.ability.extra.xchips = 1
         end
     end

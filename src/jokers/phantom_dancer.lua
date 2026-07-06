@@ -11,24 +11,22 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 2,
+    cost = 8,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+
             }
         }
     end,
     calculate = function(self, card, context)
-        
+        if context.skip_blind and not context.blueprint then
+            --Give tag not skip_blind
+        end
     end
 }

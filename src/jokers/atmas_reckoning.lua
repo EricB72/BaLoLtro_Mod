@@ -59,7 +59,7 @@ SMODS.Joker {
             local totalCrit = 0
 
             for i = 1, #G.jokers.cards do
-                if G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.currentCrit >= 0 then
+                if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.currentCrit >= 0 then
                     jokers[#jokers + 1] = G.jokers.cards[i]
                 end
             end
@@ -90,7 +90,7 @@ SMODS.Joker {
         local jokers = {}
 
         for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
+            if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
                 jokers[#jokers + 1] = G.jokers.cards[i]
 
                 if G.jokers.cards[i].ability.extra.critLeader and G.jokers.cards[i] ~= card then
@@ -104,7 +104,7 @@ SMODS.Joker {
         local jokers = {}
 
         for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
+            if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.critChance >= 0 then
                 jokers[#jokers + 1] = G.jokers.cards[i]
             end
         end
