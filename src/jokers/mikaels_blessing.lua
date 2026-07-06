@@ -24,9 +24,9 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.before then
+        if context.selling_self then
             for i = 1, #G.hand.cards do
-                if not G.hand.cards[i].debuff then
+                if not G.hand.cards[i].debuff and not G.hand.cards[i].ability.debuff then
                     local _card = G.hand.cards[i]
                     if not _card.debuff then
                         card.ability.extra.dollars = card.ability.extra.dollars + 1
@@ -61,10 +61,7 @@ SMODS.Joker {
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         if not G.hand.cards[i].debuff then
-                            local _card = G.hand.cards[i]
-                            if not _card.debuff then
-                                _card.debuff = true
-                            end
+                            G.hand.cards[i].ability.perma_debuff = true
                         end
                         return true
                     end

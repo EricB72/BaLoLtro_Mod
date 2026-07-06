@@ -28,5 +28,11 @@ SMODS.Joker {
         if context.skip_blind and not context.blueprint then
             --Give tag not skip_blind
         end
+
+        if context.joker_main then
+            return {
+                message = 'NOPE!'
+            }
+        end
     end
 }

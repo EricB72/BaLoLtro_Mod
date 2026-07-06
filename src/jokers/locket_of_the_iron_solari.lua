@@ -11,7 +11,7 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            spellShield = "e_tstmod_spell_shield"
+            spellShield = "foil"
         }
     },
     rarity = 1,

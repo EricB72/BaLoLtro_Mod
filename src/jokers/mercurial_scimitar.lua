@@ -30,22 +30,24 @@ SMODS.Joker {
             for i = 1, #G.play.cards do
                 if G.play.cards[i].debuff then
                     card.ability.extra.handSize = card.ability.extra.handSize + 1
+                    G.play.cards[i].debuff = false
                     G.E_MANAGER:add_event(Event({
                         func = function()
-                            G.play.cards[i].debuff = false
+                            delay(0.15)
                             G.play.cards[i]:juice_up(0.3, 0.3)
                             return true
                         end
                     }))
                 end
             end
+            delay(0.5)
         end
 
         if context.after then
             G.hand:change_size(card.ability.extra.handSize)
         end
 
-        if context.hand_drawn then
+        if context.end_of_round and not context.game_over and context.main_eval then
             G.hand:change_size(-card.ability.extra.handSize)
             card.ability.extra.handSize = 0
         end

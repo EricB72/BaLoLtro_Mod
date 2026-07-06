@@ -30,6 +30,10 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        --if context.using_consumeable 
+        if context.joker_main then
+            return {
+                message = 'NOPE!'
+            }
+        end
     end
 }

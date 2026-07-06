@@ -542,18 +542,7 @@ return {
                 name = 'Guinsoo\'s Rageblade',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -736,18 +725,7 @@ return {
                 name = 'Locket of the Iron Solari',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -755,18 +733,7 @@ return {
                 name = 'Lord Dominik\'s Regards',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -797,18 +764,7 @@ return {
                 name = 'Manamune',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -816,18 +772,7 @@ return {
                 name = 'Muramana',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -896,18 +841,7 @@ return {
                 name = 'Mortal Reminder',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -924,18 +858,7 @@ return {
                 name = 'Navori Flickerblade',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -958,18 +881,7 @@ return {
                 name = 'Phantom Dancer',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -979,8 +891,8 @@ return {
                     {
                         '{C:attention}#2#{} Wild Card/s will give',
                         '{X:mult,C:white}X#1#{} Mult when scored.',
-                        'Each {X:attention,C:mult}Hydra{} owned',
-                        'increases amount by {C:attention}1{}.'
+                        'Each {X:green,C:mult}Hydra{} owned',
+                        'increases amount by {C:attention}#4#{}.'
                     }
                 }
             },
@@ -988,18 +900,7 @@ return {
                 name = 'Protoplasm Harness',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1007,18 +908,7 @@ return {
                 name = 'Randuin\'s Omen',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1026,18 +916,7 @@ return {
                 name = 'Rapid Firecannon',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1047,13 +926,13 @@ return {
                     {
                         '{C:attention}#2#{} Wild Card/s will give',
                         '{C:chips}+#1#{} Chips when scored.',
-                        'Each {X:attention,C:mult}Hydra{} owned',
-                        'increases amount by {C:attention}1{}.',
+                        'Each {X:green,C:mult}Hydra{} owned',
+                        'increases amount by {C:attention}#4#{}.',
                     },
                     {
-                        'At the end of a round,',
-                        'Wild Cards will infect adjacent',
-                        'cards and turn them into {C:green}Wild{}.'
+                        'The {C:attention}first hand{} of the round,',
+                        'Wild Cards will {C:green}infect{}',
+                        'up to {C:attention}#5#{} adjacent cards.'
                     }
                 }
             },
@@ -1061,18 +940,7 @@ return {
                 name = 'Redemption',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1080,18 +948,7 @@ return {
                 name = 'Riftmaker',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1099,18 +956,7 @@ return {
                 name = 'Rite of Ruin',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1138,18 +984,7 @@ return {
                 name = 'Runaan\'s Hurricane',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1157,18 +992,7 @@ return {
                 name = 'Rylai\'s Crystal Scepter',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1176,18 +1000,7 @@ return {
                 name = 'Serpent\'s Fang',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1195,18 +1008,7 @@ return {
                 name = 'Serylda\'s Grudge',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1214,18 +1016,7 @@ return {
                 name = 'Shurelya\'s Battlesong',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1233,18 +1024,7 @@ return {
                 name = 'Spear of Shojin',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1252,18 +1032,7 @@ return {
                 name = 'Spectral Cutlass',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1271,18 +1040,7 @@ return {
                 name = 'Spirit Visage',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1290,18 +1048,7 @@ return {
                 name = 'Staff of Flowing Water',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1309,18 +1056,7 @@ return {
                 name = 'Statikk Shiv',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1328,18 +1064,7 @@ return {
                 name = 'Stormrazor',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1347,18 +1072,7 @@ return {
                 name = 'Stormsurge',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1366,18 +1080,7 @@ return {
                 name = 'Stridebreaker',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1385,18 +1088,7 @@ return {
                 name = 'Sundered Sky',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1404,18 +1096,7 @@ return {
                 name = 'Sunfire Aegis',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1423,18 +1104,7 @@ return {
                 name = 'Sword of Blossoming Dawn',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1442,18 +1112,7 @@ return {
                 name = 'Terminus',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1461,18 +1120,7 @@ return {
                 name = 'The Collector',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1480,18 +1128,7 @@ return {
                 name = 'Thornmail',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1499,18 +1136,7 @@ return {
                 name = 'Titanic Hydra',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1518,18 +1144,10 @@ return {
                 name = 'Umbral Glaive',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        '{C:attention}#2#{} Wild Card/s in hand will',
+                        'give {C:mult}+#1#{} Mult when scored.',
+                        'Each {X:green,C:mult}Hydra{} owned',
+                        'increases amount by {C:attention}#4#{}.',
                     }
                 }
             },
@@ -1537,18 +1155,7 @@ return {
                 name = 'Unending Despair',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1556,18 +1163,7 @@ return {
                 name = 'Void Staff',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1575,18 +1171,7 @@ return {
                 name = 'Voltaic Cyclosword',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1594,18 +1179,7 @@ return {
                 name = 'Warmogs Armor',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1613,18 +1187,7 @@ return {
                 name = 'Whispering Criclet',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1632,18 +1195,7 @@ return {
                 name = 'Diadem of Songs',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1651,18 +1203,7 @@ return {
                 name = 'Winter\'s Approach',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1670,18 +1211,7 @@ return {
                 name = 'Fimbulwinter',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1689,18 +1219,7 @@ return {
                 name = 'Wit\'s End',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1708,18 +1227,7 @@ return {
                 name = 'Yun Tal Wildarrows',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1727,18 +1235,7 @@ return {
                 name = 'Zeke\'s Convergence',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
             },
@@ -1746,21 +1243,40 @@ return {
                 name = 'Zhonya\'s Hourglass',
                 text = {
                     {
-                        'xMult equal to Stacks/10',
-                        '{C:inactive}(XMult: #1#){}'
-                    },
-                    {
-                        'At the 3rd hand, activate.',
-                        'Gain money equal to 10%',
-                        'the stacks.',
-                        '{C:inactive}(Stacks: #5#){}'
-                    },
-                    {
-                        'This joker gains sellprice',
-                        'equal to its stacks.'
+                        'NOPE!'
                     }
                 }
-            }
+            },
+            --Legendary
+            j_tstmod_reapers_toll = {
+                name = 'Reaper\'s Toll',
+                text = {
+                    {
+                        '{X:white}#1#%{} of current score.'
+                    },
+                    {
+                        'Permanently start the blind with {X:white}#2#%{}',
+                        'of required score done. Increases',
+                        'by {C:attention}1{} each joker activation.',
+                    }
+                }
+            },
+            j_tstmod_talisman_of_ascension = {
+                name = 'Talisman of Ascension',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
+            j_tstmod_black_hole_gauntlet = {
+                name = 'Black Hole Gauntlet',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
         },
         Other = {
             m_spellblade = {
@@ -1778,10 +1294,12 @@ return {
                     'by Critical Damage.'
                 }
             },
-            m_energized = {
-                name = "Energized",
+            m_hydra = {
+                name = "Hydra",
                 text = {
-                    'IDK yet.',
+                    'The more {X:green,C:mult}Hydras{} you',
+                    'have, the more effective',
+                    'their abilities will be.'
                 }
             }
         },
@@ -1805,7 +1323,7 @@ return {
             lol_crit = 'CRIT!!',
             b_spellblade = 'Spellblade',
             b_crit = 'Critical',
-            b_energize = 'Energize',
+            b_hydra = 'Hydra',
             k_bonus = 'Bonus',
             k_enhanced = 'Enhanced',
             k_infected = 'Infected',

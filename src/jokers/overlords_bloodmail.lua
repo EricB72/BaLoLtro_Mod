@@ -39,6 +39,9 @@ SMODS.Joker {
 
         if G.GAME.blind.chips > 0 then
             card.ability.extra.percent = (G.GAME.chips / G.GAME.blind.chips) * 100
+
+            if card.ability.extra.percent > 100 then card.ability.extra.percent = 100 end
+
             card.ability.extra.xmult = 1 + sellValue * card.ability.extra.xmultGain * (1 + card.ability.extra.percent / 100)
         end
 
@@ -73,7 +76,11 @@ SMODS.Joker {
                 card.joker_display_values.xmult = 1 + sellValue * card.ability.extra.xmultGain
 
                 if G.GAME.blind.chips > 0 then
-                    card.joker_display_values.xmult = 1 + sellValue * card.ability.extra.xmultGain * (1 + (G.GAME.chips / G.GAME.blind.chips))
+                    local percentage = (G.GAME.chips / G.GAME.blind.chips)
+
+                    if percentage > 1 then percentage = 1 end
+                    
+                    card.joker_display_values.xmult = 1 + sellValue * card.ability.extra.xmultGain * (1 + percentage)
                 end
             end
         }

@@ -66,7 +66,7 @@ SMODS.Joker {
                 local copiedJoker = 'None'
 
                 for i = 1, #G.jokers.cards do
-                    if G.jokers.cards[i] ~= card and G.jokers.cards[i].ability.extra.spellblade then copiedJoker = G.jokers.cards[i] end
+                    if G.jokers.cards[i] ~= card and G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.spellblade then copiedJoker = G.jokers.cards[i] end
                 end
 
 

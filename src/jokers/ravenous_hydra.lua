@@ -12,29 +12,39 @@ SMODS.Joker {
     config = {
         extra = {
             chips = 10,
-            hydras = 0,
-            wildCards = {0, 0, 0, 0, 0}
+            hydras = 2,
+            wildCards = {0, 0, 0, 0, 0},
+            hydraInc = 2,
+            hydraMinus = 1
         }
     },
     rarity = 1,
     cost = 3,
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = 'Other', key = 'm_hydra' }
         return {
             vars = {
                 card.ability.extra.chips,
                 card.ability.extra.hydras,
-                card.ability.extra.wildCards
+                card.ability.extra.wildCards,
+                card.ability.extra.hydraInc,
+                card.ability.extra.hydraMinus
             }
         }
+    end,
+    set_badges = function(self, card, badges)
+        badges[#badges+1] = create_badge(localize('b_hydra'), G.C.GREEN, G.C.MULT, 1.2 )
     end,
     calculate = function(self, card, context)
         if context.before and not context.blueprint then
             --Each Hydra
             card.ability.extra.hydras = 0
+            card.ability.extra.hydraMinus = 0
 
             for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
                 if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
-                    card.ability.extra.hydras = card.ability.extra.hydras + 1
+                    card.ability.extra.hydras = card.ability.extra.hydras + card.ability.extra.hydraInc
+                    if card.ability.extra.hydras % 2 == 0 then card.ability.extra.hydraMinus = card.ability.extra.hydraMinus + 1 end
                 end
             end
 
@@ -71,33 +81,93 @@ SMODS.Joker {
             end
         end
 
-        if context.cardarea == G.hand and context.end_of_round and not context.game_over and not context.main_eval then
-            if G.GAME.last_hand_played then
-                for i = 1, #G.hand.cards do
-                    if next(SMODS.get_enhancements(G.hand.cards[i])) == 'm_wild' then
-                        G.E_MANAGER:add_event(Event({
-                            func = function()
-                                if i - 1 >= 1 then
-                                    G.hand.cards[i - 1]:set_ability('m_wild', nil, true)
-                                    G.hand.cards[i - 1]:juice_up(0.3, 0.3)
-                                end
+        if context.before and G.GAME.current_round.hands_played == 0 then
+            for i = 1, #G.hand.cards do
+                if next(SMODS.get_enhancements(G.hand.cards[i])) == 'm_wild' then
+                    for j = 1, card.ability.extra.hydraMinus do
+                        if i - j >= 1 then
+                            G.E_MANAGER:add_event(Event({
+                                func = function()
+                                    copy_card(G.hand.cards[i], G.hand.cards[i - j])
+                                    G.hand.cards[i - j]:juice_up(0.3, 0.3)
 
-                                if i + 1 <= #G.hand.cards then
-                                    G.hand.cards[i + 1]:set_ability('m_wild', nil, true)
-                                    G.hand.cards[i + 1]:juice_up(0.3, 0.3)
+                                    return true
                                 end
-                                return {
-                                    true
-                                }
-                            end
-                        }))
-                        return {
-                            message = localize('k_infected'),
-                            colour = G.C.GREEN
-                        }
+                            }))
+                        end
+                    end
+
+                    for k = 1, card.ability.extra.hydraMinus do
+                        if i + k <= #G.hand.cards then
+                            G.E_MANAGER:add_event(Event({
+                                func = function()
+                                    copy_card(G.hand.cards[i], G.hand.cards[i + k])
+                                    G.hand.cards[i + k]:juice_up(0.3, 0.3)
+
+                                    return true
+                                end
+                            }))
+                        end
                     end
                 end
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = "totChips"
+            },
+            text = {
+                { text = "+", colour = G.C.CHIPS},
+                { ref_table = "card.joker_display_values", ref_value = "totChips", retrigger_type = "mult", colour = G.C.CHIPS }
+            },
+            reminder_text = {
+                { text = '(' },
+                { text = 'Wild Card', colour = G.C.GOLD},
+                { text = ')' }
+            },
+            calc_function = function(card)
+                local text, _, scoring_hand = JokerDisplay.evaluate_hand()
+
+                if text ~= "Unknown" and #scoring_hand > 0 then
+                    local cards = {0, 0, 0, 0, 0}
+                    local hydras = 0
+
+                    for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
+                        if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
+                            hydras = hydras + card.ability.extra.hydraInc
+                        end
+                    end
+
+                    local hand_Card = 0
+                    local adj = hydras
+
+                    for i = 1, adj do
+                        local _, scoring_card = pairs(scoring_hand[i - hand_Card])
+
+                        if next(SMODS.get_enhancements(scoring_card)) == 'm_wild' and not scoring_card.debuff then
+                            cards[i - hand_Card] = cards[i - hand_Card] + 1
+                        end
+
+                        if i >= #scoring_hand + hand_Card then
+                            hand_Card = hand_Card + #scoring_hand
+                        end
+                    end
+
+                    local numerator = 0
+
+                    for i = 1, #cards do
+                        numerator = numerator + cards[i]
+                    end
+
+                    card.joker_display_values.totChips = 10 * numerator
+                else
+                    card.joker_display_values.totChips = 0
+                end
+            end
+        }
     end
 }

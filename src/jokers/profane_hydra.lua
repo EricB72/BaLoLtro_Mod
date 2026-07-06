@@ -12,20 +12,26 @@ SMODS.Joker {
     config = {
         extra = {
             xmult = 1.75,
-            hydras = 1,
-            wildCards = {0, 0, 0, 0, 0}
+            hydras = 2,
+            wildCards = {0, 0, 0, 0, 0},
+            hydraInc = 2
         }
     },
     rarity = 3,
     cost = 7,
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = 'Other', key = 'm_hydra' }
         return {
             vars = {
                 card.ability.extra.xmult,
                 card.ability.extra.hydras,
-                card.ability.extra.wildCards
+                card.ability.extra.wildCards,
+                card.ability.extra.hydraInc
             }
         }
+    end,
+    set_badges = function(self, card, badges)
+        badges[#badges+1] = create_badge(localize('b_hydra'), G.C.GREEN, G.C.MULT, 1.2 )
     end,
     calculate = function(self, card, context)
         if context.before and not context.blueprint then
@@ -34,7 +40,7 @@ SMODS.Joker {
 
             for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
                 if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
-                    card.ability.extra.hydras = card.ability.extra.hydras + 1
+                    card.ability.extra.hydras = card.ability.extra.hydras + card.ability.extra.hydraInc
                 end
             end
 
@@ -70,5 +76,66 @@ SMODS.Joker {
                 }
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = "totXMult"
+            },
+            text = {
+            {
+                border_nodes = {
+                    { text = "X" },
+                    { ref_table = "card.joker_display_values", ref_value = "totXMult", retrigger_type = "exp" }
+                }
+            },
+            },
+            reminder_text = {
+                { text = '(' },
+                { text = 'Wild Card', colour = G.C.GOLD},
+                { text = ')' }
+            },
+            calc_function = function(card)
+                local text, _, scoring_hand = JokerDisplay.evaluate_hand()
+
+                if text ~= "Unknown" and #scoring_hand > 0 then
+                    local cards = {0, 0, 0, 0, 0}
+                    local hydras = 0
+
+                    for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
+                        if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
+                            hydras = hydras + card.ability.extra.hydraInc
+                        end
+                    end
+
+                    local hand_Card = 0
+                    local adj = hydras
+
+                    for i = 1, adj do
+                        local _, scoring_card = pairs(scoring_hand[i - hand_Card])
+
+                        if next(SMODS.get_enhancements(scoring_card)) == 'm_wild' and not scoring_card.debuff then
+                            cards[i - hand_Card] = cards[i - hand_Card] + 1
+                        end
+
+                        if i >= #scoring_hand + hand_Card then
+                            hand_Card = hand_Card + #scoring_hand
+                        end
+                    end
+
+                    local numerator = 0
+
+                    for i = 1, #cards do
+                        numerator = numerator + cards[i]
+                    end
+
+                    card.joker_display_values.totXMult = 1.75 ^ numerator
+                else
+                    card.joker_display_values.totXMult = 1
+                end
+            end
+        }
     end
 }
