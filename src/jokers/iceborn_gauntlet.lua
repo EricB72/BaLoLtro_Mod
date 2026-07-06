@@ -23,7 +23,7 @@ SMODS.Joker {
     cost = 6,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_spellblade' }
-        local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'j_tstmod_iceborn_gauntlet')
+        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.denominator, 'j_tstmod_iceborn_gauntlet')
         return {
             vars = {
                 card.ability.extra.chips,
