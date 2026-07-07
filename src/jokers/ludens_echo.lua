@@ -38,11 +38,11 @@ SMODS.Joker {
 
             for i = 1, #context.scoring_hand do
                 if next(SMODS.get_enhancements(context.scoring_hand[i])) and not context.scoring_hand[i].debuff and next(SMODS.get_enhancements(context.scoring_hand[i])) == card.ability.extra.bonus then
-                    if context.scoring_hand[i - 1] and not next(SMODS.get_enhancements(context.scoring_hand[i - 1])) == card.ability.extra.bonus then
+                    if context.scoring_hand[i - 1] then
                         enh_Cards[#enh_Cards + 1] = context.scoring_hand[i - 1]
                     end
 
-                    if context.scoring_hand[i + 1] and not next(SMODS.get_enhancements(context.scoring_hand[i + 1])) == card.ability.extra.bonus then
+                    if context.scoring_hand[i + 1] then
                         enh_Cards[#enh_Cards + 1] = context.scoring_hand[i + 1]
                     end
                 end

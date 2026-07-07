@@ -651,7 +651,7 @@ return {
                     },
                     {
                         'Playing a {C:chips}hand {C:attention}after{} a {C:mult}discard',
-                        'gives {X:purple,C:white}#3#% of missing score.',
+                        'gives {X:purple,C:white}#3#%{} of missing score.',
                         'During a {C:attention}Boss Blind{} gives',
                         '{C:attention}double{} the amount instead.'
                     }
@@ -1267,12 +1267,114 @@ return {
                 name = 'Talisman of Ascension',
                 text = {
                     {
-                        'NOPE!'
+                        'Using a {C:attention}consumable{} gives {C:attention}1 point{}, points',
+                        'are randomly distributed every time.',
+                    },
+                    {
+                        'Gain per point:',
+                        '- {C:chips}+#10#{} Chips.',
+                        '- {C:mult}+#12#{} Mult.',
+                        '- {X:chips,C:white}X#11#{} Chips.',
+                        '- {X:mult,C:white}X#13#{} Mult.',
+                        '- {C:money}$#14#{}.',
+                        '- {C:chips}+#15#{} hand/s.',
+                        '- {C:mult}+#16#{} discard/s.',
+                        '- {C:attention}+#17#{} hand size.'
+                    },
+                    {
+                        'Currently has {C:attention}#1# points{}:',
+                        '- {C:chips}+#2#{} Chips.',
+                        '- {C:mult}+#4#{} Mult.',
+                        '- {X:chips,C:white}X#3#{} Chips.',
+                        '- {X:mult,C:white}X#5#{} Mult.',
+                        '- {C:money}$#6#{}.',
+                        '- {C:chips}+#7#{} hand/s.',
+                        '- {C:mult}+#8#{} discard/s.',
+                        '- {C:attention}+#9#{} hand size.'
                     }
                 }
             },
             j_tstmod_black_hole_gauntlet = {
                 name = 'Black Hole Gauntlet',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
+            j_tstmod_cloak_of_starry_night = {
+                name = 'Cloak of Starry Night',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
+            j_tstmod_crown_of_the_shattered_queen = {
+                name = 'Crown of the Shattered Queen',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
+            j_tstmod_cruelty = {
+                name = 'Cruelty',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
+            j_tstmod_darksteel_talons = {
+                name = 'Darksteel Talons',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
+            j_tstmod_decapitator = {
+                name = 'Decapitator',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
+            j_tstmod_demon_kings_crown = {
+                name = 'Demon King\'s Crown',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
+            j_tstmod_demonic_embrace = {
+                name = 'Demonic Embrace',
+                text = {
+                    {
+                        '{X:chips,C:white}X#1#{} Chips every',
+                        'time {C:chips}chips{} are scored.',
+                        '{X:mult,C:white}X#3#{} Mult every',
+                        'time {C:mult}mult{} is scored.'
+                    },
+                    {
+                        'Scales with total {X:purple,C:white}%{} of',
+                        'score done, up to {X:purple,C:white}450%{}.'
+                    }
+                }
+            },
+            j_tstmod_detonation_orb = {
+                name = 'Detonation Orb',
+                text = {
+                    {
+                        'NOPE!'
+                    }
+                }
+            },
+            j_tstmod_diamond_tipped_spear = {
+                name = 'Diamond-Tipped Spear',
                 text = {
                     {
                         'NOPE!'
