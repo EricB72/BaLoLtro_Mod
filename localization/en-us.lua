@@ -155,7 +155,7 @@ return {
                         'Grants {C:green}#2#%{} {C:mult}Critical Chance{}, every {C:money}$#4#{}',
                         'above {C:money}$#6#{} grants another {C:green}1%{}',
                         'up to {C:green}#3#%{}, for a {C:green}50%{} total.',
-                        '{C:inactive}(Crit Chance: #8#/#9# (#5#%), Crit DMG: #7#%)'
+                        '{C:inactive}(Crit Chance: #8#/#9# (#10#%), Crit DMG: #7#%)'
                     }
                 }
             },
@@ -165,7 +165,7 @@ return {
                     {
                         'Grants {C:green}#2#%{} {C:mult}Critical Chance{},',
                         'and {C:green}#4#% {X:mult,C:white}Critical Damage{}',
-                        '{C:inactive}(Crit Chance: #7#/#8# (#3#%), Crit DMG: #6#%)'
+                        '{C:inactive}(Crit Chance: #7#/#8# (#9#%), Crit DMG: #6#%)'
                     }
                 }
             },
@@ -174,7 +174,7 @@ return {
                 text = {
                     {
                         'Grants {C:green}#6#%{} {C:mult}Critical Chance{}.',
-                        '{C:inactive}(Crit Chance: #9#/#10# (#7#%), Crit DMG: #8#%)'
+                        '{C:inactive}(Crit Chance: #9#/#10# (#11#%), Crit DMG: #8#%)'
                     },
                     {
                         'Spellblade: Grants {C:mult}+#1#{} Mult equal',
@@ -479,7 +479,7 @@ return {
                 text = {
                     {
                         '{C.green}#2#%{} {C:mult}Crit Chance{}.',
-                        '{C:inactive}(Crit Chance: #5#/#6# (#3#%), Crit DMG: #4#%)'
+                        '{C:inactive}(Crit Chance: #5#/#6# (#7#%), Crit DMG: #4#%)'
                     },
                     {
                         'Playing your {C:attention}highest level',
@@ -628,7 +628,8 @@ return {
                 name = 'Immortal Shieldbow',
                 text = {
                     {
-                        '{C:green}#8#% {C:mult}Crit Chance.'
+                        '{C:green}#8#% {C:mult}Crit Chance.',
+                        '{C:inactive}(Crit Chance: #12#/#13# (#10#%), Crit DMG: #9#%)'
                     },
                     {
                         '{C:mult}+#1#{} Mult, equal to',
@@ -686,6 +687,9 @@ return {
                         'get eternal removed.',
                         '{C:inactive}Selling this joker keeps',
                         '{C:inactive}things like they are.',
+                    },
+                    {
+                        '{C:attention}+1{} Joker Slot.'
                     }
                 }
             },
@@ -695,7 +699,7 @@ return {
                     {
                         'Each {C:attention}Ace{} played gives {C:chips}+#1#{} Chips',
                         'and {C:mult}+#2#{} Mult, scaling with {X:purple,C:white}%{} of',
-                        'total scored done. {C:inactive}(0% - #3#00%)'
+                        'total score done. {C:inactive}(0% - #3#00%)'
                     }
                 }
             },
@@ -733,7 +737,12 @@ return {
                 name = 'Lord Dominik\'s Regards',
                 text = {
                     {
-                        'NOPE!'
+                        'Grants {C:green}#2#%{} {C:mult}Critical Chance{}',
+                        '{C:inactive}(Crit Chance: #4#/#5# (#6#%), Crit DMG: #3#%)'
+                    },
+                    {
+                        '{C:mult}Crits{} multiply their score',
+                        'by the ante your are in.'
                     }
                 }
             },
@@ -983,7 +992,9 @@ return {
                 name = 'Runaan\'s Hurricane',
                 text = {
                     {
-                        'NOPE!'
+                        'If the {C:attention}first hand played{} is',
+                        'a single card, copy it {C:attention}twice{}',
+                        'but with the worng rank and {C:mult}s{C:chips}u{}i{C:money}t{}.'
                     }
                 }
             },
@@ -1079,7 +1090,16 @@ return {
                 name = 'Stridebreaker',
                 text = {
                     {
-                        'NOPE!'
+                        '{C:attention}#2#{} Wild Card/s will give',
+                        '{X:chips,C:white}X#1#{} Chips when scored.',
+                        'Each {X:green,C:mult}Hydra{} owned',
+                        'increases amount by {C:attention}#4#{}.'
+                    },
+                    {
+                    
+                        '{C:green}Wild Cards{} held in hand will',
+                        'not count as a hand slot.',
+                        '{C:inactive}(Each one gives +1 temp. hand size)'
                     }
                 }
             },
@@ -1119,7 +1139,12 @@ return {
                 name = 'The Collector',
                 text = {
                     {
-                        'NOPE!'
+                        'Grants {C:green}#2#%{} {C:mult}Critical Chance{}',
+                        '{C:inactive}(Crit Chance: #6#/#7# (#8#%), Crit DMG: #5#%)'
+                    },
+                    {
+                        'If score missing is {X:purple,C:white}#10#%{}',
+                        'or less, execute blind and gain {C:money}$#3#{}.'
                     }
                 }
             },
@@ -1181,7 +1206,10 @@ return {
                 name = 'Warmogs Armor',
                 text = {
                     {
-                        'NOPE!'
+                        '{C:money}$#2#{} at the end of the round,',
+                        'ending a shop with equal or higher money',
+                        'than when you entered, stacks by {C:money}$#3#{},',
+                        'elseway, resets to 0.#1#'
                     }
                 }
             },
@@ -1424,10 +1452,9 @@ return {
             hidden_achievement = "Play more to find out!",
         },
         dictionary = {
-            lol_crit = 'CRIT!!',
             b_spellblade = 'Spellblade',
             b_crit = 'Critical',
-            b_hydra = 'Hydra',
+            b_exectued = 'EXECUTED',
             k_bonus = 'Bonus',
             k_enhanced = 'Enhanced',
             k_infected = 'Infected',

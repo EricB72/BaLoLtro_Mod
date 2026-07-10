@@ -11,9 +11,9 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            dollars = 1,
-            chipsMult = 2,
-            multMult = 2,
+            dollars = 3.33,
+            chipsMult = 3.33,
+            multMult = 3.33,
             highCard = 'High Card',
             prevHand = 'None',
             spellblade = true,
@@ -52,7 +52,10 @@ SMODS.Joker {
             end
         end
     end,
-        set_badges = function(self, card, badges)
+    set_badges = function(self, card, badges)
         badges[#badges+1] = create_badge(localize('b_spellblade'), G.C.ORANGE, G.C.WHITE, 1.2 )
     end,
+    add_to_deck = function(self, card, from_debuff)
+        card:set_cost(9.9)
+    end
 }

@@ -14,8 +14,7 @@ SMODS.Joker {
             dollars = 1,
             hydras = 2,
             wildCards = {0, 0, 0, 0, 0},
-            hydraInc = 2,
-            hydraMinus = 1
+            hydraInc = 2
         }
     },
     rarity = 2,
@@ -27,8 +26,7 @@ SMODS.Joker {
                 card.ability.extra.dollars,
                 card.ability.extra.hydras,
                 card.ability.extra.wildCards,
-                card.ability.extra.hydraInc,
-                card.ability.extra.hydraMinus
+                card.ability.extra.hydraInc
             }
         }
     end,
@@ -39,12 +37,10 @@ SMODS.Joker {
         if context.before and not context.blueprint then
             --Each Hydra
             card.ability.extra.hydras = 0
-            card.ability.extra.hydraMinus = 0
 
             for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
-                if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
+                if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Umbral Glaive') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Stridebreaker') then
                     card.ability.extra.hydras = card.ability.extra.hydras + card.ability.extra.hydraInc
-                    if card.ability.extra.hydras % 2 == 0 then card.ability.extra.hydraMinus = card.ability.extra.hydraMinus + 1 end
                 end
             end
 
@@ -105,7 +101,7 @@ SMODS.Joker {
                     local hydras = 0
 
                     for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
-                        if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
+                        if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Umbral Glaive') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Stridebreaker') then
                             hydras = hydras + card.ability.extra.hydraInc
                         end
                     end

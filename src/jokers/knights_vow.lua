@@ -47,8 +47,10 @@ SMODS.Joker {
     end,
     add_to_deck = function (self, card)
         card.ability.extra.owned = true
+        G.jokers.config.card_limit = G.jokers.config.card_limit + 1
     end,
     remove_from_deck = function (self, card)
         card.ability.extra.owned = false
+        G.jokers.config.card_limit = G.jokers.config.card_limit - 1
     end
 }

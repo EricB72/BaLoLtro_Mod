@@ -42,7 +42,7 @@ SMODS.Joker {
             card.ability.extra.hydraMinus = 0
 
             for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
-                if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
+                if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Umbral Glaive') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Stridebreaker') then
                     card.ability.extra.hydras = card.ability.extra.hydras + card.ability.extra.hydraInc
                     if card.ability.extra.hydras % 2 == 0 then card.ability.extra.hydraMinus = card.ability.extra.hydraMinus + 1 end
                 end
@@ -137,7 +137,7 @@ SMODS.Joker {
                     local hydras = 0
 
                     for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
-                        if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
+                        if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Umbral Glaive') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Stridebreaker') then
                             hydras = hydras + card.ability.extra.hydraInc
                         end
                     end

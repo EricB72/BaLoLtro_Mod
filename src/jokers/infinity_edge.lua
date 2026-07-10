@@ -13,11 +13,14 @@ SMODS.Joker {
         extra = {
             critChance = 25,
             currentCrit = 25,
-            critDMG = 175,
-            currentDMG = 175,
+            critDMG = 205,
+            currentDMG = 205,
             critDMGAugment = 30,
             critLeader = true,
-            totalCrit = 25
+            totalCrit = 25,
+            
+            -- Other items
+            lord_dominiks = 0
         }
     },
     rarity = 1,
@@ -35,69 +38,47 @@ SMODS.Joker {
                 card.ability.extra.currentDMG,
                 numerator,
                 denominator,
-                card.ability.extra.totalCrit
+                card.ability.extra.totalCrit,
+                
+                -- Other items
+                card.ability.extra.lord_dominiks
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.before then
-            local jokers = {}
-
-            for i = 1, #G.jokers.cards do
-                if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.critDMG and G.jokers.cards[i].ability.extra.critDMG >= 0 then
-                    jokers[#jokers + 1] = G.jokers.cards[i]
-                end
-            end
-
-            -- Only IE
-            for i = 1, #jokers do
-                jokers[i].ability.extra.currentDMG = jokers[i].ability.extra.critDMG + card.ability.extra.critDMGAugment
-            end
-        end
-        
-        if context.after and card.ability.extra.critLeader then
-            local jokers = {}
-            local totalCrit = 0
-
-            for i = 1, #G.jokers.cards do
-                if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.currentCrit >= 0 then
-                    jokers[#jokers + 1] = G.jokers.cards[i]
-                end
-            end
-
-            -- Get Crit Chance
-            for i = 1, #jokers do
-                totalCrit = totalCrit + jokers[i].ability.extra.currentCrit
-            end
-
-            for i = 1, #jokers do
-                jokers[i].ability.extra.totalCrit = totalCrit
-            end
-        end
-        
         if context.cardarea == G.play and context.individual and card.ability.extra.critLeader then                                    
-            local crit = SMODS.pseudorandom_probability(card, 'j_tstmod_infinity_edge', card.ability.extra.totalCrit, 100)
-            
-            if crit and not (next(SMODS.get_enhancements(context.other_card)) == 'm_stone') then
-                return {
-                    chips = context.other_card:get_id() * (card.ability.extra.currentDMG / 100 - 1),
+            local crit = SMODS.pseudorandom_probability(card, 'j_tstmod_atmas_reckoning', card.ability.extra.totalCrit, 100)
+            local percentDmg = 1
+
+            if crit then
+                percentDmg = 1 + (card.ability.extra.lord_dominiks) * (G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante) - 1 * card.ability.extra.lord_dominiks
+
+                return { 
+                    mult = (context.other_card.base.id + context.other_card.ability.perma_bonus) * (card.ability.extra.currentDMG / 100 - 1) * percentDmg,
                     message = localize('b_crit'),
                     colour = G.C.RED
                 }
             end
-            
         end
     end,
     add_to_deck = function (self, card, context)
-        local jokers = {}
-
         for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.currentCrit and G.jokers.cards[i].ability.extra.currentCrit >= 0 then
-                jokers[#jokers + 1] = G.jokers.cards[i]
+            if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra then
+                if G.jokers.cards[i] ~= card then
+                    if G.jokers.cards[i].ability.extra.critChance then
+                        if G.jokers.cards[i].ability.extra.critLeader then
+                            card.ability.extra.critLeader = false
+                        end
 
-                if G.jokers.cards[i].ability.extra.critLeader and G.jokers.cards[i] ~= card then
-                    card.ability.extra.critLeader = false
-                    break
+                        card.ability.extra.totalCrit = card.ability.extra.totalCrit + (G.jokers.cards[i].ability.extra.currentCrit or G.jokers.cards[i].ability.extra.critChance)
+                        card.ability.extra.currentDMG = card.ability.extra.currentDMG + (G.jokers.cards[i].ability.extra.critDMGAugment or 0)
+                        
+                        G.jokers.cards[i].ability.extra.totalCrit = G.jokers.cards[i].ability.extra.totalCrit + card.ability.extra.currentCrit
+                    end
+
+                    if G.jokers.cards[i].ability.extra.critChance then
+                        G.jokers.cards[i].ability.extra.currentDMG = G.jokers.cards[i].ability.extra.currentDMG + card.ability.extra.critDMGAugment
+                    end
                 end
             end
         end
@@ -106,21 +87,19 @@ SMODS.Joker {
         local jokers = {}
 
         for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.critDMG and G.jokers.cards[i].ability.extra.critDMG >= 0 then
+            if G.jokers.cards[i] and G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i] ~= card then
                 jokers[#jokers + 1] = G.jokers.cards[i]
             end
         end
 
-        for i = 1, #jokers do
-            if jokers[i].ability.extra.currentDMG > jokers[i].ability.extra.critDMG then
-                jokers[i].ability.extra.currentDMG = jokers[i].ability.extra.currentDMG - card.ability.extra.critDMGAugment
+        for i = 1, #jokers do      
+            if G.jokers.cards[i].ability.extra.critChance then      
+                jokers[i].ability.extra.totalCrit = jokers[i].ability.extra.totalCrit - card.ability.extra.currentCrit
+                if i == #jokers then jokers[i].ability.extra.critLeader = true end
             end
-        end
 
-        for i = 1, #jokers do
-            if jokers[i] ~= card then
-                jokers[i].ability.extra.critLeader = true
-                break
+            if G.jokers.cards[i].ability.extra.critChance then
+                jokers[i].ability.extra.currentDMG = jokers[i].ability.extra.currentDMG - card.ability.extra.critDMGAugment
             end
         end
     end

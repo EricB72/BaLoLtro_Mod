@@ -35,23 +35,19 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.setting_blind and G.GAME.blind.boss then
-            G.from_boss_tag = false
+            G.from_boss_tag = true
             G.FUNCS.reroll_boss()
         end
 
         if context.before and not context.blueprint then
             --Each Hydra
-            card.ability.extra.hydras = 1
+            card.ability.extra.hydras = 0
 
             for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
-                if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
+                if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Umbral Glaive') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Stridebreaker') then
                     card.ability.extra.hydras = card.ability.extra.hydras + card.ability.extra.hydraInc
                 end
-
-                if joker.ability.m_hydra then
-                    card.ability.extra.hydras = card.ability.extra.hydras + card.ability.extra.hydraInc
-                end
-            end            
+            end  
 
             card.ability.extra.wildCards = {0, 0, 0, 0, 0}
 
@@ -110,7 +106,7 @@ SMODS.Joker {
                     local hydras = 0
 
                     for _, joker in ipairs(G.jokers and G.jokers.cards or {}) do
-                        if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') then
+                        if string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Hydra') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Umbral Glaive') or string.match(localize{type = 'name_text', set = 'Joker', key = joker.config.center.key}, 'Stridebreaker') then
                             hydras = hydras + card.ability.extra.hydraInc
                         end
                     end
