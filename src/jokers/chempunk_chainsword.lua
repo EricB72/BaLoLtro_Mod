@@ -48,13 +48,13 @@ SMODS.Joker {
         end
 
         if context.before then
-            card.ability.extra.prevMult = mult
+            card.ability.extra.prevMult = SMODS.get_scoring_parameter('mult', flames)
         end
 
         if ((context.individual and context.cardarea == G.play) or (card.area and card.area == G.jokers))and not context.blueprint then
-            if mult ~= card.ability.extra.prevMult then
+            if SMODS.get_scoring_parameter('mult', flames) ~= card.ability.extra.prevMult then
                 card.ability.extra.activations = card.ability.extra.activations + 1
-                card.ability.extra.prevMult = mult
+                card.ability.extra.prevMult = SMODS.get_scoring_parameter('mult', flames)
             end
 
             card.ability.extra.currPrice = card.ability.extra.priceReducion * card.ability.extra.activations

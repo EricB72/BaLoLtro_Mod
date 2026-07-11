@@ -246,7 +246,7 @@ return {
                 name = 'Black Cleaver',
                 text = {
                     {
-                        'Each instance of {X:mult}Mult{}',
+                        'Each instance of {X:mult,C:white}Mult{}',
                         'during scoring grants a stack.',
                         'Each stack decreases total score',
                         'required by {X:purple,C:white}#1#%{} up to {X:purple,C:white}#2#%.',
@@ -255,9 +255,6 @@ return {
                     {
                         'After reaching max stacks',
                         'this also grants {C:mult}+#3#{} Mult.'
-                    },
-                    {
-                        'NOPE!'
                     }
                 }
             },
@@ -606,12 +603,10 @@ return {
                 name = 'Hullbreaker',
                 text = {
                     {
-                        '{C:mult}+#1#{} Mult every {C:attention}#3#{} hands.',
-                        'During a {C:attention}Boss Blind{} gives',
-                        '{X:mult,C:white}X#2#{} Mult equal to {X:purple,C:white}#4#%{} of money.'
-                    },
-                    {
-                        'NOPE!'
+                        'Every {C:attention}#3#{} hands gives',
+                        '{C:mult}+#1#{} Mult equal to {C:money}money{}.',
+                        'During a {C:attention}Boss Blind{} also gives',
+                        '{X:mult,C:white}X#2#{} Mult equal to {X:purple,C:white}#4#%{} of {C:money}money{}.'
                     }
                 }
             },
@@ -1160,7 +1155,10 @@ return {
                 name = 'Titanic Hydra',
                 text = {
                     {
-                        'NOPE!'
+                        '{C:attention}#2#{} Wild Card/s in hand will',
+                        'give {C:money}$#1#{} when scored.',
+                        'Each {X:green,C:mult}Hydra{} owned',
+                        'increases amount by {C:attention}#4#{}.',
                     }
                 }
             },
@@ -1172,9 +1170,6 @@ return {
                         'give {C:mult}+#1#{} Mult when scored.',
                         'Each {X:green,C:mult}Hydra{} owned',
                         'increases amount by {C:attention}#4#{}.',
-                    },
-                    {
-                        'NOPE!'
                     }
                 }
             },
@@ -1453,6 +1448,7 @@ return {
         },
         dictionary = {
             b_spellblade = 'Spellblade',
+            b_hydra = 'Hydra',
             b_crit = 'Critical',
             b_exectued = 'EXECUTED',
             k_bonus = 'Bonus',

@@ -17,7 +17,8 @@ SMODS.Joker {
             lastNum = 0,
             originalBlind = 0,
             prevCards = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            amount = 1
+            amount = 1,
+            totalMaxPerc = 30
         }
     },
     rarity = 3,
@@ -31,13 +32,12 @@ SMODS.Joker {
                 card.ability.extra.lastNum,
                 card.ability.extra.originalBlind,
                 card.ability.extra.prevCards,
-                card.ability.extra.amount
+                card.ability.extra.amount,
+                card.ability.extra.totalMaxPerc
             }
         }
     end,
     calculate = function(self, card, context)
-        local new = true
-
         if context.setting_blind then
             card.ability.extra.originalBlind = G.GAME.blind.chips
         end
@@ -49,7 +49,9 @@ SMODS.Joker {
                     message = localize('k_debuffed'),
                     colour = G.C.RED
                 }
-            elseif not (G.GAME.blind.chips <= card.ability.extra.originalBlind / 2) then
+            elseif (G.GAME.blind.chips / card.ability.extra.originalBlind <= 100 - card.ability.extra.totalMaxPerc) then
+                local new = true
+
                 for i = 1, #card.ability.extra.prevCards do
                     if context.other_card.base.id == card.ability.extra.prevCards[i] then
                         new = false
@@ -58,20 +60,14 @@ SMODS.Joker {
                 end
 
                 if card.ability.extra.percentage < card.ability.extra.maxPercentage and new then
-                    SMODS.scale_card(card, {
-                        ref_table = card.ability.extra,
-                        ref_value = 'percentage',
-                        scalar_value = 'scalar',
-                        message_colour = G.C.PURPLE
-                    })
-
                     card.ability.extra.lastNum = card.ability.extra.originalBlind - (card.ability.extra.originalBlind * (100 - card.ability.extra.percentage) / 100)
-
-                    G.GAME.blind.chips = G.GAME.blind.chips - (card.ability.extra.originalBlind * card.ability.extra.scalar / 100)
-                    G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
                     
                     card.ability.extra.prevCards[card.ability.extra.amount] = context.other_card.base.id
                     card.ability.extra.amount = card.ability.extra.amount + 1
+
+                    return {
+                        blindsize = -(card.ability.extra.originalBlind * card.ability.extra.scalar / 100)
+                    }
                 end
             end
         end

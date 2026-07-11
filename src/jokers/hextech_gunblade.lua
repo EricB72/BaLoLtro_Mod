@@ -30,9 +30,12 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.selling_self and not context.blueprint then
             if G.GAME.blind then
-                G.GAME.chips = G.GAME.chips + G.GAME.blind.chips * card.ability.extra.percent / 100
                 ease_hands_played(card.ability.extra.hand)
                 ease_discard(card.ability.extra.discard)
+
+                return {
+                    score = G.GAME.blind.chips * card.ability.extra.percent / 100
+                }
             end
         end
     end

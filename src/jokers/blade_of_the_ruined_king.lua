@@ -35,11 +35,9 @@ SMODS.Joker {
             elseif context.other_card:get_id() == 13 then
                 local addedAmount = (G.GAME.blind.chips - G.GAME.chips) * card.ability.extra.percentage / 100
 
-                G.GAME.chips = G.GAME.chips + addedAmount
-
                 return {
-                    message = tostring(addedAmount),
-                    message_card = card
+                    score = addedAmount,
+                    message = tostring(addedAmount)
                 }
             end
         end

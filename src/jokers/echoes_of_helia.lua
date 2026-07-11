@@ -11,40 +11,48 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            scoreDone = 0,
-            percentage = 1
+            percentage = 1,
+            chips = 0
         }
     },
     rarity = 3,
     cost = 6,
     loc_vars = function(self, info_queue, card)
+        local scoreDone = ((G.GAME.chips * card.ability.extra.percentage / 100) or 0)
         return {
             vars = {
+                scoreDone,
                 card.ability.extra.chips,
-                card.ability.extra.scoreDone,
                 card.ability.extra.percentage
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.end_of_round or context.setting_blind then
-            card.ability.extra.scoreDone = 0
-            card.ability.extra.chips = 0
-        end
-        
-        if context.before then
-            card.ability.extra.chips = card.ability.extra.scoreDone
+        if context.before and G.GAME.current_round.hands_played ~= 0 and not context.blueprint then
+            local scoreDone = ((G.GAME.chips * card.ability.extra.percentage / 100) or 0)
+
+            card.ability.extra.chips = scoreDone
         end
 
-        if context.after then
-            card.ability.extra.scoreDone = SMODS.calculate_round_score(flames) * card.ability.extra.percentage / 100
-        end
-
-        if context.joker_main then
+        if context.final_scoring_step then
             return {
                 chips = card.ability.extra.chips
             }
         end
+
+        if context.end_of_round and not context.blueprint then
+            card.ability.extra.chips = 0
+        end
+    end,
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "mult" },
+                { scale = 0.4 }
+            },
+            text_config = { colour = G.C.CHIPS },
+        }
     end
 }
