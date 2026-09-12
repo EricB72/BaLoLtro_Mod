@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'kraken_slayer',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 3,
-        y = 10
+        x = 4,
+        y = 2
     },
     display_size = {
         w = 69,

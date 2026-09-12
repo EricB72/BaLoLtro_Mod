@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'hextech_rocketbelt',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 3,
-        y = 8
+        x = 5,
+        y = 1
     },
     display_size = {
         w = 69,

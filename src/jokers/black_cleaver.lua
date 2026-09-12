@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'black_cleaver',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 1,
-        y = 4
+        x = 4,
+        y = 0
     },
     display_size = {
         w = 69,

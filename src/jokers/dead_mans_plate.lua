@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'dead_mans_plate',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
         x = 3,
-        y = 5
+        y = 1
     },
     display_size = {
         w = 69,

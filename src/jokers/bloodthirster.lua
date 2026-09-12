@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'bloodthirster',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 3,
-        y = 4
+        x = 0,
+        y = 1
     },
     display_size = {
         w = 69,

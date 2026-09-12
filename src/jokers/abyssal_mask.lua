@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'am',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 4,
-        y = 1
+        x = 0,
+        y = 0
     },
     display_size = {
         w = 69,
@@ -15,7 +15,7 @@ SMODS.Joker {
         }
     },
     rarity = 1,
-    cost = 6,
+    cost = 3,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

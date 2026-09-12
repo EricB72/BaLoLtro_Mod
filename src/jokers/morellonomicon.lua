@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'morellonomicon',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 1,
-        y = 13
+        x = 2,
+        y = 1
     },
     display_size = {
         w = 69,

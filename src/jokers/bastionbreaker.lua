@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'bastionbreaker',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 0,
-        y = 4
+        x = 4,
+        y = 0
     },
     display_size = {
         w = 69,

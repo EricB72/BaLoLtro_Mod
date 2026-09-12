@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'edge_of_night',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 2,
-        y = 6
+        x = 3,
+        y = 1
     },
     display_size = {
         w = 69,
@@ -14,11 +14,11 @@ SMODS.Joker {
             mult = 0,
             multGain = 3,
             nominatorMult = 3,
-            nominatorDecrease = 10
+            nominatorDecrease = 50
         }
     },
     rarity = 1,
-    cost = 6,
+    cost = 4,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_glass
         return {

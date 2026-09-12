@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'moonstone_renewer',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 0,
-        y = 13
+        x = 3,
+        y = 4
     },
     display_size = {
         w = 69,

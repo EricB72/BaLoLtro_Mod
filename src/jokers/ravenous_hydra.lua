@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'ravenous_hydra',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
         x = 2,
-        y = 15
+        y = 4
     },
     display_size = {
         w = 69,

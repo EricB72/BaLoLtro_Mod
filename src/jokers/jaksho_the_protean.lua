@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'jaksho_the_protean',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 0,
-        y = 10
+        x = 4,
+        y = 0
     },
     display_size = {
         w = 69,

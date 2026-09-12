@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'nashors_tooth',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 4,
-        y = 13
+        x = 5,
+        y = 3
     },
     display_size = {
         w = 69,

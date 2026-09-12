@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'hexoptics_c44',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 1,
-        y = 8
+        x = 5,
+        y = 2
     },
     display_size = {
         w = 69,

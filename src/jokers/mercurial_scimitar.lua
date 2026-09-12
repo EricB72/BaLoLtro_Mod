@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'mercurial_scimitar',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 3,
-        y = 12
+        x = 2,
+        y = 4
     },
     display_size = {
         w = 69,

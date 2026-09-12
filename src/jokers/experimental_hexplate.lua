@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'experimental_hexplate',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 4,
-        y = 6
+        x = 2,
+        y = 0
     },
     display_size = {
         w = 69,

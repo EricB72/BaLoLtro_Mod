@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'heartsteel',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 0,
-        y = 8
+        x = 4,
+        y = 2
     },
     display_size = {
         w = 69,
@@ -37,7 +37,7 @@ SMODS.Joker {
         card.ability.extra.xmult = 1 + card.ability.extra.stacks / 100
         card.ability.extra.dollars = math.floor((card.ability.extra.xmult) * card.ability.extra.percent / 100 * 100) / 100
 
-        card.ability.extra.xmultJoker = tonumber(tostring(1 + G.GAME.dollars / 100))
+        card.ability.extra.xmultJoker = tonumber(tostring(1 + G.GAME.dollars / 100)) + card.ability.extra.stacks / 100
 
         if ((card.ability.extra.xmultJoker - 1) * 100) < card.ability.extra.stacks then
             card.ability.extra.xmultJoker = card.ability.extra.stacks / 100 + 1
@@ -54,7 +54,7 @@ SMODS.Joker {
         end
 
         if context.individual and context.cardarea == G.play and context.other_card == context.scoring_hand[1] and G.GAME.current_round.hands_played == card.ability.extra.numHands then
-            card.ability.extra.xmult = card.ability.extra.xmultJoker
+            card.ability.extra.xmult =  card.ability.extra.xmultJoker
 
             if ((card.ability.extra.xmult - 1) * 100) < card.ability.extra.stacks then
                 card.ability.extra.xmult = 1 + card.ability.extra.stacks / 100

@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'warmogs_armor',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 1,
-        y = 21
+        x = 5,
+        y = 5
     },
     display_size = {
         w = 69,

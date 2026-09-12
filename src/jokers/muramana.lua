@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'muramana',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
         x = 3,
-        y = 13
+        y = 1
     },
     display_size = {
         w = 69,

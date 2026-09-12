@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'acs',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
         x = 1,
-        y = 2
+        y = 0
     },
     display_size = {
         w = 69,
@@ -23,7 +23,7 @@ SMODS.Joker {
         }
     },
     rarity = 1,
-    cost = 6,
+    cost = 5,
     loc_vars = function(self, info_queue, card)
         local enh_Cards = 0
         for _, playing_card in pairs(G.playing_cards or {}) do

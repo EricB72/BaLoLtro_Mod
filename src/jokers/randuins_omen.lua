@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'randuins_omen',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 0,
-        y = 15
+        x = 1,
+        y = 4
     },
     display_size = {
         w = 69,
@@ -11,27 +11,29 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            percentage = 75
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 1,
+    cost = 2,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.percentage
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            return {
-                message = 'NOPE!'
-            }
+        if context.selling_self and G.shop then
+            if G.shop_jokers and G.shop_booster then
+                for _, cards in pairs(G.shop_jokers.cards) do
+                    cards.cost = cards.cost * (1 - card.ability.extra.percentage / 100)
+                end
+
+                for _, cards in pairs(G.shop_booster.cards) do
+                    cards.cost = cards.cost * (1 - card.ability.extra.percentage / 100)
+                end
+            end
         end
     end
 }

@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'the_collector',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 4,
-        y = 19
+        x = 5,
+        y = 4
     },
     display_size = {
         w = 69,
@@ -25,11 +25,14 @@ SMODS.Joker {
         }
     },
     rarity = 1,
-    cost = 6,
+    cost = 5,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
         local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.totalCrit, 100, 'j_tstmod_the_collector')
-        local blindPercent = (G.GAME.chips / G.GAME.blind.chips * 100) or 'NaN'
+        local blindPercent = 'NaN'
+        if G.GAME.chips and G.GAME.blind and G.GAME.blind.chips then
+            blindPercent = (G.GAME.chips / G.GAME.blind.chips * 100) or 'NaN'        
+        end
         return {
             vars = {
                 card.ability.extra.critDMG,
@@ -94,7 +97,7 @@ SMODS.Joker {
                     end
 
                     card.ability.extra.totalCrit = card.ability.extra.totalCrit + (G.jokers.cards[i].ability.extra.currentCrit or G.jokers.cards[i].ability.extra.critChance)
-                    card.ability.extra.currentDMG = card.ability.extra.currentDMG + (G.jokers.cards[i].ability.extra.critDMGAugment or 0)   
+                    card.ability.extra.currentDMG = card.ability.extra.currentDMG + (G.jokers.cards[i].ability.extra.critDMGAugment or 0)
                     
                     G.jokers.cards[i].ability.extra.totalCrit = G.jokers.cards[i].ability.extra.totalCrit + card.ability.extra.currentCrit
                 end

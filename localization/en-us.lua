@@ -19,7 +19,7 @@ return {
             j_tstmod_tf = {
                 name = 'Trinity Force',
                 text = {
-                        'Spellblade: {C:money}$#1#{}, {X:chips,C:white}X#2#{} Chips',
+                        'Spellblade: 3s scored give {C:money}$#1#{}, {X:chips,C:white}X#2#{} Chips',
                         'and {X:mult,C:white}X#3#{} Mult.',
                         '{C:inactive}(Last Hand: #5#)'
                     }
@@ -27,7 +27,8 @@ return {
             j_tstmod_dad = {
                 name = 'Dusk and Dawn',
                 text = {
-                    'Copies right-most {C:attention}Spellblade{} effect.'
+                    'Spellblade: Rettriggers hand per',
+                    'each scoring card.'
                 }
             },
             j_tstmod_blc = {
@@ -904,7 +905,10 @@ return {
                 name = 'Protoplasm Harness',
                 text = {
                     {
-                        'NOPE!'
+                        'If you have exactly {C:chips}#2#{} hands and',
+                        '{C:mult}#3#{} discards and {X:purple,C:white}#1#%{} or less score done,',
+                        'gives: {C:money}$#5#{}, {C:mult}+#4#{} discard/s, {C:attention}+#6#{} hand size',
+                        'and disables {C:attention}Boss Blind{}.'
                     }
                 }
             },
@@ -912,7 +916,8 @@ return {
                 name = 'Randuin\'s Omen',
                 text = {
                     {
-                        'NOPE!'
+                        'Upon selling reduces {C:green}shop',
+                        '{C:green}prices{} by {X:purple,C:white}#1#%{}.'
                     }
                 }
             },
@@ -944,7 +949,9 @@ return {
                 name = 'Redemption',
                 text = {
                     {
-                        'NOPE!'
+                        'After #1# rounds, sell this',
+                        'joker to double your money',
+                        'and destroy highlited cards.'
                     }
                 }
             },
@@ -952,7 +959,10 @@ return {
                 name = 'Riftmaker',
                 text = {
                     {
-                        'NOPE!'
+                        '{C:chips}+#1#{} Chips, equal to',
+                        '#5#% of money. Every hand increase',
+                        'by #2#% up to #3# times.',
+                        'Then it gives {C:chips}+#4#{} hand.'
                     }
                 }
             },
@@ -1418,7 +1428,8 @@ return {
                 name = "Critical Strike",
                 text = {
                     'Multiply whatever card gives',
-                    'by Critical Damage.'
+                    'by Critical Damage, and give',
+                    'it as {C:mult}+Mult{}.'
                 }
             },
             m_hydra = {
@@ -1437,6 +1448,21 @@ return {
                     "Prevents 1 debuff."
                 }
             },
+        },
+        Enhanced = {
+            m_tstmod_energized = {
+                name = "Energized",
+                text = {
+                    'If kept in hand gain more stats.',
+                    'Gives:',
+                    ' - {C:chips}+#1#{} Chips.',
+                    ' - {C:mult}+#3#{} Mult.',
+                    ' - {X:chips,C:white}X#11#{} Chips.',
+                    ' - {X:mult,C:white}X#9#{} Mult.',
+                    ' - {C:money}$#5#{}.',
+                    ' - {C:attention}+#7#{} hand size.',
+                }
+            }
         },
     },
     misc = {

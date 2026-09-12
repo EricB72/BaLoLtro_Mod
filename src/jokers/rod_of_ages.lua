@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'rod_of_ages',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 1,
-        y = 16
+        x = 3,
+        y = 4
     },
     display_size = {
         w = 69,

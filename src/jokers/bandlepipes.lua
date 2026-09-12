@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'bandlepipes',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 3,
-        y = 3
+        x = 2,
+        y = 0
     },
     display_size = {
         w = 69,

@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'eclipse',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 1,
-        y = 6
+        x = 2,
+        y = 1
     },
     display_size = {
         w = 69,

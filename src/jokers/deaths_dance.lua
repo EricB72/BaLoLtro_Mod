@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'deaths_dance',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
         x = 4,
-        y = 5
+        y = 1
     },
     display_size = {
         w = 69,

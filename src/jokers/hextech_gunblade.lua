@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'hextech_gunblade',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 2,
-        y = 8
+        x = 0,
+        y = 3
     },
     display_size = {
         w = 69,

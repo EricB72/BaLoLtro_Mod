@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'manamune',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 0,
-        y = 12
+        x = 1,
+        y = 1
     },
     display_size = {
         w = 69,

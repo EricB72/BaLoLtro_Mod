@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'mikaels_blessing',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 4,
-        y = 12
+        x = 3,
+        y = 3
     },
     display_size = {
         w = 69,

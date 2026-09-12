@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'cryptbloom',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
         x = 1,
-        y = 5
+        y = 1
     },
     display_size = {
         w = 69,
@@ -18,7 +18,7 @@ SMODS.Joker {
         }
     },
     rarity = 1,
-    cost = 6,
+    cost = 5,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

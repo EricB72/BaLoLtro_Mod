@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'malignance',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 4,
-        y = 11
+        x = 0,
+        y = 1
     },
     display_size = {
         w = 69,

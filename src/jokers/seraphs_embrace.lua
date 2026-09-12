@@ -1,8 +1,8 @@
 SMODS.Joker {
     key = 'sebr',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 2,
+        x = 1,
         y = 2
     },
     display_size = {
@@ -15,7 +15,7 @@ SMODS.Joker {
             enhChips = 15
         }
     },
-    rarity = 1,
+    rarity = 3,
     cost = 6,
     loc_vars = function(self, info_queue, card)
         local enh_Cards = 0

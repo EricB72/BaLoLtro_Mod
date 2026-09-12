@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'mejais_soulstealer',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 2,
-        y = 12
+        x = 1,
+        y = 4
     },
     display_size = {
         w = 69,

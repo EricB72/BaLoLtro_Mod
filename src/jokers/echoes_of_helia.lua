@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'echoes_of_helia',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 0,
-        y = 6
+        x = 1,
+        y = 0
     },
     display_size = {
         w = 69,
@@ -11,7 +11,7 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            percentage = 1,
+            percentage = 0.1,
             chips = 0
         }
     },

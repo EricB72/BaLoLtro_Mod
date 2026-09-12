@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'horizon_focus',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 4,
-        y = 8
+        x = 1,
+        y = 2
     },
     display_size = {
         w = 69,

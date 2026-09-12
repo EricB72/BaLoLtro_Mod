@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'lord_dominiks_regards',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 2,
-        y = 11
+        x = 0,
+        y = 3
     },
     display_size = {
         w = 69,
@@ -85,7 +85,7 @@ SMODS.Joker {
         end
 
         for i = 1, #jokers do
-            if G.jokers.cards[i].ability.extra.critChance then
+            if jokers[i].ability.extra.critChance then
                 jokers[i].ability.extra.totalCrit = jokers[i].ability.extra.totalCrit - card.ability.extra.critChance
 
                 if i == #jokers then jokers[i].ability.extra.critLeader = true end

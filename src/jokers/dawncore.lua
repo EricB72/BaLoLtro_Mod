@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'dawncore',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
         x = 2,
-        y = 5
+        y = 1
     },
     display_size = {
         w = 69,

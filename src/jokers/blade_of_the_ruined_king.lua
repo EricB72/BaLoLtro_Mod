@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'bork',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 0,
-        y = 1
+        x = 5,
+        y = 0
     },
     display_size = {
         w = 69,

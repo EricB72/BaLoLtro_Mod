@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'atmas_reckoning',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 4,
-        y = 2
+        x = 2,
+        y = 0
     },
     display_size = {
         w = 69,
@@ -26,7 +26,7 @@ SMODS.Joker {
         }
     },
     rarity = 1,
-    cost = 6,
+    cost = 4,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
         local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.totalCrit, 100, 'j_tstmod_atmas_reckoning')

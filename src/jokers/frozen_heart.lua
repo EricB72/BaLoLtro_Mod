@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'frozen_heart',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
         x = 2,
-        y = 7
+        y = 2
     },
     display_size = {
         w = 69,

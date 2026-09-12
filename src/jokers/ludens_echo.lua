@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'ludens_echo',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 3,
-        y = 11
+        x = 1,
+        y = 3
     },
     display_size = {
         w = 69,

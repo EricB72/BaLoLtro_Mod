@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'stridebreaker',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 4,
-        y = 18
+        x = 2,
+        y = 2
     },
     display_size = {
         w = 69,

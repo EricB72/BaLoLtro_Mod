@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'phantom_dancer',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 2,
-        y = 14
+        x = 5,
+        y = 4
     },
     display_size = {
         w = 69,
@@ -26,7 +26,7 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.skip_blind and not context.blueprint then
-            --Give tag not skip_blind
+            G.shop = true
         end
 
         if context.joker_main then

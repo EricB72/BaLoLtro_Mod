@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'runaans_hurricane',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 2,
-        y = 16
+        x = 0,
+        y = 2
     },
     display_size = {
         w = 69,

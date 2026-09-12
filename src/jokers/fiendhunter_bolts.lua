@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'fiendhunter_bolts',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 0,
-        y = 7
+        x = 1,
+        y = 2
     },
     display_size = {
         w = 69,
@@ -25,8 +25,8 @@ SMODS.Joker {
             lord_dominiks = 0
  }
     },
-    rarity = 1,
-    cost = 6,
+    rarity = 2,
+    cost = 5,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
         local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.totalCrit, 100, 'j_tstmod_fiendhunter_bolts')

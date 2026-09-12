@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'tf',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 1,
-        y = 0
+        x = 3,
+        y = 2
     },
     display_size = {
         w = 69,
@@ -38,24 +38,21 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         --Spellblade
-        if context.joker_main then
-            if card.ability.extra.prevHand ~= card.ability.extra.highCard and context.scoring_name == card.ability.extra.highCard then
-                card.ability.extra.prevHand = context.scoring_name
-                
+        if context.individual and context.cardarea == G.play and card.ability.extra.prevHand ~= card.ability.extra.highCard and context.scoring_name == card.ability.extra.highCard then                
+            if context.other_card:get_id() and context.other_card:get_id() == 3 then
                 return {
                     xchips = card.ability.extra.chipsMult,
                     xmult = card.ability.extra.multMult,
                     dollars = card.ability.extra.dollars
                 }
-            else             
-                card.ability.extra.prevHand = context.scoring_name
             end
+        end
+
+        if context.after and not context.blueprint then
+            card.ability.extra.prevHand = context.scoring_name
         end
     end,
     set_badges = function(self, card, badges)
         badges[#badges+1] = create_badge(localize('b_spellblade'), G.C.ORANGE, G.C.WHITE, 1.2 )
-    end,
-    add_to_deck = function(self, card, from_debuff)
-        card:set_cost(9.9)
     end
 }

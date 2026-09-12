@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'lich_bane',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
         x = 0,
-        y = 11
+        y = 4
     },
     display_size = {
         w = 69,

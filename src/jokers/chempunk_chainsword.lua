@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'chempunk_chainsword',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 4,
-        y = 4
+        x = 1,
+        y = 1
     },
     display_size = {
         w = 69,

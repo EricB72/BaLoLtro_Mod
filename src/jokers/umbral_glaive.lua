@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'umbral_glaive',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 2,
-        y = 20
+        x = 4,
+        y = 5
     },
     display_size = {
         w = 69,
@@ -17,8 +17,8 @@ SMODS.Joker {
             hydraInc = 2
         }
     },
-    rarity = 1,
-    cost = 3,
+    rarity = 2,
+    cost = 5,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_hydra' }
         return {

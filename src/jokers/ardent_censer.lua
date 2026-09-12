@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'ardent_censer',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 3,
-        y = 2
+        x = 1,
+        y = 0
     },
     display_size = {
         w = 69,

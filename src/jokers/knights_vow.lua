@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'knights_vow',
-    atlas = 'league_items',
+    atlas = 'rare_league_items',
     pos = {
-        x = 2,
-        y = 10
+        x = 5,
+        y = 0
     },
     display_size = {
         w = 69,

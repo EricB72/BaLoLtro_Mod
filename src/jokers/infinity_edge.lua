@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'infinity_edge',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 0,
-        y = 3
+        x = 2,
+        y = 2
     },
     display_size = {
         w = 69,
@@ -92,13 +92,13 @@ SMODS.Joker {
             end
         end
 
-        for i = 1, #jokers do      
-            if G.jokers.cards[i].ability.extra.critChance then      
+        for i = 1, #jokers do
+            if jokers[i].ability.extra.critChance then
                 jokers[i].ability.extra.totalCrit = jokers[i].ability.extra.totalCrit - card.ability.extra.currentCrit
                 if i == #jokers then jokers[i].ability.extra.critLeader = true end
             end
 
-            if G.jokers.cards[i].ability.extra.critChance then
+            if jokers[i].ability.extra.critDMG then
                 jokers[i].ability.extra.currentDMG = jokers[i].ability.extra.currentDMG - card.ability.extra.critDMGAugment
             end
         end

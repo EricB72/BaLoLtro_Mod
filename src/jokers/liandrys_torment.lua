@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'liandrys_torment',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 4,
-        y = 10
+        x = 5,
+        y = 3
     },
     display_size = {
         w = 69,

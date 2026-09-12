@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'cosmic_drive',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
         x = 0,
-        y = 5
+        y = 1
     },
     display_size = {
         w = 69,
@@ -22,7 +22,7 @@ SMODS.Joker {
         }
     },
     rarity = 1,
-    cost = 6,
+    cost = 4,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

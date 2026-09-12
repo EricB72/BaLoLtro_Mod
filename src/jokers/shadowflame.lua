@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'sf',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
         x = 2,
-        y = 1
+        y = 5
     },
     display_size = {
         w = 69,

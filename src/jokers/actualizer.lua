@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'act',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
         x = 0,
-        y = 2
+        y = 0
     },
     display_size = {
         w = 69,
@@ -11,7 +11,7 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            hands = -1,
+            hands = -2,
             mod_conv = {'m_lucky', 'm_mult', 'm_glass', 'm_bonus', 'm_wild', 'm_steel', 'm_gold', 'm_stone'},
             mod_seals = {'Purple', 'Blue', 'Red', 'Gold'}
         }

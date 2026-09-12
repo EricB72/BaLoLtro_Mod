@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'banshees_veil',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 4,
-        y = 3
+        x = 3,
+        y = 0
     },
     display_size = {
         w = 69,

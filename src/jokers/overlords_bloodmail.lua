@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'overlords_bloodmail',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
-        x = 1,
-        y = 14
+        x = 4,
+        y = 4
     },
     display_size = {
         w = 69,

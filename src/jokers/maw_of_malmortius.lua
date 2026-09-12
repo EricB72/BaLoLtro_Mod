@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'maw_of_malmortius',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 1,
-        y = 12
+        x = 2,
+        y = 3
     },
     display_size = {
         w = 69,

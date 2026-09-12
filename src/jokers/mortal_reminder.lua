@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'mortal_reminder',
-    atlas = 'league_items',
+    atlas = 'common_league_items',
     pos = {
-        x = 2,
-        y = 13
+        x = 4,
+        y = 3
     },
     display_size = {
         w = 69,
