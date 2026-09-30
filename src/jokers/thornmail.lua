@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'thornmail',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 0,
-        y = 20
+        x = 43,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

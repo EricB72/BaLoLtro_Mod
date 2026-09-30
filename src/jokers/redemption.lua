@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'redemption',
-    atlas = 'uncommon_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 1,
-        y = 5
+        x = 18,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

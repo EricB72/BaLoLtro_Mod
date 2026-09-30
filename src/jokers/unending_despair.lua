@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'unending_despair',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 3,
-        y = 20
+        x = 47,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

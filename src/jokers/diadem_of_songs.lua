@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'diadem_of_songs',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 3,
-        y = 21
+        x = 20,
+        y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

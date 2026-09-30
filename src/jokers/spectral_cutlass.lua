@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'spectral_cutlass',
-    atlas = 'uncommon_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 0,
-        y = 0
+        x = 30,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

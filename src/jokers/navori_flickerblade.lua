@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'navori_flickerblade',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 0,
-        y = 14
+        x = 9,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

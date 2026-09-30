@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'blc',
-    atlas = 'rare_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 0,
+        x = 12,
         y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

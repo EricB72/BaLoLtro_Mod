@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'seryldas_grudge',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 0,
-        y = 17
+        x = 26,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

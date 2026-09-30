@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'umbral_glaive',
-    atlas = 'uncommon_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 4,
-        y = 5
+        x = 46,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {
@@ -35,10 +35,17 @@ SMODS.Joker {
             }
         end
 
+        if context.stay_flipped and context.to_area == G.play and
+            context.other_card.facing == 'back' then
+            return {
+                stay_flipped = true
+            }
+        end
+
         if context.modify_scoring_hand and not context.blueprint then
             card.ability.extra.flush = true
 
-            for i = 1, #context.full_hand do
+            for i = 1, (#context.full_hand) do
                 if context.full_hand[i].facing ~= nil and context.full_hand[i].facing ~= 'back' and context.playing_cards == nil then
                     card.ability.extra.flush = false
                 end

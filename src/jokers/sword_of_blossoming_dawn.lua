@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'sword_of_blossoming_dawn',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 2,
-        y = 19
+        x = 40,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

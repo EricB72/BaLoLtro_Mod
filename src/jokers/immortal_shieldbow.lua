@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'immortal_shieldbow',
-    atlas = 'rare_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 3,
+        x = 43,
         y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

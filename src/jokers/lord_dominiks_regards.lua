@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'lord_dominiks_regards',
-    atlas = 'common_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 0,
-        y = 3
+        x = 53,
+        y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'rapid_firecannon',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 1,
-        y = 15
+        x = 16,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'stormrazor',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 2,
-        y = 18
+        x = 35,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

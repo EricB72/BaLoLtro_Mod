@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'edge_of_night',
-    atlas = 'common_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 3,
-        y = 1
+        x = 24,
+        y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

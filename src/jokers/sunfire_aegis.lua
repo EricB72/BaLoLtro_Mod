@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'sunfire_aegis',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 1,
-        y = 19
+        x = 39,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

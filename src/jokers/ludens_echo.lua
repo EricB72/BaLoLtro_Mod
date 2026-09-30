@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'ludens_echo',
-    atlas = 'common_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 1,
-        y = 3
+        x = 54,
+        y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

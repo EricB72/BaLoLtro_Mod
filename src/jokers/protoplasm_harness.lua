@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'protoplasm_harness',
-    atlas = 'uncommon_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 0,
-        y = 5
+        x = 13,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

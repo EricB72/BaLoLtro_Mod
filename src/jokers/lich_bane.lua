@@ -1,17 +1,17 @@
 SMODS.Joker {
     key = 'lich_bane',
-    atlas = 'uncommon_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 0,
-        y = 4
+        x = 51,
+        y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {
         extra = {
-            handSize = 1,
+            handSize = 2,
             highCard = 'High Card',
             prevHand = 'None',
             spellblade = true,

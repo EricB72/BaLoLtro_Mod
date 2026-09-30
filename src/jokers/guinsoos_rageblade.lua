@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'guinsoos_rageblade',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 4,
-        y = 7
+        x = 33,
+        y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'cryptbloom',
-    atlas = 'common_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 1,
-        y = 1
+        x = 16,
+        y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

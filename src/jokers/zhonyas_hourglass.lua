@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'zhonyas_hourglass',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 4,
-        y = 22
+        x = 0,
+        y = 2
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

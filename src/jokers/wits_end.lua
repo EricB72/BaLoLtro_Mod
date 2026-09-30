@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'wits_end',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 1,
-        y = 22
+        x = 53,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

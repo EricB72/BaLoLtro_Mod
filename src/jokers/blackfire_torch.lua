@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'blackfire_torch',
-    atlas = 'common_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 5,
+        x = 10,
         y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

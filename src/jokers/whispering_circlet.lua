@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'whispering_circlet',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 2,
-        y = 21
+        x = 51,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

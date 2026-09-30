@@ -987,18 +987,15 @@ return {
                 name = 'Rod of Ages',
                 text = {
                     {
-                        'Gives #1# Chips.',
-                        'At the end of a round give #3#$.'
+                        'Gives {C:chips}+#1#{} Chips.',
+                        'At the end of a round gives {C:money}$#3#{}',
+                        'and increase Chips by {C:chips}+#2#{}.',
+                        'Up to {C:attention}#4#{} times.'
                     },
                     {
-                        'Every round increase Chips by #2#',
-                        'and Dollars by #4#.',
-                        'Up to #5# stacks.'
-                    },
-                    {
-                        'At max stacks enhancements',
-                        'become suits, you are able',
-                        'to play flushes with enhancements.'
+                        'At max stacks, playing a',
+                        '{C:attention}full hand{} of cards with',
+                        'the same enhancement, applies {C:chips}splash{}.'
                     }
                 }
             },
@@ -1189,7 +1186,7 @@ return {
                     {
                         '{C:green}#1# in #2#{} chance of drawing a flipped card.',
                         'Playing only flipped cards applies {C:chips}splash{}.',
-                        '#3#'
+                        '{C:inactive}Flipped cards played remain flipped.'
                     }
                 }
             },

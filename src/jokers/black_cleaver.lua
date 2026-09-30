@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'black_cleaver',
-    atlas = 'uncommon_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 4,
+        x = 9,
         y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

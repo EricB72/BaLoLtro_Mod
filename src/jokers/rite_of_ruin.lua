@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'rite_of_ruin',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 0,
-        y = 16
+        x = 20,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

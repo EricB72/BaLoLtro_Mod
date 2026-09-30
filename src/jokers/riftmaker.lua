@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'riftmaker',
-    atlas = 'rare_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 5,
+        x = 19,
         y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

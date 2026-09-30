@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'spirit_visage',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 4,
-        y = 17
+        x = 31,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

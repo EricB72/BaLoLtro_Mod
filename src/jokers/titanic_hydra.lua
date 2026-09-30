@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'titanic_hydra',
-    atlas = 'uncommon_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 3,
-        y = 5
+        x = 44,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

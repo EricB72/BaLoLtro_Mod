@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'heartsteel',
-    atlas = 'uncommon_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 4,
-        y = 2
+        x = 34,
+        y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

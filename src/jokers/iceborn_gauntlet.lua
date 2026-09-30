@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'iceborn_gauntlet',
-    atlas = 'uncommon_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 3,
-        y = 3
+        x = 42,
+        y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

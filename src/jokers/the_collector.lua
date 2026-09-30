@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'the_collector',
-    atlas = 'common_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 5,
-        y = 4
+        x = 42,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

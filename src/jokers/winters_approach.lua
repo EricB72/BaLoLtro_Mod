@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'winters_approach',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 4,
-        y = 21
+        x = 52,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

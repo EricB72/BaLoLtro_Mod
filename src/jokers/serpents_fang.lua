@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'serpents_fang',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 4,
-        y = 16
+        x = 25,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

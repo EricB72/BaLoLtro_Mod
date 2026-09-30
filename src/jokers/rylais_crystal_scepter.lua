@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'rylais_crystal_scepter',
-    atlas = 'league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 3,
-        y = 16
+        x = 23,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

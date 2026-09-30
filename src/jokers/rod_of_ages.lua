@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'rod_of_ages',
-    atlas = 'common_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 3,
-        y = 4
+        x = 21,
+        y = 1
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {
@@ -14,7 +14,6 @@ SMODS.Joker {
             chips = 3,
             chipGain = 3,
             dollars = 1,
-            dollarGain = 1,
             maxStacks = 10,
             flush = false
         }
@@ -27,7 +26,6 @@ SMODS.Joker {
                 card.ability.extra.chips,
                 card.ability.extra.chipGain,
                 card.ability.extra.dollars,
-                card.ability.extra.dollarGain,
                 card.ability.extra.maxStacks,
                 card.ability.extra.flush
             }
@@ -68,8 +66,6 @@ SMODS.Joker {
     end,
     calc_dollar_bonus = function(self, card)
         local prevDollars = card.ability.extra.dollars
-
-        if card.ability.extra.dollars < card.ability.extra.maxStacks then card.ability.extra.dollars = card.ability.extra.dollars + card.ability.extra.dollarGain end
 
         return true and prevDollars or nil
     end
