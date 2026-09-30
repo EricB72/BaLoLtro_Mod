@@ -11,10 +11,8 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            interest = 0,
-            dollars = 0,
-            dollarGain = 5,
-            triggered = true
+            increase = 5,
+            bankrupt_at = 10
         }
     },
     rarity = 2,
@@ -22,31 +20,27 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.interest,
-                card.ability.extra.dollars,
-                card.ability.extra.dollarGain,
-                card.ability.extra.triggered
+                card.ability.extra.increase,
+                card.ability.extra.bankrupt_at
             }
         }
     end,
     calculate = function(self, card, context)
-        if G.shop and not context.ending_shop and not context.blueprint and not card.ability.extra.triggered then
-            card.ability.extra.interest = math.floor(G.GAME.dollars)
-            card.ability.extra.triggered = true
-            card.ability.extra.dollars = card.ability.extra.dollars + card.ability.extra.dollarGain
-        end
-
-        if context.ending_shop and not context.blueprint then
-            if math.floor(G.GAME.dollars) < card.ability.extra.interest then
-                card.ability.extra.dollars = 0
-            end
-        end
-
-        if context.setting_blind and not context.blueprint then
-            card.ability.extra.triggered = false
+        if context.ending_shop and math.floor(G.GAME.dollars) < 0 and not context.blueprint then
+                card.ability.extra.bankrupt_at = card.ability.extra.bankrupt_at + card.ability.extra.increase
+                G.GAME.bankrupt_at = G.GAME.bankrupt_at - card.ability.extra.increase
+        else
+            G.GAME.bankrupt_at = G.GAME.bankrupt_at + card.ability.extra.bankrupt_at - 10
+            card.ability.extra.bankrupt_at = 10
         end
     end,
     calc_dollar_bonus = function(self, card)
         return card.ability.extra.dollars
+    end,
+    add_to_deck = function(self, card, from_debuff)
+        G.GAME.bankrupt_at = G.GAME.bankrupt_at - card.ability.extra.bankrupt_at
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        G.GAME.bankrupt_at = G.GAME.bankrupt_at + card.ability.extra.bankrupt_at
     end
 }

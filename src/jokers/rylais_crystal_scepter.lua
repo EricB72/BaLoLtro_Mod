@@ -11,9 +11,7 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            xmult = 0.3
         }
     },
     rarity = 3,
@@ -21,16 +19,14 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.xmult
             }
         }
     end,
     calculate = function(self, card, context)
         if context.joker_main then
             return {
-                message = 'NOPE!'
+                xmult = card.ability.extra.xmult + card.ability.extra.xmult * G.GAME.current_round.hands_played
             }
         end
     end

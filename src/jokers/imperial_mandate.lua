@@ -43,28 +43,30 @@ SMODS.Joker {
         if context.joker_main then
             if card.ability.extra.prevDiscard then
                 card.ability.extra.prevDiscard = false
+
                 local addedAmount = (G.GAME.blind.chips - G.GAME.chips) * card.ability.extra.percent / 100
 
                 if G.GAME.blind.boss then
                     addedAmount = (G.GAME.blind.chips - G.GAME.chips) * card.ability.extra.percent * card.ability.extra.increase / 100
                 end
 
-                G.GAME.chips = G.GAME.chips + addedAmount
-
                 return {
                     chips = card.ability.extra.chips,
-                    message = tostring(addedAmount),
-                    message_card = card
+                    score = addedAmount
                 }
             end
+
+            return {
+                    chips = card.ability.extra.chips
+            }
         end
 
-        if G.GAME.blind.disabled and not card.ability.extra.disabled and not context.blueprint then
+        if G.GAME.blind.disabled and G.GAME.blind.boss and not card.ability.extra.disabled and not context.blueprint then
             card.ability.extra.disabled = true
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chipGain
         end
 
-        if context.end_of_round and not context.blueprint then
+        if context.setting_blind and not context.blueprint then
             card.ability.extra.disabled = false
         end
     end

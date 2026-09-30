@@ -11,10 +11,10 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 50,
             cooldown = 2,
             handNum = 1,
-            currentCooldown = 0,
+            currentCooldown = 2,
+            juiced = false
         }
     },
     rarity = 2,
@@ -22,22 +22,17 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
                 card.ability.extra.cooldown,
                 card.ability.extra.handNum,
-                card.ability.extra.currentCooldown
+                card.ability.extra.currentCooldown,
+                card.ability.extra.juiced
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            return {
-                chips = card.ability.extra.chips
-            }
-        end
-
         if context.setting_blind and not context.blueprint and context.blind.boss and card.ability.extra.currentCooldown <= 0 then
             card.ability.extra.currentCooldown = card.ability.extra.cooldown + 1
+            card.ability.extra.juiced = false
             G.E_MANAGER:add_event(Event({
                 func = function()
                     G.E_MANAGER:add_event(Event({
@@ -61,30 +56,13 @@ SMODS.Joker {
             elseif card.ability.extra.currentCooldown > 0 then 
                 card.ability.extra.currentCooldown = card.ability.extra.currentCooldown - 1
             end
-        end
-    end,
-    joker_display_def = function(JokerDisplay)
-        ---@type JDJokerDefinition
-        return {
-            {
-                ref_table = "card.joker_display_values",
-                ref_value = ""
-            },
-            text = {
-                { text = "+" },
-                { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "mult" },
-                { scale = 0.4 }
-            },
-            reminder_text = {
-                { text = "(" },
-                { ref_table = "card.ability.extra", ref_value = "cooldown"},
-                { text = ")" },
-                { scale = 0.3 }
-            },
-            text_config = { colour = G.C.CHIPS },
-            calc_function = function(card)
-                
+
+            if card.ability.extra.currentCooldown <= 0 and not card.ability.extra.juiced then
+                local eval = function() return card.ability.extra.currentCooldown <= 0 end
+
+                juice_card_until(card, eval, false)
+                card.ability.extra.juiced = true
             end
-        }
+        end
     end
 }

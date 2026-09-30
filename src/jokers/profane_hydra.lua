@@ -46,15 +46,19 @@ SMODS.Joker {
 
             card.ability.extra.wildCards = {0, 0, 0, 0, 0}
 
-            local adj = card.ability.extra.hydras
+            local adj = #context.scoring_hand
+            if adj >= 5 then
+                adj = card.ability.extra.hydras
+            end
+            
             local handCard = 0
 
             for i = 1, adj do
-                if next(SMODS.get_enhancements(context.scoring_hand[i - handCard])) == 'm_wild' then
+                if next(SMODS.get_enhancements(context.scoring_hand[i - handCard])) == 'm_wild' and i - handCard < 5 then
                     card.ability.extra.wildCards[i - handCard] = card.ability.extra.wildCards[i - handCard] + 1
                 end
 
-                if i >= #context.scoring_hand + handCard then
+                if i >= (#context.scoring_hand + handCard) then
                     handCard = handCard + #context.scoring_hand
                 end
             end
@@ -75,6 +79,10 @@ SMODS.Joker {
                     xmult = card.ability.extra.xmult ^ card.ability.extra.wildCards[numerator]
                 }
             end
+
+            return {
+
+            }
         end
     end,
     joker_display_def = function(JokerDisplay)

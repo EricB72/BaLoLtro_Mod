@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'atmas_reckoning',
-    atlas = 'common_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 2,
+        x = 4,
         y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {

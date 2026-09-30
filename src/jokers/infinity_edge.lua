@@ -47,7 +47,7 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual and card.ability.extra.critLeader then                                    
-            local crit = SMODS.pseudorandom_probability(card, 'j_tstmod_atmas_reckoning', card.ability.extra.totalCrit, 100)
+            local crit = SMODS.pseudorandom_probability(card, 'j_tstmod_infinity_edge', card.ability.extra.totalCrit, 100)
             local percentDmg = 1
 
             if crit then

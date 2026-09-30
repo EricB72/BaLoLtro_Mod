@@ -23,15 +23,22 @@ SMODS.Atlas {
 SMODS.Atlas {
     key = 'league_items',
     path = 'league_items.png',
-    px = 66,
-    py = 67,
+    px = 68,
+    py = 68,
+}
+
+SMODS.Atlas {
+    key = 'league_items_good',
+    path = 'league_items_good.png',
+    px = 68,
+    py = 68,
 }
 
 SMODS.Atlas {
     key = 'legendary_league_items',
     path = 'legendary_league_items.png',
-    px = 79,
-    py = 78,
+    px = 80,
+    py = 80,
 }
 
 SMODS.Atlas {

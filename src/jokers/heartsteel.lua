@@ -37,7 +37,7 @@ SMODS.Joker {
         card.ability.extra.xmult = 1 + card.ability.extra.stacks / 100
         card.ability.extra.dollars = math.floor((card.ability.extra.xmult) * card.ability.extra.percent / 100 * 100) / 100
 
-        card.ability.extra.xmultJoker = tonumber(tostring(1 + G.GAME.dollars / 100)) + card.ability.extra.stacks / 100
+        card.ability.extra.xmultJoker = 1 + card.sell_cost / 100 + card.ability.extra.stacks / 100
 
         if ((card.ability.extra.xmultJoker - 1) * 100) < card.ability.extra.stacks then
             card.ability.extra.xmultJoker = card.ability.extra.stacks / 100 + 1
@@ -64,7 +64,7 @@ SMODS.Joker {
 
             card.ability.extra.stacks =  math.floor((card.ability.extra.xmult - 1) * 100)
 
-            card.ability.extra_value = card.ability.extra_value + card.ability.extra.stacks / 100
+            card.ability.extra_value = card.ability.extra_value + card.ability.extra.stacks
             card:set_cost(card.ability.extra_value)
 
             local heartsteelName = 'tstmod_heartsteel_' .. tostring(math.floor(math.random(1, 3)))

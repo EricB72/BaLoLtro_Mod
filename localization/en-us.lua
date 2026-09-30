@@ -120,7 +120,8 @@ return {
                     {
                         'Every {C:attention}#2#{} cards scored, enhances',
                         'the {C:attention}#10#{} left-most cards in hand.',
-                        '{C:inactive}(Cards scored: #5#)'
+                        '{C:inactive}(Cards scored: #5#)',
+                        '{C:inactive}(Next enh.: #11#)'
                     },
                     {
                         'Transforms into {C:chips}Seraph\'s Embrace{}',
@@ -145,7 +146,7 @@ return {
                     {
                         'Gain a random tag. Additionally gaining a',
                         '{C:chips}Hand{} or a {C:mult}Discard{} grants a random tag.',
-                        '{C:inactive}(Activations: #5#){}'
+                        '{C:inactive}(Next tag: #7#){}'
                     }
                 }
             },
@@ -209,8 +210,7 @@ return {
                     {
                         'Debuffing a {C:attention}Boss Blind{}',
                         'grants {C:attention}#1#{} random tags and',
-                        'gives {C:attention}#2#{} permanent hand size',
-                        'at the end of the round.',
+                        'gives {C:attention}#2#{} permanent hand size.',
                         '{C:inactive}(Hand Size: #3#)'
                     }
                 }
@@ -219,14 +219,11 @@ return {
                 name = 'Banshee\'s Veil',
                 text = {
                     {
-                        '{C:chips}+#1#{} Chips.'
-                    },
-                    {
-                        'Disables next {C:attention}Boss Blind{}.',
-                        'Has a {C:attention}#2#{} round cooldown.',
-                        'Ending a round with {C:attention}#3#{} hand',
+                        'Disables {C:attention}Boss Blind{}.',
+                        'Has a {C:attention}#1#{} round cooldown.',
+                        'Ending a round with {C:attention}#2#{} hand/s',
                         'or less restarts the cooldown.',
-                        '{C:inactive}(Cooldown: #4#)'
+                        '{C:inactive}(Cooldown: #3#)'
                     }
                 }
             },
@@ -251,11 +248,7 @@ return {
                         'during scoring grants a stack.',
                         'Each stack decreases total score',
                         'required by {X:purple,C:white}#1#%{} up to {X:purple,C:white}#2#%.',
-                        '{C:inactive}(Current: #4#% -> #7#){}'
-                    },
-                    {
-                        'After reaching max stacks',
-                        'this also grants {C:mult}+#3#{} Mult.'
+                        '{C:inactive}(Current: #3#% -> #6#){}'
                     }
                 }
             },
@@ -769,7 +762,19 @@ return {
                 name = 'Manamune',
                 text = {
                     {
-                        'NOPE!'
+                        'Gives {C:mult}+#9#{} Mult, equal to the total',
+                        'number of enhanced cards in deck.'
+                    },
+                    {
+                        'Every {C:attention}#2#{} cards scored, enhances',
+                        'the {C:attention}#10#{} left-most cards scored.',
+                        '{C:inactive}(Cards scored: #5#)',
+                        '{C:inactive}(Next enh.: #11#)'
+                    },
+                    {
+                        'Transforms into {C:mult}Muramana{}',
+                        'after {C:attention}#3#{} triggers.',
+                        '{C:inactive}(Triggers: #6#)'
                     }
                 }
             },
@@ -777,7 +782,11 @@ return {
                 name = 'Muramana',
                 text = {
                     {
-                        'NOPE!'
+                        'Gives {C:mult}+#3#{} Mult, equal to {C:attention}#1#{} times',
+                        'the total number of enhanced cards in deck.'
+                    },
+                    {
+                        'Enhanced cards scored gain {C:chips}#4#{} Chips.'
                     }
                 }
             },
@@ -949,9 +958,9 @@ return {
                 name = 'Redemption',
                 text = {
                     {
-                        'After #1# rounds, sell this',
+                        'After {C:attention}#2#{} rounds, sell this',
                         'joker to double your money',
-                        'and destroy highlited cards.'
+                        'and destroy selected cards.'
                     }
                 }
             },
@@ -1007,7 +1016,7 @@ return {
                 name = 'Rylai\'s Crystal Scepter',
                 text = {
                     {
-                        'NOPE!'
+                        'Gives {X:mult,C:white}#1#{} mult per hand played.'
                     }
                 }
             },
@@ -1047,7 +1056,8 @@ return {
                 name = 'Spectral Cutlass',
                 text = {
                     {
-                        'NOPE!'
+                        'Sell this to go back {C:attention}#1#{} ante/s.',
+                        'Every {C:attention}#2#{} skips increases by {C:attention}1{}.'
                     }
                 }
             },
@@ -1063,7 +1073,8 @@ return {
                 name = 'Staff of Flowing Water',
                 text = {
                     {
-                        'NOPE!'
+                        'Gives {C:chips}#1#{} chips per hand remaining.',
+                        'Gives {C:green}#2#{} luck per hand played.'
                     }
                 }
             },
@@ -1176,10 +1187,9 @@ return {
                 name = 'Umbral Glaive',
                 text = {
                     {
-                        '{C:attention}#2#{} Wild Card/s in hand will',
-                        'give {C:mult}+#1#{} Mult when scored.',
-                        'Each {X:green,C:mult}Hydra{} owned',
-                        'increases amount by {C:attention}#4#{}.',
+                        '{C:green}#1# in #2#{} chance of drawing a flipped card.',
+                        'Playing only flipped cards applies {C:chips}splash{}.',
+                        '#3#'
                     }
                 }
             },
@@ -1211,10 +1221,9 @@ return {
                 name = 'Warmogs Armor',
                 text = {
                     {
-                        '{C:money}$#2#{} at the end of the round,',
-                        'ending a shop with equal or higher money',
-                        'than when you entered, stacks by {C:money}$#3#{},',
-                        'elseway, resets to 0.#1#'
+                        'You can go up to {C:money}$#2#{} in debt.',
+                        'Ending a shop in debt in a row,',
+                        'increases minimum money by {C:money}$#1#{}.'
                     }
                 }
             },
@@ -1262,7 +1271,10 @@ return {
                 name = 'Yun Tal Wildarrows',
                 text = {
                     {
-                        'NOPE!'
+                        'Playing a {C:attention}#4#{} has a {C:green}#6#%{} chance',
+                        'of increasing {C:attention}hand size{} by {C:attention}#3#{}.',
+                        'Every {C:attention}#4#{} played increases',
+                        'chance by {C:green}#2#%{}.'
                     }
                 }
             },
@@ -1304,17 +1316,6 @@ return {
                         'are randomly distributed every time.',
                     },
                     {
-                        'Gain per point:',
-                        '- {C:chips}+#10#{} Chips.',
-                        '- {C:mult}+#12#{} Mult.',
-                        '- {X:chips,C:white}X#11#{} Chips.',
-                        '- {X:mult,C:white}X#13#{} Mult.',
-                        '- {C:money}$#14#{}.',
-                        '- {C:chips}+#15#{} hand/s.',
-                        '- {C:mult}+#16#{} discard/s.',
-                        '- {C:attention}+#17#{} hand size.'
-                    },
-                    {
                         'Currently has {C:attention}#1# points{}:',
                         '- {C:chips}+#2#{} Chips.',
                         '- {C:mult}+#4#{} Mult.',
@@ -1331,7 +1332,11 @@ return {
                 name = 'Black Hole Gauntlet',
                 text = {
                     {
-                        'NOPE!'
+                        'At the start of a',
+                        'blind draws {C:attention}#2#{} cards.',
+                        'Every card sold',
+                        'increases this by {C:attention}#1#{}.',
+                        '{C:inactive}Resets at the end of the ante.{}'
                     }
                 }
             },

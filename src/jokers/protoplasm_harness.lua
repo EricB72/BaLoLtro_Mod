@@ -36,34 +36,35 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.final_scoring_step and G.GAME.chips / G.GAME.blind.chips * 100 <= card.ability.extra.percent and G.GAME.current_round.hands_left == card.ability.extra.requiredHands and  G.GAME.current_round.discards_left <= card.ability.extra.requiredDiscards then
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    ease_discard(card.ability.extra.discards, nil, true)
-                    G.hand:change_size(card.ability.extra.handSize)
-                    return true
-                end
-            }))
-
-            card.ability.extra.triggered = card.ability.extra.triggered + 1
-
-            if not G.GAME.blind.disabled and G.GAME.blind.boss then
+        if (not context.end_of_round) then
+            if context.joker_main and G.GAME.chips / G.GAME.blind.chips * 100 <= card.ability.extra.percent and G.GAME.current_round.hands_left == card.ability.extra.requiredHands and G.GAME.current_round.discards_left <= card.ability.extra.requiredDiscards and not context.blueprint then
+                card.ability.extra.triggered = card.ability.extra.triggered + 1
+                
+                G.GAME.blind:disable()
+                                            
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        G.GAME.blind:disable()
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                                ease_discard(card.ability.extra.discards, nil, true)
+                                G.hand:change_size(card.ability.extra.handSize)
+                                delay(0.4)
+                                return {
+                                    true
+                                }
+                            end
+                        }))
                         return true
                     end
                 }))
+                return {
+                    dollars = card.ability.extra.dollars, 
+                    nil, true -- This is for Joker retrigger purposes
+                }
             end
-
-            return {
-                dollars = card.ability.extra.dollars,
-                nil,
-                true
-            }
         end
 
-        if context.end_of_round and context.main_eval and not context.game_over then
+        if context.setting_blind and not context.game_over then
             G.hand:change_size(-card.ability.extra.triggered * card.ability.extra.handSize)
             card.ability.extra.triggered = 0
         end

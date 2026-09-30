@@ -1,9 +1,9 @@
 SMODS.Joker {
     key = 'staff_of_flowing_water',
-    atlas = 'league_items',
+    atlas = 'uncommon_league_items',
     pos = {
         x = 0,
-        y = 18
+        y = 0
     },
     display_size = {
         w = 69,
@@ -11,18 +11,18 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
+            chips = 10,
+            luck = 0.3,
             HandNum = 0
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 2,
+    cost = 5,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
                 card.ability.extra.chips,
-                card.ability.extra.mult,
+                card.ability.extra.luck,
                 card.ability.extra.HandNum
             }
         }
@@ -30,7 +30,13 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.joker_main then
             return {
-                message = 'NOPE!'
+                chips = card.ability.extra.chips * G.GAME.current_round.hands_left,
+            }
+        end
+
+        if context.mod_probability and not context.blueprint then
+            return {
+                numerator = context.numerator * (1 + (card.ability.extra.luck * G.GAME.current_round.hands_played))
             }
         end
     end

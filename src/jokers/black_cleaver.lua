@@ -13,7 +13,6 @@ SMODS.Joker {
         extra = {
             percent = 5,
             maxPercent = 30,
-            mult = 20,
             currentPercent = 0,
             originalBlind = 0,
             prevMult = 0,
@@ -28,7 +27,6 @@ SMODS.Joker {
             vars = {
                 card.ability.extra.percent,
                 card.ability.extra.maxPercent,
-                card.ability.extra.mult,
                 card.ability.extra.currentPercent,
                 card.ability.extra.originalBlind,
                 card.ability.extra.prevMult,
@@ -42,31 +40,23 @@ SMODS.Joker {
             card.ability.extra.originalBlind = G.GAME.blind.chips
         end
 
-        if context.setting_blind or context.before then
+        if context.setting_blind or context.before and not context.blueprint then
             card.ability.extra.prevMult = SMODS.get_scoring_parameter('mult', flames)
         end
 
-        if context.individual and (context.cardarea == G.play or context.cardarea == G.hand or card.area == G.jokers) and card.ability.extra.prevMult ~= SMODS.get_scoring_parameter('mult', flames) and not context.end_of_round then
-            if card.ability.extra.currentPercent < card.ability.extra.maxPercent and G.GAME.blind.chips / card.ability.extra.originalBlind <= 100 - card.ability.extra.totalMaxPerc then
-                card.ability.extra.currDecrease = card.ability.extra.originalBlind - card.ability.extra.originalBlind * (100 - card.ability.extra.currentPercent) / 100
-                
-                card.ability.extra.prevMult = SMODS.get_scoring_parameter('mult', flames)
+        if (context.individual or context.joker_main) and card.ability.extra.prevMult ~= SMODS.get_scoring_parameter('mult', flames) and card.ability.extra.currentPercent < card.ability.extra.maxPercent and (G.GAME.blind.chips / card.ability.extra.originalBlind) * 100 > 100 - card.ability.extra.totalMaxPerc and not context.end_of_round then
+            card.ability.extra.currentPercent = card.ability.extra.currentPercent + card.ability.extra.percent
+            card.ability.extra.currDecrease = card.ability.extra.originalBlind - card.ability.extra.originalBlind * (100 - card.ability.extra.currentPercent) / 100
 
-                return {
-                    blindsize = -(card.ability.extra.originalBlind * card.ability.extra.percent / 100)
-                }
-            end
-        end
+            card.ability.extra.prevMult = SMODS.get_scoring_parameter('mult', flames)
 
-        if context.joker_main then
-            if card.ability.extra.currentPercent >= card.ability.extra.maxPercent then
-                return {
-                    mult = card.ability.extra.mult
-                }
-            end
+            return {
+                blindsize = -(card.ability.extra.originalBlind * card.ability.extra.percent / 100),
+                message_card = card
+            }
         end
         
-        if context.end_of_round then
+        if context.end_of_round and not context.blueprint then
             card.ability.extra.currentPercent = 0
             card.ability.extra.currDecrease = 0
         end
@@ -101,22 +91,15 @@ SMODS.Joker {
                 { text = ")" }
             },
             calc_function = function(card)
-                local count = 0
-                local text, _, scoring_hand = JokerDisplay.evaluate_hand()
-
-                if text ~= 'Unknown' then
-                    for _, scoring_card in pairs(scoring_hand) do
-                        
-                    end
-                end
-
                 card.joker_display_values.score = 0
                 card.joker_display_values.totalPercent = 0
                 card.joker_display_values.newScore = 0
                 
+                --Calculate Mult cards and Steel cards ig (difficult to calculate each Mult trigger)
+
                 if card.ability.extra.currentPercent >= card.ability.extra.maxPercent then
-                    card.joker_display_values.totalPercent = card.ability.extra.maxPercentage
-                    card.joker_display_values.score = '-'
+                    card.joker_display_values.totalPercent = card.ability.extra.currentPercent
+                    card.joker_display_values.score = card.ability.extra.currDecrease
                     card.joker_display_values.newScore = G.GAME.blind.chips
                 end
             end

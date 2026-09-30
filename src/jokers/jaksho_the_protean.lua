@@ -37,7 +37,7 @@ SMODS.Joker {
             }
         end
 
-        if G.GAME.blind.disabled and not card.ability.extra.disabled and not context.blueprint then
+        if G.GAME.blind.disabled and G.GAME.blind.boss and not card.ability.extra.disabled and not context.end_of_round and not context.blueprint then
             card.ability.extra.disabled = true
             card.ability.extra.xchips = card.ability.extra.xchips * card.ability.extra.multiplier
             card.ability.extra.xmult = card.ability.extra.xmult * card.ability.extra.multiplier

@@ -1,12 +1,12 @@
 SMODS.Joker {
     key = 'acs',
-    atlas = 'common_league_items',
+    atlas = 'league_items_good',
     pos = {
-        x = 1,
+        x = 2,
         y = 0
     },
     display_size = {
-        w = 69,
+        w = 68,
         h = 68
     },
     config = {
@@ -19,7 +19,9 @@ SMODS.Joker {
             enhCards = 0,
             mod_conv = {'m_lucky', 'm_mult', 'm_glass', 'm_bonus', 'm_wild', 'm_steel', 'm_gold', 'm_stone'},
             seraphs = 'j_tstmod_sebr',
-            cardsToEnh = 2
+            cardsToEnh = 2,
+            nextEnh = '-',
+            enhancement = {'-', '-'}
         }
     },
     rarity = 1,
@@ -40,12 +42,14 @@ SMODS.Joker {
                 card.ability.extra.mod_conv,
                 card.ability.extra.seraphs,
                 enh_Cards,
-                card.ability.extra.cardsToEnh
+                card.ability.extra.cardsToEnh,
+                card.ability.extra.nextEnh,
+                card.ability.extra.enhancement
         }
         }
     end,
     calculate = function(self, card, context)
-        if context.before then
+        if context.before and not context.blueprint then
             for i = 1, #context.scoring_hand do -- Checks for every scored card
                 if not context.scoring_hand[i].debuff then
                     card.ability.extra.triggers = card.ability.extra.triggers + 1
@@ -69,9 +73,11 @@ SMODS.Joker {
                         func = function()
                             local _card = G.hand.cards[i]
                             if not next(SMODS.get_enhancements(_card)) and cards_To_Enh > 0 and not _card.debuff then
-                                _card:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))])
+                                _card:set_ability(card.ability.extra.enhancement[card.ability.extra.cardsToEnh - cards_To_Enh])
+                                card.ability.extra.enhancement[card.ability.extra.cardsToEnh - cards_To_Enh] = card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))]
                                 _card:juice_up(0.3, 0.3)
                                 cards_To_Enh = cards_To_Enh - 1
+                                card.ability.extra.nextEnh = localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement[0] } .. ', ' .. localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement[1] }
                             end
                             return true
                         end
@@ -80,20 +86,10 @@ SMODS.Joker {
             end
         end
 
-        if (context.after or (G.GAME.blind and context.end_of_round and context.game_over == false and context.main_eval)) and not context.blueprint then
-            local cards_To_Enh = card.ability.extra.cardsToEnh
-
-            for i = 1, #G.hand.cards do
-                local _card = G.hand.cards[i]
-                if not next(SMODS.get_enhancements(_card)) and cards_To_Enh > 0 then
-                    cards_To_Enh = cards_To_Enh - 1
-                end
-            end
-
-            if cards_To_Enh ~= card.ability.extra.cardsToEnh then
+        if context.after and not context.blueprint then
+            if card.ability.extra.triggers >= card.ability.extra.numOfEnh then
                 card.ability.extra.enhCards = card.ability.extra.enhCards + 1
-                card.ability.extra.triggers = card.ability.extra.triggers - card.ability.extra.numOfEnh
-                if card.ability.extra.triggers < 0 then card.ability.extra.triggers = 0 end
+                card.ability.extra.triggers = 0
             end
         end
 
@@ -108,7 +104,7 @@ SMODS.Joker {
             }
         end
 
-        if context.end_of_round or context.hand_drawn then
+        if (context.end_of_round or context.hand_drawn) and not context.blueprint then
                if card.ability.extra.enhCards >= card.ability.extra.triggersToEv then
                 SMODS.add_card {
                     key = card.ability.extra.seraphs,
@@ -116,6 +112,11 @@ SMODS.Joker {
                 SMODS.destroy_cards(card, nil, nil, true)
             end
         end
+    end,
+    add_to_deck = function (self, card, context)
+        card.ability.extra.enhancement[0] = card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))]
+        card.ability.extra.enhancement[1] = card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))]
+        card.ability.extra.nextEnh = localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement[0] } .. ', ' .. localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement[1] }
     end,
     joker_display_def = function(JokerDisplay)
         ---@type JDJokerDefinition

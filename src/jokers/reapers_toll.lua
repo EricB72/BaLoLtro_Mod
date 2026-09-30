@@ -10,8 +10,8 @@ SMODS.Joker {
         y = 0
     },
     display_size = {
-        w = 79,
-        h = 78
+        w = 80,
+        h = 80
     },
     config = {
         extra = {
@@ -33,20 +33,21 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.first_hand_drawn then
-            G.GAME.chips = G.GAME.blind.chips * card.ability.extra.minPercent / 100
+            return
+            {
+                score = G.GAME.blind.chips * card.ability.extra.minPercent / 100
+            }
         end
 
-        if context.after then
-            local percent_score = G.GAME.chips * card.ability.extra.percent / 100
+        if context.joker_main and not context.blueprint then
+            local percent_score = G.GAME.blind.chips * card.ability.extra.percent / 100
 
-            G.GAME.chips = G.GAME.chips + percent_score
             card.ability.extra.minPercent = card.ability.extra.minPercent + 1
 
             if card.ability.extra.minPercent > card.ability.extra.maxPercent then card.ability.extra.minPercent = card.ability.extra.maxPercent end
 
             return {
-                message = tostring(percent_score) .. '%',
-                message_colour = G.C.White
+                score = percent_score
             }
         end
     end

@@ -11,7 +11,8 @@ SMODS.Joker {
     },
     config = {
         extra = {
-
+            xmult = 0,
+            xmultGain = 1
         }
     },
     rarity = 2,
@@ -20,18 +21,37 @@ SMODS.Joker {
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
         return {
             vars = {
-
+                card.ability.extra.xmult,
+                card.ability.extra.xmultGain
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.skip_blind and not context.blueprint then
-            G.shop = true
+        if context.skip_blind or context.type == 'new_blind_choice' then
+            local lock = card.ID
+            card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmultGain
+            G.CONTROLLER.locks[lock] = true
+            G.from_boss_tag = true
+            G.FUNCS.reroll_boss()
+
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            G.CONTROLLER.locks[lock] = nil
+                            return true
+                        end
+                    }))
+                    return true
+                end
+            }))
+
+            return true
         end
 
         if context.joker_main then
             return {
-                message = 'NOPE!'
+                xmult = card.ability.extra.xmult
             }
         end
     end

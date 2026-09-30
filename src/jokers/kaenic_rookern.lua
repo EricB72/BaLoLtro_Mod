@@ -11,7 +11,7 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            dollars = 2
+            dollars = 1
         }
     },
     rarity = 1,
@@ -24,7 +24,6 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        
     end,
     calc_dollar_bonus = function(self, card)
         local prevDollars = card.ability.extra.dollars * G.GAME.current_round.hands_left

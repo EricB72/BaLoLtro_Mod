@@ -48,7 +48,10 @@ SMODS.Joker {
 
             card.ability.extra.wildCards = {0, 0, 0, 0, 0}
 
-            local adj = card.ability.extra.hydras
+            local adj = #context.scoring_hand
+            if adj >= 5 then
+                adj = card.ability.extra.hydras
+            end
             local handCard = 0
 
             for i = 1, adj do
@@ -56,7 +59,7 @@ SMODS.Joker {
                     card.ability.extra.wildCards[i - handCard] = card.ability.extra.wildCards[i - handCard] + 1
                 end
 
-                if i >= #context.scoring_hand + handCard then
+                if i >= (#context.scoring_hand + handCard) then
                     handCard = handCard + #context.scoring_hand
                 end
             end
