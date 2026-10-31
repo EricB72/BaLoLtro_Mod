@@ -56,7 +56,7 @@ SMODS.Joker {
 
             if #enhanced > 0 then
                 card.ability.extra.xmult = card.ability.extra.xmult + perTotal
-                card.ability.extra.perEach = 0.01
+                card.ability.extra.perEach = 0.02
 
                 return {
                     message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.xmult } },

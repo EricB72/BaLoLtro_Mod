@@ -11,9 +11,7 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            percentage = 10
         }
     },
     rarity = 3,
@@ -21,16 +19,14 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.percentage
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
+        if context.debuffed_hand or (context.joker_main and G.GAME.blind.triggered) or (context.individual and context.other_card.debuff and context.cardarea == G.play) then
             return {
-                message = 'NOPE!'
+                score = (G.GAME.blind.chips - G.GAME.chips) * card.ability.extra.percentage / 100
             }
         end
     end

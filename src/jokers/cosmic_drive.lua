@@ -18,7 +18,8 @@ SMODS.Joker {
             currModule = 0,
             currentBlind = 0,
             prevModule = 0,
-            tags = {'tag_uncommon', 'tag_rare', 'tag_double', 'tag_negative', 'tag_foil', 'tag_holo', 'tag_polychrome', 'tag_investment', 'tag_voucher', 'tag_boss', 'tag_standard', 'tag_charm', 'tag_meteor', 'tag_buffoon', 'tag_handy', 'tag_garbage', 'tag_ethereal', 'tag_coupon', 'tag_juggle', 'tag_d_six', 'tag_top_up', 'tag_skip', 'tag_orbital', 'tag_economy'},
+            tags = 0,
+            nextTag = 'IDK'
         }
     },
     rarity = 1,
@@ -32,7 +33,8 @@ SMODS.Joker {
                 card.ability.extra.originalBlind,
                 card.ability.extra.tags,
                 card.ability.extra.currModule,
-                card.ability.extra.prevModule
+                card.ability.extra.prevModule,
+                card.ability.extra.nextTag
             }
         }
     end,
@@ -42,7 +44,7 @@ SMODS.Joker {
         end
 
     
-        if context.after then
+        if context.after and not context.blueprint then
             card.ability.extra.currentPercent = tonumber(tostring((1 - (G.GAME.blind.chips / card.ability.extra.originalBlind)) * 100))
         end
 
@@ -50,18 +52,23 @@ SMODS.Joker {
             card.ability.extra.currModule = (card.ability.extra.currentPercent - card.ability.extra.currentPercent % card.ability.extra.percent) / 10
 
             for i = 1, card.ability.extra.currModule do
-                add_tag({ key = card.ability.extra.tags[math.floor(math.random(1, #card.ability.extra.tags))] })
+                add_tag(card.ability.extra.tags)
+
+                card.ability.extra.tags = get_next_tag_key()
+                card.ability.extra.nextTag = localize { type = 'name_text', set = 'Tag', key = card.ability.extra.tags }
+
+                card.ability.extra.tags = Tag(card.ability.extra.tags)
             end
 
             card.ability.extra.currentPercent = 0
             card.ability.extra.currModule = 0
         end
+    end,
+    add_to_deck = function (self, card, context)
+        card.ability.extra.tags = get_next_tag_key()
+        card.ability.extra.nextTag = localize { type = 'name_text', set = 'Tag', key = card.ability.extra.tags }
 
-        if context.joker_main then
-            return {
-                chips = card.ability.extra.chips
-            }
-        end
+        card.ability.extra.tags = Tag(card.ability.extra.tags)
     end,
     joker_display_def = function(JokerDisplay)
         ---@type JDJokerDefinition

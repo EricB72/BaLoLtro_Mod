@@ -59,11 +59,13 @@ SMODS.Joker {
                     end
                 end
 
-                if card.ability.extra.percentage < card.ability.extra.maxPercentage and new then
+                if card.ability.extra.percentage < card.ability.extra.maxPercentage and (G.GAME.blind.chips / card.ability.extra.originalBlind) * 100 > 100 - card.ability.extra.totalMaxPerc and new then
                     card.ability.extra.lastNum = card.ability.extra.originalBlind - (card.ability.extra.originalBlind * (100 - card.ability.extra.percentage) / 100)
                     
                     card.ability.extra.prevCards[card.ability.extra.amount] = context.other_card.base.id
                     card.ability.extra.amount = card.ability.extra.amount + 1
+
+                    card.ability.extra.percentage = card.ability.extra.percentage + card.ability.extra.scalar
 
                     return {
                         blindsize = -(card.ability.extra.originalBlind * card.ability.extra.scalar / 100)
@@ -72,9 +74,9 @@ SMODS.Joker {
             end
         end
         
-        if context.end_of_round then
+        if context.end_of_round and context.main_eval and not context.blueprint then
             card.ability.extra.prevCards = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            card.ability.extra.amount = 1  
+            card.ability.extra.amount = 1
             card.ability.extra.percentage = 0
             card.ability.extra.lastNum = 0
         end

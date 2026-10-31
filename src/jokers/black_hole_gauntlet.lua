@@ -35,15 +35,20 @@ SMODS.Joker {
             card.ability.extra.dragNum = card.ability.extra.dragNum + card.ability.extra.dragAugment
         end
 
-        if context.setting_blind then
-            G.hand:change_size(card.ability.extra.dragNum)
-        end
-
-        if context.first_hand_drawn and card.ability.extra.dragNum > 0 then
-            G.hand:change_size(-card.ability.extra.dragNum)
-            return {
-                message = 'DRAGGED'
-            }
+        if context.first_hand_drawn and #G.deck.cards ~= 0 and card.ability.extra.dragNum > 0 then
+            G.GAME.effarcire_buffer = true
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    SMODS.draw_cards(card.ability.extra.dragNum)
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            G.GAME.effarcire_buffer = nil
+                            return true
+                        end,
+                    }))
+                    return true
+                end,
+            }))
         end
 
         if context.end_of_round and G.GAME.blind.boss and not context.blueprint then

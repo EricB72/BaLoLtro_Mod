@@ -20,8 +20,9 @@ SMODS.Joker {
             critDMG = 175,
             currentDMG = 175,
             totalCrit = 25,
-            mod_conv = {'m_lucky', 'm_mult', 'm_glass', 'm_bonus', 'm_wild', 'm_steel', 'm_gold', 'm_stone'},
+            nextEnh = 'IDK',
             critLeader = true,
+            enhancement = 0,
 
             -- Other items
             lord_dominiks = 0
@@ -46,8 +47,9 @@ SMODS.Joker {
                 numerator,
                 denominator,
                 card.ability.extra.totalCrit,
-                card.ability.extra.mod_conv,
+                card.ability.extra.nextEnh,
                 card.ability.extra.critLeader,
+                card.ability.extra.enhancement,
 
                 -- Other items
                 card.ability.extra.lord_dominiks
@@ -73,13 +75,16 @@ SMODS.Joker {
         if context.before and card.ability.extra.prevHand ~= card.ability.extra.highCard and context.scoring_name == card.ability.extra.highCard and not context.blueprint then
             for i = 1, #context.scoring_hand do
                 if not context.scoring_hand[i].debuff and not next(SMODS.get_enhancements(context.scoring_hand[i])) then
-                    context.scoring_hand[i]:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))], nil, false)
                     G.E_MANAGER:add_event(Event({
                         func = function()
-                            context.scoring_hand[i]:juice_up()
-                            return {
-                                true
-                            }
+                            local _card = context.scoring_hand[i]
+
+                            _card:set_ability(card.ability.extra.enhancement)
+                            _card:juice_up(0.3, 0.3)
+
+                            card.ability.extra.enhancement = SMODS.poll_enhancement { guaranteed = true, key = "j_tstmod_essence_reaver" }
+                            card.ability.extra.nextEnh = localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement } 
+                            return true
                         end
                     }))
                 end
@@ -106,6 +111,8 @@ SMODS.Joker {
         end
     end,
     add_to_deck = function (self, card, context)
+        card.ability.extra.enhancement = SMODS.poll_enhancement { guaranteed = true, key = "j_tstmod_essence_reaver" }
+        card.ability.extra.nextEnh = localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement } 
 
         for i = 1, #G.jokers.cards do
             if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.critChance then

@@ -99,19 +99,15 @@ SMODS.Joker {
                             }))
                         end
                     end
+                    
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            copy_card(G.hand.cards[i], G.hand.cards[i])
+                            G.hand.cards[i]:juice_up(0.3, 0.3)
 
-                    for k = 1, card.ability.extra.hydraMinus do
-                        if i + k <= #G.hand.cards then
-                            G.E_MANAGER:add_event(Event({
-                                func = function()
-                                    copy_card(G.hand.cards[i], G.hand.cards[i + k])
-                                    G.hand.cards[i + k]:juice_up(0.3, 0.3)
-
-                                    return true
-                                end
-                            }))
+                            return true
                         end
-                    end
+                    }))
                 end
             end
         end

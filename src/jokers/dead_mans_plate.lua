@@ -13,8 +13,8 @@ SMODS.Joker {
         extra = {
             freeRerolls = 1,
             mult = 0,
-            multGain = 5,
-            skipGain = 20,
+            multGain = 2.5,
+            skipGain = 25,
             reset = 0
         }
     },

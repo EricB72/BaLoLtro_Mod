@@ -11,9 +11,9 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            originalBlind = 0,
+            currentPercent = 0,
+            reqPercent = 30
         }
     },
     rarity = 3,
@@ -21,17 +21,39 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.originalBlind,
+                card.ability.extra.currentPercent,
+                card.ability.extra.reqPercent
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            return {
-                message = 'NOPE!'
-            }
+        if context.setting_blind then
+            card.ability.extra.originalBlind = G.GAME.blind.chips
+            card.ability.extra.currentPercent = 0
+        end
+
+    
+        if (context.before or context.hand_drawn or context.after) and not context.blueprint then
+            card.ability.extra.currentPercent = tonumber(tostring((1 - (G.GAME.blind.chips / card.ability.extra.originalBlind)) * 100))
+        end
+
+        if (context.before or context.hand_drawn) and card.ability.extra.currentPercent >= card.ability.extra.reqPercent and G.GAME.blind.boss and not G.GAME.blind.disabled then
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            G.GAME.blind:disable()
+                            play_sound('timpani')
+                            delay(0.4)
+                            return true
+                        end
+                    }))
+                    SMODS.calculate_effect({ message = localize('ph_boss_disabled') }, card)
+                    return true
+                end
+            }))
+            return nil, true -- This is for Joker retrigger purposes
         end
     end
 }

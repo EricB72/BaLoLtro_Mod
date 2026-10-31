@@ -11,27 +11,31 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            mult = 5,
+            xmult = 2
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 2,
+    cost = 5,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
                 card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.xmult
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            return {
-                message = 'NOPE!'
-            }
+        if context.other_joker then
+            if context.other_joker:is_rarity("Uncommon") then
+                return {
+                    mult = card.ability.extra.mult
+                }
+            elseif context.other_joker:is_rarity("Rare") then 
+                return {
+                    xmult = card.ability.extra.xmult
+                }
+            end
         end
     end
 }

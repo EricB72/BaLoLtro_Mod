@@ -11,9 +11,7 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            hands = -2,
-            mod_conv = {'m_lucky', 'm_mult', 'm_glass', 'm_bonus', 'm_wild', 'm_steel', 'm_gold', 'm_stone'},
-            mod_seals = {'Purple', 'Blue', 'Red', 'Gold'}
+            hands = -2
         }
     },
     rarity = 2,
@@ -22,8 +20,6 @@ SMODS.Joker {
         return {
             vars = {
                 card.ability.extra.hands,
-                card.ability.extra.mod_conv,
-                card.ability.extra.mod_seals
         }
         }
     end,
@@ -58,7 +54,8 @@ SMODS.Joker {
                         if not G.hand.cards[i].debuff then
                             local _card = G.hand.cards[i]
                             if not next(SMODS.get_enhancements(_card)) then
-                                _card:set_ability(card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))])           
+                                local enhancement = SMODS.poll_enhancement { guaranteed = true, key = "j_tstmod_act" }
+                                _card:set_ability(enhancement)
                             end
                         end
                         return true
@@ -70,7 +67,9 @@ SMODS.Joker {
                     func = function()
                         if not G.hand.highlighted[i].debuff then
                             local _card = G.hand.highlighted[i]
-                            _card:set_seal(card.ability.extra.mod_seals[math.floor(math.random(1, #card.ability.extra.mod_seals))], nil, true)
+                            local _seal = SMODS.poll_seal({ mod = 100 })
+
+                            _card:set_seal(_seal, nil, true)
                         end
                         return true
                     end

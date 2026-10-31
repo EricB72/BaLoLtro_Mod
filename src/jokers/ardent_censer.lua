@@ -13,7 +13,6 @@ SMODS.Joker {
         extra = {
             prevHands = 4,
             prevDisc = 4,
-            tags = {'tag_uncommon', 'tag_rare', 'tag_double', 'tag_negative', 'tag_foil', 'tag_holo', 'tag_polychrome', 'tag_investment', 'tag_voucher', 'tag_boss', 'tag_standard', 'tag_charm', 'tag_meteor', 'tag_buffoon', 'tag_handy', 'tag_garbage', 'tag_ethereal', 'tag_coupon', 'tag_juggle', 'tag_d_six', 'tag_top_up', 'tag_skip', 'tag_orbital', 'tag_economy'},
             rndTag = 0,
             activations = 0,
             tagsGiven = 1,
@@ -28,7 +27,6 @@ SMODS.Joker {
             vars = {
                 card.ability.extra.prevHands,
                 card.ability.extra.prevDisc,
-                card.ability.extra.tags,
                 card.ability.extra.rndTag,
                 card.ability.extra.activations,
                 card.ability.extra.tagsGiven,
@@ -63,9 +61,12 @@ SMODS.Joker {
 
         if (context.hand_drawn or context.end_of_round) and not context.blueprint then
             for i = 1, card.ability.extra.activations, 1 do
-                add_tag({ key = card.ability.extra.rndTag })
-                card.ability.extra.rndTag = card.ability.extra.tags[math.floor(math.random(1, #card.ability.extra.tags))]
+                add_tag(card.ability.extra.rndTag)
+
+                card.ability.extra.rndTag = get_next_tag_key()
                 card.ability.extra.nextTag = localize { type = 'name_text', set = 'Tag', key = card.ability.extra.rndTag }
+
+                card.ability.extra.rndTag = Tag(card.ability.extra.rndTag)
             end
 
             card.ability.extra.activations = 0
@@ -76,9 +77,12 @@ SMODS.Joker {
         end
     end,
     add_to_deck = function (self, card, context)
-            card.ability.extra.rndTag = card.ability.extra.tags[math.floor(math.random(1, #card.ability.extra.tags))]
-            add_tag({ key = card.ability.extra.rndTag })
-            card.ability.extra.rndTag = card.ability.extra.tags[math.floor(math.random(1, #card.ability.extra.tags))]
+			card.ability.extra.rndTag = Tag(get_next_tag_key())
+            add_tag(card.ability.extra.rndTag)
+
+            card.ability.extra.rndTag = get_next_tag_key()
             card.ability.extra.nextTag = localize { type = 'name_text', set = 'Tag', key = card.ability.extra.rndTag }
+
+            card.ability.extra.rndTag = Tag(card.ability.extra.rndTag)
     end
 }

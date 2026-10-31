@@ -17,7 +17,6 @@ SMODS.Joker {
             numOfCardEnh = 1,
             triggers = 0,
             enhCards = 0,
-            mod_conv = {'m_lucky', 'm_mult', 'm_glass', 'm_bonus', 'm_wild', 'm_steel', 'm_gold', 'm_stone'},
             seraphs = 'j_tstmod_sebr',
             cardsToEnh = 2,
             nextEnh = '-',
@@ -39,7 +38,6 @@ SMODS.Joker {
                 card.ability.extra.numOfCardEnh,
                 card.ability.extra.triggers,
                 card.ability.extra.enhCards,
-                card.ability.extra.mod_conv,
                 card.ability.extra.seraphs,
                 enh_Cards,
                 card.ability.extra.cardsToEnh,
@@ -73,8 +71,10 @@ SMODS.Joker {
                         func = function()
                             local _card = G.hand.cards[i]
                             if not next(SMODS.get_enhancements(_card)) and cards_To_Enh > 0 and not _card.debuff then
+                                local enhancement = SMODS.poll_enhancement { guaranteed = true, key = "j_tstmod_acs" }
+
                                 _card:set_ability(card.ability.extra.enhancement[card.ability.extra.cardsToEnh - cards_To_Enh])
-                                card.ability.extra.enhancement[card.ability.extra.cardsToEnh - cards_To_Enh] = card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))]
+                                card.ability.extra.enhancement[card.ability.extra.cardsToEnh - cards_To_Enh] = enhancement
                                 _card:juice_up(0.3, 0.3)
                                 cards_To_Enh = cards_To_Enh - 1
                                 card.ability.extra.nextEnh = localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement[0] } .. ', ' .. localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement[1] }
@@ -114,8 +114,12 @@ SMODS.Joker {
         end
     end,
     add_to_deck = function (self, card, context)
-        card.ability.extra.enhancement[0] = card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))]
-        card.ability.extra.enhancement[1] = card.ability.extra.mod_conv[math.floor(math.random(1, #card.ability.extra.mod_conv))]
+        local enhancement = SMODS.poll_enhancement { guaranteed = true, key = "j_tstmod_acs" }
+        card.ability.extra.enhancement[0] = enhancement
+
+        enhancement = SMODS.poll_enhancement { guaranteed = true, key = "j_tstmod_acs" }
+        card.ability.extra.enhancement[1] = enhancement
+        
         card.ability.extra.nextEnh = localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement[0] } .. ', ' .. localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement[1] }
     end,
     joker_display_def = function(JokerDisplay)

@@ -11,28 +11,43 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            cardAmount = 0,
+            handsReset = 0
         }
     },
     rarity = 3,
-    cost = 6,
+    cost = 7,
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.cardAmount,
+                card.ability.extra.handsReset
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            return {
-                message = 'NOPE!'
-            }
+        if context.after and not context.blueprint then
+            card.ability.extra.cardAmount = #context.scoring_hand
         end
-    end
+
+        if context.setting_blind and card.ability.extra.cardAmount > 0 then
+            if G.GAME.round_resets.hands ~= 0 then card.ability.extra.handsReset = G.GAME.round_resets.hands end
+            G.GAME.round_resets.hands = 0
+            G.GAME.current_round.hands_left = 0
+            
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    ease_hands_played(card.ability.extra.cardAmount)
+                    SMODS.calculate_effect(
+                        { message = localize { type = 'variable', key = 'a_hands', vars = { card.ability.extra.hands } } },
+                        context.blueprint_card or card)
+                    return true
+                end
+            }))
+            return nil, true -- This is for Joker retrigger purposes
+        end
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.handsReset
+    end,
 }

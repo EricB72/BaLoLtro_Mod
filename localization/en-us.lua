@@ -119,9 +119,9 @@ return {
                     },
                     {
                         'Every {C:attention}#2#{} cards scored, enhances',
-                        'the {C:attention}#10#{} left-most cards in hand.',
+                        'the {C:attention}#9#{} left-most cards in hand.',
                         '{C:inactive}(Cards scored: #5#)',
-                        '{C:inactive}(Next enh.: #11#)'
+                        '{C:inactive}(Next enh.: #10#)'
                     },
                     {
                         'Transforms into {C:chips}Seraph\'s Embrace{}',
@@ -146,7 +146,7 @@ return {
                     {
                         'Gain a random tag. Additionally gaining a',
                         '{C:chips}Hand{} or a {C:mult}Discard{} grants a random tag.',
-                        '{C:inactive}(Next tag: #7#){}'
+                        '{C:inactive}(Next tag: #6#){}'
                     }
                 }
             },
@@ -182,7 +182,8 @@ return {
                         'Spellblade: Grants {C:mult}+#1#{} Mult equal',
                         'to {C:mult}Critical Chance.',
                         'Enhances card played.',
-                        '{C:inactive}(Last Hand: #3#)'
+                        '{C:inactive}(Last Hand: #3#)',
+                        '{C:inactive}(Next enh.: #12#)'
                     }
                 }
             },
@@ -211,7 +212,8 @@ return {
                         'Debuffing a {C:attention}Boss Blind{}',
                         'grants {C:attention}#1#{} random tags and',
                         'gives {C:attention}#2#{} permanent hand size.',
-                        '{C:inactive}(Hand Size: #3#)'
+                        '{C:inactive}(Hand Size: #3#)',
+                        '{C:inactive}(Next tag: #6#){}'
                     }
                 }
             },
@@ -534,7 +536,8 @@ return {
                 name = 'Guinsoo\'s Rageblade',
                 text = {
                     {
-                        'NOPE!'
+                        'After playing the same hand type {C:attention}4{} times',
+                        'in a row levels it up every time its played.'
                     }
                 }
             },
@@ -767,9 +770,9 @@ return {
                     },
                     {
                         'Every {C:attention}#2#{} cards scored, enhances',
-                        'the {C:attention}#10#{} left-most cards scored.',
+                        'the {C:attention}#9#{} left-most cards scored.',
                         '{C:inactive}(Cards scored: #5#)',
-                        '{C:inactive}(Next enh.: #11#)'
+                        '{C:inactive}(Next enh.: #10#)'
                     },
                     {
                         'Transforms into {C:mult}Muramana{}',
@@ -855,7 +858,10 @@ return {
                 name = 'Mortal Reminder',
                 text = {
                     {
-                        'NOPE!'
+                        "Steal {C:money}$#1#{} of {C:attention}sell value",
+                        "to every {C:attention}Joker{} and",
+                        "{C:attention}Consumable{} card at",
+                        "end of round",
                     }
                 }
             },
@@ -872,7 +878,9 @@ return {
                 name = 'Navori Flickerblade',
                 text = {
                     {
-                        'NOPE!'
+                        "When {C:attention}Blind{} is selected,",
+                        "set Hands to the last",
+                        "amount of cards scored",
                     }
                 }
             },
@@ -895,7 +903,9 @@ return {
                 name = 'Phantom Dancer',
                 text = {
                     {
-                        'NOPE!'
+                        "After exiting a shop there is a",
+                        "{C:green}#1# in #2#{} chance of obtaining a random tag.",
+                        "{C:attention}Skipping decreases chances by #5#{}."
                     }
                 }
             },
@@ -1013,7 +1023,7 @@ return {
                 name = 'Rylai\'s Crystal Scepter',
                 text = {
                     {
-                        'Gives {X:mult,C:white}#1#{} mult per hand played.'
+                        'Gives {X:mult,C:white}X#1#{} mult per hand played.'
                     }
                 }
             },
@@ -1021,7 +1031,8 @@ return {
                 name = 'Serpent\'s Fang',
                 text = {
                     {
-                        'NOPE!'
+                        'If total blind score is decreased to',
+                        '{C:purple}#3#%{}, disables boss blind.'
                     }
                 }
             },
@@ -1037,7 +1048,8 @@ return {
                 name = 'Shurelya\'s Battlesong',
                 text = {
                     {
-                        'NOPE!'
+                        "{C:attention}+#1#{} hand size per Joker owned,",
+                        "reduces by {C:red}#2#{} every round.",
                     }
                 }
             },
@@ -1128,7 +1140,9 @@ return {
                 name = 'Sunfire Aegis',
                 text = {
                     {
-                        'NOPE!'
+                        "Gives {C:white, X:purple}#1#%{} of required score",
+                        "if played hand triggers the",
+                        "{C:attention}Boss Blind{} ability",
                     }
                 }
             },
@@ -1202,7 +1216,8 @@ return {
                 name = 'Void Staff',
                 text = {
                     {
-                        'NOPE!'
+                        'Gives {X:chips,C:white} X#1# {}, scaling',
+                        'with score done up to {X:purple,C:white} 500% {}.'
                     }
                 }
             },
@@ -1260,7 +1275,10 @@ return {
                 name = 'Wit\'s End',
                 text = {
                     {
-                        'NOPE!'
+                        "{C:green}Uncommon{} Jokers",
+                        "each give {C:mult}#1#{} Mult.",
+                        "{C:mult}Rare{} Jokers",
+                        "each give {X:mult,C:white} X#2# {} Mult.",
                     }
                 }
             },
