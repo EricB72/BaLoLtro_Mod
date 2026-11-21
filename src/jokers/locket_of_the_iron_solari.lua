@@ -11,13 +11,13 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            spellShield = "foil"
+            spellShield = "e_tstmod_spell_shield"
         }
     },
     rarity = 1,
     cost = 2,
     loc_vars = function(self, info_queue, card)
-        --info_queue[#info_queue + 1] = G.P_CENTERS.e_tstmod_spell_shield
+        info_queue[#info_queue + 1] = G.P_CENTERS.e_tstmod_spell_shield
         return {
             vars = {
                 card.ability.extra.spellShield
@@ -25,12 +25,32 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.selling_self then
-            for i = 1, #G.jokers.cards do
-                if not G.jokers.cards[i].edition and not G.jokers.cards[i].temp_edition then
-                    G.jokers.cards[i]:set_edition({ e_tstmod_spell_shield = true }, true)
+        if context.selling_self and not context.blueprint then
+            for _, joker in ipairs(G.jokers.cards) do
+                if joker ~= card and not joker.edition then
+                    G.E_MANAGER:add_event(Event({
+                        trigger = 'after',
+                        delay = 0.3,
+                        func = function()
+                            joker:set_edition('e_tstmod_spell_shield', true)
+                            joker:juice_up(0.5, 0.5)
+                            return true
+                        end
+                    }))
                 end
             end
         end
-    end
+    end,
+    set_ability = function(self, card, initial, delay_sprites)
+        if initial and not card.edition then
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    if not card.edition then
+                        card:set_edition('e_tstmod_spell_shield', true, true)
+                    end
+                    return true
+                end
+            }))
+        end
+    end,
 }

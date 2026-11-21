@@ -32,7 +32,7 @@ SMODS.Joker {
             card.ability.extra.currentScore = (G.GAME.chips / G.GAME.blind.chips) * 100
 
             return {
-                xchips = card.ability.extra.xchips + (card.ability.extra.currentScore * card.ability.extra.maxPercentage - 1)
+                xchips = card.ability.extra.xchips + (card.ability.extra.currentScore * card.ability.extra.maxPercentage)
             }
         end
     end

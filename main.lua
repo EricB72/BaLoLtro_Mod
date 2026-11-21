@@ -48,6 +48,13 @@ SMODS.Atlas {
     py = 95,
 }
 
+SMODS.Atlas {
+    key = 'card_arts',
+    path = 'card_arts.png',
+    px = 71,
+    py = 95,
+}
+
 --File Loading
 local jokers_src = SMODS.NFS.getDirectoryItems(SMODS.current_mod.path .. "src/jokers")
 
@@ -61,11 +68,11 @@ for _, file in ipairs(enhancements_src) do
     assert(SMODS.load_file("src/enhancements/" .. file))()
 end
 
---[[local editions_src = SMODS.NFS.getDirectoryItems(SMODS.current_mod.path .. "src/editions")
+local editions_src = SMODS.NFS.getDirectoryItems(SMODS.current_mod.path .. "src/editions")
 
 for _, file in ipairs(editions_src) do
     assert(SMODS.load_file("src/editions/" .. file))()
-end]]
+end
 
 -- Colours
 local trueDMG = SMODS.Gradient({

@@ -1,8 +1,8 @@
 SMODS.Enhancement {
     key = 'energized',
-    atlas = 'other_league',
+    atlas = 'card_arts',
     object_type = "Enhancement",
-    pos = { x = 2, y = 0 },
+    pos = { x = 3, y = 2 },
     config = { 
         chips = 0,
         mult = 2,

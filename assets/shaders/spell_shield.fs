@@ -19,7 +19,7 @@ extern MY_HIGHP_OR_MEDIUMP float screen_scale;
 vec4 dissolve_mask(vec4 tex, vec2 texture_coords, vec2 uv)
 {
     if (dissolve < 0.001) {
-        return vec4(shadow ? vec3(0.,0.,0.) : tex.xyz, shadow ? tex.a*0.3: tex.a);
+        return vec4(shadow ? vec3(0.,0., 0.) : tex.xyz, shadow ? tex.a*0.3: tex.a);
     }
 
     float adjusted_dissolve = (dissolve*dissolve*(3.-2.*dissolve))*1.02 - 0.01; //Adjusting 0.0-1.0 to fall to -0.1 - 1.1 scale so the mask does not pause at extreme values
@@ -219,73 +219,34 @@ float pNoise(vec2 p, int res){
 vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords )
 {
     vec4 tex = Texel(texture, texture_coords);
-	vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
+    vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
 
-	// Dummy, doesn't do anything but at least it makes the shader useable
-    if (uv.x > uv.x * 2.){
-        uv = spell_shield;
-    }
+    vec3 morado  = vec3(0.25, 0.20, 0.90);
+    vec3 lila = vec3(0.85, 0.65, 1.00);
 
-    float mod = spell_shield.r * 1.0;
+    // --- 1. Bordes más morados ---
+    vec2  d     = min(uv, 1.0 - uv);                 // distancia a cada borde (0 = borde)
+    float borde = min(d.x, d.y);
+    float halo  = 1.0 - smoothstep(0.0, 0.16, borde); // 1 en el borde, 0 hacia el centro
+    float pulso = 0.5 + 0.5 * sin(time * 2.0 + spell_shield.y);
+    float fuerza_borde = halo * (0.55 + 0.25 * pulso);
 
-	number low = min(tex.r, min(tex.g, tex.b));
-    number high = max(tex.r, max(tex.g, tex.b));
-	number delta = high - low;
+    // Tinte suave general + borde intenso
+    tex.rgb = mix(tex.rgb, morado, 0.12);
+    tex.rgb = mix(tex.rgb, morado, fuerza_borde);
 
-	//vec4 hsl = HSL(vec4(tex.r, tex.g, tex.b, tex.a));
+    // --- 2. Reflejo de luz que se mueve al inclinar la carta ---
+    float diagonal = uv.x + uv.y * 0.1;
+    float banda    = sin((diagonal - spell_shield.x * 8.0) * 7.0);
+    float brillo   = pow(max(banda, 0.0), 10.0);      // franja fina y brillante
+    float brillo2  = pow(max(sin((diagonal + spell_shield.x * 5.0) * 13.0), 0.0), 18.0) * 0.5;
 
-	float t = spell_shield.y*2.221 + time;
-	vec2 floored_uv = (floor((uv*texture_details.ba)))/texture_details.ba;
-    vec2 uv_scaled_centered = (floored_uv - 0.5) * 50.;
+    tex.rgb += lila * (brillo * 0 + brillo2 * 0.4) * tex.a;
 
-	vec2 field_part1 = uv_scaled_centered + 50.*vec2(sin(-t / 143.6340), cos(-t / 99.4324));
-	vec2 field_part2 = uv_scaled_centered + 50.*vec2(cos( t / 53.1532),  cos( t / 61.4532));
-	vec2 field_part3 = uv_scaled_centered + 50.*vec2(sin(-t / 87.53218), sin(-t / 49.0000));
+    // Un poco más de brillo en el borde para el efecto "reluciente"
+    tex.rgb += lila * halo * 0.15 * tex.a;
 
-    float field = (1.+ (
-        cos(length(field_part1) / 19.483) + sin(length(field_part2) / 33.155) * cos(field_part2.y / 15.73) +
-        cos(length(field_part3) / 27.193) * sin(field_part3.x / 21.92) ))/2.;
-
-
-    vec4 pixel = Texel(texture, texture_coords);
-
-    float cx = uv_scaled_centered.x * 1.;
-    float cy = uv_scaled_centered.y * 1.;
-
-
-
-    vec4 hsl = HSL(vec4(tex.r, tex.g, tex.b, tex.a));
-
-
-    // |y| = 50, |x| = 50
-
-    tex.rgb = RGB(hsl).rgb;
-
-    vec2 mouse_offset = (screen_coords.xy - mouse_screen_pos.xy)/screen_scale;
-
-    float scaled_uvy = (uv.y +mouse_offset.y -0.5)*5.*1.338;
-    float scaled_uvx = (uv.x +mouse_offset.x -0.5)*5.;
-    float norm_uv = sqrt(scaled_uvx*scaled_uvx + scaled_uvy*scaled_uvy);
-
-    pixel = vec4(pixel.rgb * 0.0 + tex.rgb * tex.a, pixel.a);
-
-    float res = (.5 + .5* cos( (spell_shield.x) * 2.612 + ( field + -.5 ) *3.14));
-    vec4 textp = RGB(hsl);
-    tex.rgb = textp.rgb;
-
-	float stars = ((pNoise(uv*10. + t/15.0, 10)*pNoise(uv*10. + t/15.0, 10)+1.5)/1.+0.15 + ((pNoise(uv*12. + t/15.0, 10)+1.2)/1.+0.3))/2.2+0.05 + 0.007*norm_uv * 1.1;
-
-	float clusters = (pNoise(uv*10.0-t/15.0, 10)+1.5)/1.5-0.25 + 0.007*norm_uv;
-
-	float super_clusters = (pNoise(uv/15.0, 10)+0.1)/2.+0.3 - 0.008*norm_uv;
-
-    clusters *= clusters * clusters * clusters * 0.4;
-    stars *= stars * stars;
-    super_clusters *= super_clusters * super_clusters;
-
-	colour.rgb = vec3(0.6, 0.45, 1.) * (((clusters + stars + super_clusters)+0.1)) * 0.285;
-
-	return dissolve_mask(tex*colour, texture_coords, uv);
+    return dissolve_mask(tex * colour, texture_coords, uv);
 }
 
 #ifdef VERTEX

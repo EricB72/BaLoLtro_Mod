@@ -1150,7 +1150,9 @@ return {
                 name = 'Sword of Blossoming Dawn',
                 text = {
                     {
-                        'NOPE!'
+                        'Every {C:money}$#1#{} spend, gives',
+                        '{C:attention}#2#{} hand size.',
+                        '{C:inactive}(Currently: {C:money}$#3#{}{C:inactive})'
                     }
                 }
             },

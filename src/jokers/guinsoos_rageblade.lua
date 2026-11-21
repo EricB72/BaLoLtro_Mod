@@ -11,7 +11,7 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            stacks = 0,
+            stacks = 1,
             prevHand = nil,
             reqStacks = 4
         }
@@ -28,28 +28,23 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.before and card.ability.extra.prevHand == nil and not context.blueprint then
-            card.ability.extra.prevHand = context.scoring_name
-        end
-
-        if context.before and card.ability.extra.prevHand ~= nil and card.ability.extra.prevHand == context.scoring_name and not context.blueprint then
+        if context.before and card.ability.extra.prevHand == context.scoring_name and not context.blueprint then
             card.ability.extra.stacks = card.ability.extra.stacks + 1
-            card.ability.extra.prevHand = context.scoring_name
-        elseif card.ability.extra.prevHand ~= nil and card.ability.extra.prevHand ~= context.scoring_name and not context.blueprint then
-            card.ability.extra.stacks = 0
-            card.ability.extra.prevHand = context.scoring_name
-        end
 
-        if context.before and card.ability.extra.stacks >= card.ability.extra.reqStacks then
-            local text, _ = context.scoring_name
-            return {
-                level_up = true,
-                level_up_hand = text
-            }
+            if card.ability.extra.stacks >= card.ability.extra.reqStacks then
+                local text, _ = context.scoring_name
+                return {
+                    level_up = true,
+                    level_up_hand = text
+                }
+            end
+        elseif context.before and card.ability.extra.prevHand ~= context.scoring_name and not context.blueprint then
+            card.ability.extra.stacks = 1
+            card.ability.extra.prevHand = context.scoring_name
         end
 
         if context.end_of_round and context.main_eval and not context.blueprint then
-            card.ability.extra.stacks = 0
+            card.ability.extra.stacks = 1
             card.ability.extra.prevHand = nil
         end
     end
