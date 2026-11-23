@@ -11,106 +11,31 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            critChance = 20,
-            maxCritChance = 30,
+            crit_chance = 20,
+            maxCritChance = 50,
             moneyNeeded = 1,
-            currentCrit = 20,
-            critDMG = 175,
             moneyThreshold = 25,
-            currentDMG = 175,
-            totalCrit = 20,
-            critLeader = true,
-
-            -- Other items
-            lord_dominiks = 0
         }
     },
     rarity = 1,
     cost = 4,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
-        local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.totalCrit, 100, 'j_tstmod_atmas_reckoning')
+        local num, den = SMODS.get_probability_vars(
+            card, card.ability.extra.crit_chance, 100, 'tstmod_crit')
         return {
             vars = {
-                card.ability.extra.critDMG,
-                card.ability.extra.critChance,
+                card.ability.extra.crit_chance,
                 card.ability.extra.maxCritChance,
                 card.ability.extra.moneyNeeded,
-                card.ability.extra.currentCrit,
                 card.ability.extra.moneyThreshold,
-                card.ability.extra.currentDMG,
-                numerator,
-                denominator,
-                card.ability.extra.totalCrit,
-                card.ability.extra.critLeader,
-
-                -- Other items
-                card.ability.extra.lord_dominiks
+                string.format('%g', (tstmod_crit_percent(card) or 0)),
+                den,
+                string.format('%.2f', (tstmod_stat_total('crit_mult', 175) / 100 or 0))
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.before then
-            local currMoney = (G.GAME.dollars or G.GAME.dollar_buffer or 0)
-            
-            if currMoney > card.ability.extra.moneyThreshold then
-                card.ability.extra.currentCrit = card.ability.extra.critChance - card.ability.extra.moneyThreshold + currMoney / card.ability.extra.moneyNeeded
-            end
-            
-            if card.ability.extra.currentCrit > (card.ability.extra.maxCritChance + card.ability.extra.critChance) then card.ability.extra.currentCrit = (card.ability.extra.maxCritChance + card.ability.extra.critChance) end
-
-
-            for i = 1, #G.jokers.cards do
-                if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.critChance then
-                    G.jokers.cards[i].ability.extra.totalCrit = G.jokers.cards[i].ability.extra.totalCrit + (card.ability.extra.currentCrit - card.ability.extra.critChance)
-                end
-            end
-        end
-        
-        if context.cardarea == G.play and context.individual and card.ability.extra.critLeader then  
-            local crit = SMODS.pseudorandom_probability(card, 'j_tstmod_atmas_reckoning', card.ability.extra.totalCrit, 100)
-            local percentDmg = 1
-
-            if crit then
-                percentDmg = 1 + (card.ability.extra.lord_dominiks) * (G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante) - 1 * card.ability.extra.lord_dominiks
-
-                return { 
-                    mult = (context.other_card.base.id + context.other_card.ability.perma_bonus) * (card.ability.extra.currentDMG / 100 - 1) * percentDmg,
-                    message = localize('b_crit'),
-                    colour = G.C.RED
-                }
-            end
-        end
-    end,
-    add_to_deck = function (self, card, context)
-        for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.critChance then
-                if G.jokers.cards[i] ~= card then
-                    if G.jokers.cards[i].ability.extra.critLeader then
-                        card.ability.extra.critLeader = false
-                    end
-
-                    card.ability.extra.totalCrit = card.ability.extra.totalCrit + (G.jokers.cards[i].ability.extra.currentCrit or G.jokers.cards[i].ability.extra.critChance)
-                    card.ability.extra.currentDMG = card.ability.extra.currentDMG + (G.jokers.cards[i].ability.extra.critDMGAugment or 0)   
-                    
-                    G.jokers.cards[i].ability.extra.totalCrit = G.jokers.cards[i].ability.extra.totalCrit + card.ability.extra.currentCrit
-                end
-            end
-        end
-    end,
-    remove_from_deck = function(self, card, context)
-        local jokers = {}
-
-        for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i] and G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.critChance and G.jokers.cards[i] ~= card then
-                jokers[#jokers + 1] = G.jokers.cards[i]
-            end
-        end
-
-        for i = 1, #jokers do            
-            jokers[i].ability.extra.totalCrit = jokers[i].ability.extra.totalCrit - card.ability.extra.currentCrit
-
-            if i == #jokers then jokers[i].ability.extra.critLeader = true end
-        end
+        card.ability.extra.crit_chance = math.min(20 + math.max((G.GAME.dollars or G.GAME.dollar_buffer or 0) - card.ability.extra.moneyThreshold, 0), card.ability.extra.maxCritChance)
     end
 }

@@ -11,26 +11,37 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            xmult = 0.5,
+            luck = 1,
+            currentMult = 0,
+            currentLuck = 0
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 1,
+    cost = 4,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.xmult,
+                card.ability.extra.luck,
+                card.ability.extra.currentMult,
+                card.ability.extra.currentLuck
             }
         }
     end,
     calculate = function(self, card, context)
+        card.ability.extra.currentMult = 1 + card.ability.extra.xmult * (#G.consumeables.cards or 0)
+        card.ability.extra.currentLuck = 1 + card.ability.extra.luck * (#G.consumeables.cards or 0)
+
+         if context.mod_probability and not context.blueprint then
+            return {
+                numerator = context.numerator * card.ability.extra.currentLuck
+            }
+        end
+
         if context.joker_main then
             return {
-                message = 'NOPE!'
+                xmult = card.ability.extra.currentMult
             }
         end
     end

@@ -154,10 +154,11 @@ return {
                 name = 'Atma\'s Reckoning',
                 text = {
                     {
-                        'Grants {C:green}#2#%{} {C:mult}Critical Chance{}, every {C:money}$#4#{}',
-                        'above {C:money}$#6#{} grants another {C:green}1%{}',
-                        'up to {C:green}#3#%{}, for a {C:green}50%{} total.',
-                        '{C:inactive}(Crit Chance: #8#/#9# (#10#%), Crit DMG: #7#%)'
+                        'Grants {C:green}#1#%{} {C:mult}Critical Chance{}, every {C:money}$#3#{}',
+                        'above {C:money}$#4#{} grants another {C:green}1%{}',
+                        'up to {C:green}#2#%{}.',
+                        '{C:inactive}({}{C:green}#5# / #6#{}{C:inactive} chance){}'
+                        ,'{C:inactive}({}{X:mult,C:white}X#7#{}{C:inactive} damage){}'
                     }
                 }
             },
@@ -165,9 +166,10 @@ return {
                 name = 'Infinity Edge',
                 text = {
                     {
-                        'Grants {C:green}#2#%{} {C:mult}Critical Chance{},',
-                        'and {C:green}#4#% {X:mult,C:white}Critical Damage{}',
-                        '{C:inactive}(Crit Chance: #7#/#8# (#9#%), Crit DMG: #6#%)'
+                        'Grants {C:green}#1#%{} {C:mult}Critical Chance{},',
+                        'and {C:green}#2#% {X:mult,C:white}Critical Damage{}',
+                        '{C:inactive}({}{C:green}#3# / #4#{}{C:inactive} chance){}',
+                        '{C:inactive}({}{X:mult,C:white}X#5#{}{C:inactive} damage){}'
                     }
                 }
             },
@@ -175,15 +177,15 @@ return {
                 name = 'Essence Reaver',
                 text = {
                     {
-                        'Grants {C:green}#6#%{} {C:mult}Critical Chance{}.',
-                        '{C:inactive}(Crit Chance: #9#/#10# (#11#%), Crit DMG: #8#%)'
+                        'Grants {C:green}#2#%{} {C:mult}Critical Chance{}.',
+                        '{C:inactive}({}{C:green}#5# / #6#{}{C:inactive} chance){}',
+                        '{C:inactive}({}{X:mult,C:white}X#7#{}{C:inactive} damage){}'
                     },
                     {
-                        'Spellblade: Grants {C:mult}+#1#{} Mult equal',
+                        'Spellblade: Grants {C:mult}+#2#{} Mult equal',
                         'to {C:mult}Critical Chance.',
                         'Enhances card played.',
-                        '{C:inactive}(Last Hand: #3#)',
-                        '{C:inactive}(Next enh.: #12#)'
+                        '{C:inactive}(Next enh.: #3#)'
                     }
                 }
             },
@@ -729,12 +731,10 @@ return {
                 name = 'Lord Dominik\'s Regards',
                 text = {
                     {
-                        'Grants {C:green}#2#%{} {C:mult}Critical Chance{}',
-                        '{C:inactive}(Crit Chance: #4#/#5# (#6#%), Crit DMG: #3#%)'
-                    },
-                    {
                         '{C:mult}Crits{} multiply their score',
-                        'by the ante your are in.'
+                        'by the ante your are in.',
+                        '{C:inactive}({}{C:green}#2# / #3#{}{C:inactive} chance){}',
+                        '{C:inactive}({}{X:mult,C:white}X#4#{}{C:inactive} damage){}'
                     }
                 }
             },
@@ -1003,9 +1003,9 @@ return {
                         'Up to {C:attention}#4#{} times.'
                     },
                     {
-                        'At max stacks, playing a',
-                        '{C:attention}full hand{} of cards with',
-                        'the same enhancement, applies {C:chips}splash{}.'
+                        'At max stacks, playing an',
+                        '{C:attention}entire hand{} of cards with the',
+                        'same enhancement, counts as a {C:attention}flush{}.'
                     }
                 }
             },
@@ -1168,12 +1168,13 @@ return {
                 name = 'The Collector',
                 text = {
                     {
-                        'Grants {C:green}#2#%{} {C:mult}Critical Chance{}',
-                        '{C:inactive}(Crit Chance: #6#/#7# (#8#%), Crit DMG: #5#%)'
+                        'Grants {C:green}#1#%{} {C:mult}Critical Chance{}',
+                        '{C:inactive}({}{C:green}#5# / #6#{}{C:inactive} chance){}',
+                        '{C:inactive}({}{X:mult,C:white}X#7#{}{C:inactive} damage){}'
                     },
                     {
-                        'If score missing is {X:purple,C:white}#10#%{}',
-                        'or less, execute blind and gain {C:money}$#3#{}.'
+                        'If score missing is {X:purple,C:white}#3#%{}',
+                        'or less, execute blind and gain {C:money}$#2#{}.'
                     }
                 }
             },
@@ -1497,9 +1498,10 @@ return {
         dictionary = {
             b_spellblade = 'Spellblade',
             b_hydra = 'Hydra',
-            b_crit = 'Critical',
+            b_crit = 'CRITICAL!',
             b_exectued = 'EXECUTED',
             k_bonus = 'Bonus',
+            k_lucky = 'Lucky!',
             k_enhanced = 'Enhanced',
             k_infected = 'Infected',
             a_hand = 'Hand',

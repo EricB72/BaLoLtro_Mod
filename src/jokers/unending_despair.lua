@@ -11,9 +11,9 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            eveyXHands = 2,
+            discards = 1,
+            multiplier = 10
         }
     },
     rarity = 3,
@@ -21,16 +21,18 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.eveyXHands,
+                card.ability.extra.discards,
+                card.ability.extra.multiplier
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
+        if context.joker_main and  (G.GAME.current_round.hands_played + 1) % card.ability.extra.eveyXHands == 0 then
+            ease_discard(card.ability.extra.discards)
+
             return {
-                message = 'NOPE!'
+                score = card.ability.extra.multiplier * (G.GAME.dollars or G.GAME.dollar_buffer or 0)
             }
         end
     end

@@ -104,13 +104,30 @@ SMODS.Joker {
             }
         end
 
-        if (context.end_of_round or context.hand_drawn) and not context.blueprint then
-               if card.ability.extra.enhCards >= card.ability.extra.triggersToEv then
-                SMODS.add_card {
-                    key = card.ability.extra.seraphs,
-                }
-                SMODS.destroy_cards(card, nil, nil, true)
-            end
+        if ((context.end_of_round and not context.game_over and context.main_eval) or context.hand_drawn) and not context.blueprint and card.ability.extra.enhCards >= card.ability.extra.triggersToEv then
+            local cost       = card.cost
+            local sell_cost  = card.sell_cost
+            local base_cost  = card.base_cost
+            local extra_val  = card.ability.extra_value
+
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after', delay = 0.2,
+                func = function()
+                    card:set_ability(G.P_CENTERS['j_tstmod_sebr'])
+
+                    -- Restaurar precio y valor de venta (igual que antes)
+                    card.base_cost = base_cost
+                    card.cost = cost
+                    card.sell_cost = sell_cost
+                    card.ability.extra_value = extra_val
+
+                    -- Animación de aparecer, con los colores de la "disolución"
+                    card:start_materialize({ G.C.WHITE, HEX('d3af37') })
+                    card:juice_up(0.6, 0.6)
+                    return true
+                end
+            }))
+            return {message = "Transformed"}
         end
     end,
     add_to_deck = function (self, card, context)

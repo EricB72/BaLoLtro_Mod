@@ -11,9 +11,9 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            percentagePer = 5,
+            ecrit_chance = 0,
+            crit_mult = 0
         }
     },
     rarity = 3,
@@ -22,17 +22,25 @@ SMODS.Joker {
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.percentagePer,
+                card.ability.extra.ecrit_chance,
+                card.ability.extra.crit_mult
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            return {
-                message = 'NOPE!'
-            }
+        if context.before then
+            for _, _card in ipairs(context.scoring_hand) do
+                if next(SMODS.get_enhancements(_card)) then 
+                    card.ability.extra.ecrit_chance = card.ability.extra.ecrit_chance + card.ability.extra.percentagePer
+                    card.ability.extra.crit_mult = card.ability.extra.crit_mult + card.ability.extra.percentagePer
+                end
+            end
+
+        if (context.final_scoring_step or context.end_of_round) and not context.blueprint then
+            card.ability.extra.ecrit_chance = 0
+            card.ability.extra.crit_mult = 0
         end
     end
+end
 }

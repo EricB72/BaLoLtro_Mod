@@ -11,27 +11,42 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            state = false,
+            chips = 10,
+            mult = 5,
+            percentage = 5,
+            score = 5
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 2,
+    cost = 4,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
+                card.ability.extra.state,
                 card.ability.extra.chips,
                 card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.percentage,
+                card.ability.extra.score
             }
         }
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            return {
-                message = 'NOPE!'
-            }
+            if card.ability.extra.state then
+            card.ability.extra.state = not card.ability.extra.state
+               return{
+                    chips = card.ability.extra.chips,
+                    mult = card.ability.extra.mult
+               } 
+            else
+                card.ability.extra.state = not card.ability.extra.state
+            return
+                {
+                    score = card.ability.extra.score * (G.GAME.blind.chips - G.GAME.chips) / 100,
+                    blindsize = -(card.ability.extra.percentage * (G.GAME.blind.chips) / 100)
+               } 
+            end
         end
     end
 }

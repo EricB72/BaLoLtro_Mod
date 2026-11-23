@@ -11,21 +11,10 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            mult = 25,
-            highCard = 'High Card',
-            prevHand = 'None',
-            spellblade = true,
-            critChance = 25,
-            currentCrit = 25,
-            critDMG = 175,
-            currentDMG = 175,
-            totalCrit = 25,
+            spellblade = false,
+            crit_chance = 10,
             nextEnh = 'IDK',
-            critLeader = true,
             enhancement = 0,
-
-            -- Other items
-            lord_dominiks = 0
         }
     },
     rarity = 1,
@@ -33,115 +22,80 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_spellblade' }
         info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
-        local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.totalCrit, 100, 'j_tstmod_essence_reaver')
+        local num, den = SMODS.get_probability_vars(
+                    card, card.ability.extra.crit_chance, 100, 'tstmod_crit')
+
         return {
             vars = {
-                card.ability.extra.mult,
-                card.ability.extra.highCard,
-                card.ability.extra.prevHand,
                 card.ability.extra.spellblade,
-                card.ability.extra.critDMG,
-                card.ability.extra.critChance,
-                card.ability.extra.currentCrit,
-                card.ability.extra.currentDMG,
-                numerator,
-                denominator,
-                card.ability.extra.totalCrit,
+                card.ability.extra.crit_chance,
                 card.ability.extra.nextEnh,
-                card.ability.extra.critLeader,
                 card.ability.extra.enhancement,
-
-                -- Other items
-                card.ability.extra.lord_dominiks
+                string.format('%g', (tstmod_crit_percent(card) or 0)),
+                den,
+                string.format('%.2f', (tstmod_stat_total('crit_mult', 175) / 100 or 0))
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.cardarea == G.play and context.individual and card.ability.extra.critLeader then            
-            local crit = SMODS.pseudorandom_probability(card, 'j_tstmod_essence_reaver', card.ability.extra.totalCrit, 100)
-            local percentDmg = 1
-
-            if crit then
-                percentDmg = 1 + (card.ability.extra.lord_dominiks) * (G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante) - 1 * card.ability.extra.lord_dominiks
-
-                return { 
-                    mult = (context.other_card.base.id + context.other_card.ability.perma_bonus) * (card.ability.extra.currentDMG / 100 - 1) * percentDmg,
-                    message = localize('b_crit'),
-                    colour = G.C.RED
-                }
-            end
+        -- Spellblade
+        if context.tstmod_spellblade then
+            card.ability.extra.spellblade = true
         end
 
-        if context.before and card.ability.extra.prevHand ~= card.ability.extra.highCard and context.scoring_name == card.ability.extra.highCard and not context.blueprint then
-            for i = 1, #context.scoring_hand do
-                if not context.scoring_hand[i].debuff and not next(SMODS.get_enhancements(context.scoring_hand[i])) then
-                    G.E_MANAGER:add_event(Event({
-                        func = function()
-                            local _card = context.scoring_hand[i]
+        if context.individual and context.cardarea == G.play
+            and card.ability.extra.spellblade and not context.blueprint then
 
-                            _card:set_ability(card.ability.extra.enhancement)
-                            _card:juice_up(0.3, 0.3)
+        local _card = context.other_card
+        if _card and not _card.debuff and not context.repetition
+        and not _card.tstmod_pendiente
+        and not next(SMODS.get_enhancements(_card)) then
 
-                            card.ability.extra.enhancement = SMODS.poll_enhancement { guaranteed = true, key = "j_tstmod_essence_reaver" }
-                            card.ability.extra.nextEnh = localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement } 
-                            return true
-                        end
-                    }))
-                end
+            -- Asegurar que la mejora guardada es válida
+            local function valida(k)
+                return type(k) == 'string' and k ~= 'c_base' and G.P_CENTERS[k]
+            end
+            if not valida(card.ability.extra.enhancement) then
+                card.ability.extra.enhancement =
+                    SMODS.poll_enhancement { guaranteed = true, key = 'j_tstmod_essence_reaver' }
             end
 
+            -- Tomar la de ESTA carta y preparar la siguiente YA (no dentro del evento)
+            local enh = card.ability.extra.enhancement
+            card.ability.extra.enhancement =
+                SMODS.poll_enhancement { guaranteed = true, key = 'j_tstmod_essence_reaver' }
+            card.ability.extra.nextEnh = localize {
+                type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement }
+
+            -- Marcar la carta como "pendiente" para que nadie más la toque
+            _card.tstmod_pendiente = true
+
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    _card.tstmod_pendiente = nil
+                    if not next(SMODS.get_enhancements(_card)) then   -- recomprobar
+                        _card:set_ability(G.P_CENTERS[enh])
+                        _card:juice_up(0.3, 0.3)
+                    end
+                    return true
+                end
+            }))
+
+            return { message = localize('k_enhanced') }
+        end
+    end
+
+        if context.joker_main and card.ability.extra.spellblade then
+            card.ability.extra.spellblade = false
+
             return {
-                message = localize('k_enhanced')
+                mult = card.ability.extra.crit_chance
             }
 
         end
-
-        -- Spellblade
-        if context.joker_main then
-            if card.ability.extra.prevHand ~= card.ability.extra.highCard and context.scoring_name == card.ability.extra.highCard then
-                card.ability.extra.prevHand = context.scoring_name
-                card.ability.extra.mult = card.ability.extra.totalCrit
-
-                return {
-                    mult = card.ability.extra.mult
-                }
-            else
-                card.ability.extra.prevHand = context.scoring_name
-            end
-        end
     end,
-    add_to_deck = function (self, card, context)
+    add_to_deck = function (self, card)
         card.ability.extra.enhancement = SMODS.poll_enhancement { guaranteed = true, key = "j_tstmod_essence_reaver" }
         card.ability.extra.nextEnh = localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement } 
-
-        for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.critChance then
-                if G.jokers.cards[i] ~= card then
-                    if G.jokers.cards[i].ability.extra.critLeader then
-                        card.ability.extra.critLeader = false
-                    end
-
-                    card.ability.extra.totalCrit = card.ability.extra.totalCrit + (G.jokers.cards[i].ability.extra.currentCrit or G.jokers.cards[i].ability.extra.critChance)
-                    card.ability.extra.currentDMG = card.ability.extra.currentDMG + (G.jokers.cards[i].ability.extra.critDMGAugment or 0)   
-                    
-                    G.jokers.cards[i].ability.extra.totalCrit = G.jokers.cards[i].ability.extra.totalCrit + card.ability.extra.currentCrit
-                end
-            end
-        end
-    end,
-    remove_from_deck = function(self, card, context)
-        local jokers = {}
-
-        for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i] and G.jokers.cards[i].ability and G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.critChance and G.jokers.cards[i] ~= card then
-                jokers[#jokers + 1] = G.jokers.cards[i]
-            end
-        end
-
-        for i = 1, #jokers do            
-            jokers[i].ability.extra.totalCrit = jokers[i].ability.extra.totalCrit - card.ability.extra.currentCrit
-
-            if i == #jokers then jokers[i].ability.extra.critLeader = true end
-        end
     end
 }

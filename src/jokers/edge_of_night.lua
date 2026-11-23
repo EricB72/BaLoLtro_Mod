@@ -14,7 +14,7 @@ SMODS.Joker {
             mult = 0,
             multGain = 3,
             nominatorMult = 3,
-            nominatorDecrease = 50
+            nominatorDecrease = 25
         }
     },
     rarity = 1,
@@ -31,7 +31,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.after and not context.blueprint then
+        if context.before and not context.blueprint then
             local numGlass = 0
             for _, glassCard in ipairs(context.scoring_hand) do
                 if SMODS.has_enhancement(glassCard, 'm_glass') then numGlass = numGlass + 1 end
@@ -41,16 +41,14 @@ SMODS.Joker {
         end
 
          if context.remove_playing_cards and not context.blueprint then
-            local glass_cards = 0
             for _, removed_card in ipairs(context.removed) do
-                if removed_card.shattered then glass_cards = glass_cards + 1 end
-            end
-            if glass_cards > 0 then
-                card.ability.extra.mult = 0
-                card.ability.extra.nominatorMult = card.ability.extra.nominatorMult * (100 - card.ability.extra.nominatorDecrease * glass_cards) / 100
-                return true
+                if removed_card.shattered then 
+                    card.ability.extra.mult = 0
+                    card.ability.extra.nominatorMult = card.ability.extra.nominatorMult / (100 / card.ability.extra.nominatorDecrease)
+                end
             end
         end
+
         if context.using_consumeable and not context.blueprint and context.consumeable.config.center.key == 'c_hanged_man' then
             -- Glass Joker updates on Hanged Man and no other destroy consumable
             local glass_cards = 0
@@ -63,7 +61,7 @@ SMODS.Joker {
             end
         end
 
-        if context.joker_main then
+        if context.before then
             return {
                 mult = card.ability.extra.mult
             }

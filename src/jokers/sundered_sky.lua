@@ -11,27 +11,31 @@ SMODS.Joker {
     },
     config = {
         extra = {
-            chips = 0,
-            mult = 0,
-            HandNum = 0
+            crit_chance = 0,
+            crit_mult = 0,
+            handNum = 0
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 1,
+    cost = 3,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.HandNum
+                card.ability.extra.crit_chance,
+                card.ability.extra.crit_mult,
+                card.ability.extra.handNum
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            return {
-                message = 'NOPE!'
-            }
+        if context.before and G.GAME.current_round.hands_played == card.ability.extra.handNum then
+            card.ability.extra.crit_chance = 100
+            card.ability.extra.crit_mult = 0.5
+        end
+
+        if context.final_scoring_step and not context.blueprint then
+            card.ability.extra.crit_chance = 0
+            card.ability.extra.crit_mult = 0
         end
     end
 }

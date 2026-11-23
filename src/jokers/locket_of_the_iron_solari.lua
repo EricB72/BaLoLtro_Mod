@@ -17,7 +17,6 @@ SMODS.Joker {
     rarity = 1,
     cost = 2,
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue + 1] = G.P_CENTERS.e_tstmod_spell_shield
         return {
             vars = {
                 card.ability.extra.spellShield

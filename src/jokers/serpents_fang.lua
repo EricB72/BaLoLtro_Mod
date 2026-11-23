@@ -34,11 +34,11 @@ SMODS.Joker {
         end
 
     
-        if (context.before or context.hand_drawn or context.after) and not context.blueprint then
+        if (context.before or context.final_scoring_step) and not context.blueprint then
             card.ability.extra.currentPercent = tonumber(tostring((1 - (G.GAME.blind.chips / card.ability.extra.originalBlind)) * 100))
         end
 
-        if (context.before or context.hand_drawn) and card.ability.extra.currentPercent >= card.ability.extra.reqPercent and G.GAME.blind.boss and not G.GAME.blind.disabled then
+        if (context.before or context.final_scoring_step) and card.ability.extra.currentPercent >= card.ability.extra.reqPercent and G.GAME.blind.boss and not G.GAME.blind.disabled then
             G.E_MANAGER:add_event(Event({
                 func = function()
                     G.E_MANAGER:add_event(Event({
