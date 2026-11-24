@@ -12,7 +12,7 @@ SMODS.Joker {
     config = {
         extra = {
             percentage = 25,
-            chips = 50
+            chips = 100
         }
     },
     rarity = 1,
@@ -28,10 +28,8 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.joker_main and G.GAME.chips / G.GAME.blind.chips * 100 >= card.ability.extra.percentage then
             return {
-                chips = card.ability.extra.chips * (G.GAME.chips / G.GAME.blind.chips) / card.ability.extra.percentage
+                chips = card.ability.extra.chips * (G.GAME.chips / G.GAME.blind.chips)
             }
         end
-
-
     end
 }

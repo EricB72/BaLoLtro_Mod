@@ -723,7 +723,8 @@ return {
                 name = 'Locket of the Iron Solari',
                 text = {
                     {
-                        'NOPE!'
+                        'Uppon selling gives the {C:purple}Spell Shield{}',
+                        'edition to every joker. {C:inactive}(If possible){}'
                     }
                 }
             },
@@ -989,7 +990,10 @@ return {
                 name = 'Rite of Ruin',
                 text = {
                     {
-                        'NOPE!'
+                        'Grants {C:green}#1#%{} {C:money}Enhanced{} {C:mult}Critical Chance{}',
+                        'and {X:mult,C:white}Critical Damage{} per {C:attention}enhanced{} card scoring. ',
+                        '{C:inactive}({}{C:green}#4# / #5#{}{C:inactive} {C:money}enhanced{} chance){}',
+                        '{C:inactive}({}{X:mult,C:white}X#6#{}{C:inactive} damage){}'
                     }
                 }
             },
@@ -1040,7 +1044,9 @@ return {
                 name = 'Serylda\'s Grudge',
                 text = {
                     {
-                        'NOPE!'
+                        'If score done is {C:green}#1#%{} or higher,',
+                        'gives {X:purple,C:white}#2#%{} of missing score,',
+                        'equal to the number of {C:attention}cards in hand{}.'
                     }
                 }
             },
@@ -1057,7 +1063,9 @@ return {
                 name = 'Spear of Shojin',
                 text = {
                     {
-                        'NOPE!'
+                        'Gives {X:mult,C:white}X#1#{} mult and {C:green}#2#{} luck.',
+                        'per consumable card owned.',
+                        '{C:inactive}(Current: {X:mult,C:white}X#3#{}{C:inactive} mult and {C:green}#4#{}{C:inactive} luck)',
                     }
                 }
             },
@@ -1074,7 +1082,8 @@ return {
                 name = 'Spirit Visage',
                 text = {
                     {
-                        'NOPE!'
+                        'Upon gaining a {C:blue}hand{} or a {C:red}discard',
+                        'has a {C:green}#3# / #4#{} chance of giving an extra {C:attention}#2#{}.'
                     }
                 }
             },
@@ -1107,7 +1116,8 @@ return {
                 name = 'Stormsurge',
                 text = {
                     {
-                        'NOPE!'
+                        'If score done is {C:purple}#1#%{} or higher,',
+                        'gives up to {C:chips}#2#{} chips per {C:purple}%{} of score done.'
                     }
                 }
             },
@@ -1132,7 +1142,10 @@ return {
                 name = 'Sundered Sky',
                 text = {
                     {
-                        'NOPE!'
+                        'On the first hand played grants',
+                        '{C:green}100%{} {C:mult}Critical Chance{} at {C:green}50% {X:mult,C:white}Critical Damage{}',
+                        '{C:inactive}({}{C:green}#4# / #5#{}{C:inactive} chance){}',
+                        '{C:inactive}({}{X:mult,C:white}X#6#{}{C:inactive} damage){}'
                     }
                 }
             },
@@ -1160,7 +1173,10 @@ return {
                 name = 'Terminus',
                 text = {
                     {
-                        'NOPE!'
+                        'Alterantes between {C:attention}states{} every hand:',
+                        ' - Gives {C:chips}#2#{} chips and {C:mult}#3#{} mult.',
+                        ' - Gives {X:purple,C:white}#5#%{} or score required and',
+                        '   reduces blind by {X:purple,C:white}#4#%{}.'
                     }
                 }
             },
@@ -1182,7 +1198,9 @@ return {
                 name = 'Thornmail',
                 text = {
                     {
-                        'NOPE!'
+                        'Gains {C:chips}#2#{} chips and {C:money}$#1#{}',
+                        'per {C:attention}debuffed card played.',
+                        '{C:inactive}(Current: {C:chips}#4#{} {C:inactive}chips, {C:money}$#3#{}{C:inactive})'
                     }
                 }
             },
@@ -1211,7 +1229,9 @@ return {
                 name = 'Unending Despair',
                 text = {
                     {
-                        'NOPE!'
+                        'Every {C:attention}#1#{} hands, gives {C:red}#2#{} discard/s',
+                        'and grants {C:purple}score{} equal to {C:attention}#3#{}',
+                        'times money owned.'
                     }
                 }
             },
@@ -1262,7 +1282,9 @@ return {
                 name = 'Winter\'s Approach',
                 text = {
                     {
-                        'NOPE!'
+                        'Enhances the {C:attention}#1#{} right-most cards',
+                        'in hand with {C:money}gold{}. Up to 3 times.',
+                        'Then it transforms to {C:attention}Fimbulwinter{}.'
                     }
                 }
             },
@@ -1270,7 +1292,8 @@ return {
                 name = 'Fimbulwinter',
                 text = {
                     {
-                        'NOPE!'
+                        'Gives {X:chips,C:white}X#1#{} chips per',
+                        '{C:money}gold{} card in deck.'
                     }
                 }
             },
@@ -1450,9 +1473,16 @@ return {
             m_crit = {
                 name = "Critical Strike",
                 text = {
-                    'Multiply whatever card gives',
+                    'Multiply chips card gives',
                     'by Critical Damage, and give',
                     'it as {C:mult}+Mult{}.'
+                }
+            },
+            m_ecrit = {
+                name = "Enhanced Critical Strike",
+                text = {
+                    'Multiply whatever card enhancement',
+                    'gives by Critical Damage'
                 }
             },
             m_hydra = {

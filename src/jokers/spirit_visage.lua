@@ -15,8 +15,8 @@ SMODS.Joker {
             gainExtra = 1
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 2,
+    cost = 5,
     loc_vars = function(self, info_queue, card)
         local num, den = SMODS.get_probability_vars(card, 1, card.ability.extra.denominator, 'tstmod_spirit_visage')
         return {

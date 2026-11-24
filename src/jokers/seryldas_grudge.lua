@@ -15,8 +15,8 @@ SMODS.Joker {
             score = 0
         }
     },
-    rarity = 3,
-    cost = 6,
+    rarity = 1,
+    cost = 2,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
@@ -26,10 +26,10 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        card.ability.extra.score = (G.hand.config.card_limit or 0)
+        card.ability.extra.score = (#G.hand.cards  or 0)
         if context.joker_main and G.GAME.chips / G.GAME.blind.chips * 100 >= card.ability.extra.percentage then
             return {
-                score = card.ability.extra.score * G.GAME.blind.chips / 100
+                score = card.ability.extra.score * (G.GAME.blind.chips - G.GAME.chips) / 100
             }
         end
     end

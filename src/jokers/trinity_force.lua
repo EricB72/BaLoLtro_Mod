@@ -146,7 +146,16 @@ function ease_discard(mod, instant, silent)
     return ret
 end
 
-
+local ease_dollars_ref = ease_dollars
+function ease_dollars(mod, instant)
+    if mod < 0 then
+        for _, joker in ipairs(SMODS.find_card('j_tstmod_sword_of_blossoming_dawn')) do
+            joker.ability.extra.currentAugment =
+                num(joker.ability.extra.currentAugment or 0) + math.abs(num(mod))
+        end
+    end
+    return ease_dollars_ref(mod, instant)
+end
 
 SMODS.current_mod.calculate = function(self, context)
     --Spellblade

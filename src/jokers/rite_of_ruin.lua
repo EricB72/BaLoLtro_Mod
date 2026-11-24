@@ -19,12 +19,17 @@ SMODS.Joker {
     rarity = 3,
     cost = 6,
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue + 1] = {set = 'Other', key = 'm_crit' }
+        info_queue[#info_queue + 1] = {set = 'Other', key = 'm_ecrit' }
+        local num, den = SMODS.get_probability_vars(
+            card, card.ability.extra.ecrit_chance, 100, 'tstmod_ecrit')
         return {
             vars = {
                 card.ability.extra.percentagePer,
                 card.ability.extra.ecrit_chance,
-                card.ability.extra.crit_mult
+                card.ability.extra.crit_mult,
+                string.format('%g', (tstmod_crit_percent(card) or 0)),
+                den,
+                string.format('%.2f', (tstmod_stat_total('crit_mult', 175) / 100 or 0))
             }
         }
     end,
